@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+
+more_posts = [
+    {:title => "Farina come back", :tag => "#comeIlFarina", 
+    :body => "Farina ritorna con rails a mietere vittime",
+    :image => "https://qualcosa.png", :rank => 8}
+]
+
+more_posts.each do |post|
+    Post.create!(post)
+end
