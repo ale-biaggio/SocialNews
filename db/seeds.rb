@@ -9,9 +9,12 @@
 more_posts = [
     {:title => "Farina come back", :tag => "#comeIlFarina", 
     :body => "Farina ritorna con rails a mietere vittime",
-    :image => "https://qualcosa.png", :rank => 8}
+    :image => "https://qualcosa.png", :rank => 8},
+    {:title => "Farina come back again", :tag => "#comeIlFarina", 
+        :body => "Farina ritorna con rails a mietere vittime",
+        :image => "https://qualcosa.png", :rank => 8}
 ]
 
 more_posts.each do |post|
-    Post.create!(post)
+    Post.create!(post) #Non deve essere nullo il campo posto o da errore
 end
