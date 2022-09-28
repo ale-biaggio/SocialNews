@@ -16,7 +16,7 @@
 
   <p>
     <strong>Image:</strong>
-    <%= post.image %>
+    <%= image_tag post.image if post.image.attached? %>
   </p>
 
   <p>
