@@ -1,6 +1,8 @@
 class Post < ApplicationRecord
     #model validation
-
+    belongs_to :user
+    has_many :comments, dependent: :destroy
+    
     has_one_attached :image
     
     def self.all_category ; %w[Affari Intrattenimento Politica Salute Spettacolo Sport Tecnologia] ; end
