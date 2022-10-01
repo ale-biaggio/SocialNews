@@ -1,9 +1,13 @@
 class Post < ApplicationRecord
     #model validation
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 
 >>>>>>> parent of 8a48ee5 (model di user e commenti)
+=======
+
+>>>>>>> parent of 8a48ee5... model di user e commenti
     has_one_attached :image
     
     def self.all_category ; %w[Affari Intrattenimento Politica Salute Spettacolo Sport Tecnologia] ; end
