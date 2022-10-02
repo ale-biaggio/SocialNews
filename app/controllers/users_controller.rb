@@ -8,6 +8,8 @@ class UsersController < ApplicationController
 
   # GET /users/1 or /users/1.json
   def show
+    id = params[:id]
+    @user = User.find(id)
   end
 
   # GET /users/new

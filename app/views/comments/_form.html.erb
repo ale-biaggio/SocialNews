@@ -15,11 +15,12 @@
     <%= form.label :body, style: "display: block" %>
     <%= form.text_field :body %>
   </div>
-
-  <div>
-    <%= form.label :like, style: "display: block" %>
-    <%= form.number_field :like %>
+  <div class="field">
+      <%= form.label :user_id, 'user' %><br>
+      <%= form.select :user_id, @users.collect { |user| [ user.name, user.id] } %>
   </div>
+
+
 
   <div>
     <%= form.submit %>
