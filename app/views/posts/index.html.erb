@@ -5,6 +5,18 @@
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
+
+    <h2> Comments: </h2>
+    <% if post.comments.empty? %>
+      <p>No comments for this post...</p>
+    <% else %>
+      <ul>
+      <% post.comments.each do |r| %>
+        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> - <%= link_to "Edit this comment" %> - <%= link_to "Destroy this comment" %> </li>     
+      <% end %>
+      </ul>
+    <% end %>
+
     <%= link_to "Edit this post", edit_post_path(post) %> |
 
     <%= button_to "Destroy this post", post, method: :delete %>

@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
 		@comment.post = @post
 
     if @comment.save
-			redirect_to post_path(@post), notice: "A review has from #{@user.name} been successfully added to #{@post.title}." 
+			redirect_to posts_path, notice: "A review has from #{@user.name} been successfully added to #{@post.title}." 
 		else
 			render :new, status: :unprocessable_entity 
 		end
