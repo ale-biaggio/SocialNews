@@ -5,9 +5,9 @@
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
+    <%= link_to "Edit this post", edit_post_path(post) %> |
+
+    <%= button_to "Destroy this post", post, method: :delete %>
   <% end %>
 </div>
 
