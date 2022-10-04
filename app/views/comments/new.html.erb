@@ -1,9 +1,30 @@
-<h1>New comment</h1>
+<h1>Add Comment to <%= @post.title %></h1>
 
-<%= render "form", comment: @comment %>
+<%= form_with model: [ @post, @comment ] do |form| %>
+      <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-<br>
+        <ul>
+          <% @comment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<div>
-  <%= link_to "Back to comments", comments_path %>
-</div>
+    <div class="field">
+      <%= form.label :body, 'Comment' %>
+      <%= form.text_area:body %>
+    </div>
+
+    <div class="field">
+      <%= form.label :user_id, 'User' %><br>
+      <%= form.select :user_id, @users.collect { |user| [ user.username, user.id] } %>
+
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Add comment" %>
+    </div>
+  <% end %>
