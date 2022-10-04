@@ -26,3 +26,6 @@ Things you may want to cover:
 rails 4 per query e api
 metà bdd per cucumber
 deployment per heroku e distribuziuone
+
+
+minuto 20
