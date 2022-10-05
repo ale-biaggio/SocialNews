@@ -12,7 +12,9 @@
     <% else %>
       <ul>
       <% post.comments.each do |r| %>
-        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> - <%= link_to "Edit this comment" %> - <%= button_to "Destroy this comment", r.body , method: :delete %> </li>     
+        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> -
+         <%= link_to "Edit this comment" %> -
+         <%= button_to "Destroy this comment", r.body , method: :delete %> </li>     
       <% end %>
       </ul>
     <% end %>
