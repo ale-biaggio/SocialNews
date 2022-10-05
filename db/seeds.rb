@@ -1,8 +1,8 @@
 more_users = [
     {
-    :name => "prova", 
+    :name => "aaaaaaaaa", 
     :surname => "ermatto", 
-    :username => "prova",
+    :username => "ajeje",
     :email => "ddddddd@gmail",
     :password => "peccatidigola",
     :phone => "666"
