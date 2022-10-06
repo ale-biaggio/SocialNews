@@ -28,4 +28,4 @@ metà bdd per cucumber
 deployment per heroku e distribuziuone
 
 
-minuto 20
+minuto 55

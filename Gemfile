@@ -79,3 +79,7 @@ end
 
 #Gemma devise
 gem "devise"
+
+#Gemme oauth-facebook
+gem 'omniauth-facebook'
+gem 'omniauth-rails_csrf_protection'
