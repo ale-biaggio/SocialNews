@@ -312,4 +312,6 @@ Devise.setup do |config|
   #autenticazione oauth
   config.omniauth :facebook, '506300451002268', '0a0d7417ca799a8da4831d9132aeb890'
 
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
+
 end
