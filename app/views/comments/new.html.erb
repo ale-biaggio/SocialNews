@@ -20,7 +20,7 @@
 
     <div class="field">
       <%= form.label :user_id, 'User' %><br>
-      <%= form.select :user_id, @users.collect { |user| [ user.username, user.id] } %>
+      <%= form.select :user_id, @users.collect { |user| [ user.username, user.id, user.email] } %>
 
     </div>
 

@@ -80,6 +80,8 @@ end
 #Gemma devise
 gem "devise"
 
+gem 'canard', '~> 0.6.2.pre'
+
 #Gemme oauth-facebook
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
