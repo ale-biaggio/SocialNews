@@ -12,9 +12,9 @@
     <% else %>
       <ul>
       <% post.comments.each do |r| %>
-        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> -
-         <%= link_to "Edit this comment" %> -
-         <%= button_to "Destroy this comment", r.body , method: :delete %> </li>     
+        <li> <%= User.find(r.user_id).email %> - <%= r.body %> - <%= r.like %> -
+         <!--<%= if can? :edit, (r.user_id) then button_to 'Edit comment', (r.user_id), method: :edit, data:{ confirm: 'Are you sure?' } end%>-->
+         <!--<%= link_to 'Delete', r, :method => :delete, data: { confirm: 'Are you sure?' }%>-->
       <% end %>
       </ul>
     <% end %>
@@ -23,7 +23,7 @@
 
     <%= link_to "Edit this post", edit_post_path(post) %> |
     
-    <%= if can? :destroy, post then button_to 'Delete', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
+    <%= if can? :destroy, post then button_to 'Delete post', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
   
     
   <% end %>

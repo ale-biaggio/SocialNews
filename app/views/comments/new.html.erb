@@ -15,13 +15,11 @@
 
     <div class="field">
       <%= form.label :body, 'Comment' %>
-      <%= form.text_area:body %>
+      <%= form.text_area :body %>
     </div>
 
     <div class="field">
-      <%= form.label :user_id, 'User' %><br>
-      <%= form.select :user_id, @users.collect { |user| [ user.username, user.id, user.email] } %>
-
+      <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
     </div>
 
     <div class="actions">

@@ -1,4 +1,5 @@
 Canard::Abilities.for(:user) do
-  can [:read ,  :update , :create , :new , :edit], Post
-  cannot [:destroy ], Post
+  #inserire anche post e user
+  can [:read ,  :update , :create , :new , :edit, :destroy], Comment
+  cannot [ ], Comment
 end
