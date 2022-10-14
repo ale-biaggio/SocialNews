@@ -1,10 +1,28 @@
-<h1>Editing comment</h1>
+<h1>Editing comment in <%= @comment.post.title %></h1>
 
-<%= render "form", comment: @comment %>
+<%= form_with model: [ @comment.post, @comment ] do |form| %>
+      <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this review from being saved:</h2>
 
-<br>
+        <ul>
+          <% @comment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
 
-<div>
-  <%= link_to "Show this comment", @comment %> |
-  <%= link_to "Back to comments", comments_path %>
-</div>
+    <div class="field">
+      <%= form.label :body, 'Comment' %>
+      <%= form.text_area :body %>
+    </div>
+
+    <div class="field">
+      <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
+    </div>
+
+    <div class="actions">
+      <%= form.submit "Edit comment" %>
+    </div>
+  <% end %>
