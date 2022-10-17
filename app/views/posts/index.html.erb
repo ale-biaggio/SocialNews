@@ -13,8 +13,9 @@
         cursor: pointer;
   }
 </style>
-
-<a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
+<% if current_user==nil %>
+  <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
+<% end %>
 <h1>Posts</h1>
 
 <div id="posts">
@@ -28,19 +29,28 @@
       <ul>
       <% post.comments.each do |r| %>
         <li> <%= User.find(r.user_id).email %> - <%= r.body %> - <%= r.like %> -
+
+        <% if current_user!=nil and current_user.id == User.find(r.user_id).id %>
          <%= link_to 'Edit', edit_post_comment_path(r.post, r) %>
+        <% end %>
+
+        <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
          <%= button_to 'Delete', [r.post, r], :method => :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+
       <% end %>
       </ul>
     <% end %>
 
     <%= link_to "Add a comment", new_post_comment_path(post) %>
 
-    <%= link_to "Edit this post", edit_post_path(post) %> |
+    <% if current_user!=nil and current_user.id == post.user_id%>
+      <%= link_to "Edit this post", edit_post_path(post) %>
+    <% end %>
     
-    <%= if can? :destroy, post then button_to 'Delete post', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
+    <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Delete post', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
   
-    
+    <hr>
   <% end %>
 </div>
 
