@@ -29,15 +29,15 @@
     <%= render post %>
     <% if user_signed_in? %>
       <% if post.liked?(current_user) %>
-        <%= button_to "like", like_path(post), method: "put", class:"btn-green" %>
+        <%= button_to "Up", like_path(post), method: "put", class:"btn-green" %>
       <% else %>
-        <%= button_to "like", like_path(post), method: "put" %> 
+        <%= button_to "Up", like_path(post), method: "put" %> 
       <% end %>
       : <%= post.likes.count - post.dislikes.count %>
       <% if post.disliked?(current_user) %>
-        <%= button_to "dislike", dislike_path(post), method: "put", class:"btn-red"%> 
+        <%= button_to "Down", dislike_path(post), method: "put", class:"btn-red"%> 
       <% else %>
-        <%= button_to "dislike", dislike_path(post), method: "put" %> 
+        <%= button_to "Down", dislike_path(post), method: "put" %> 
       <% end %>
     <% else %>
       <a href="http://127.0.0.1:3000/users/sign_in"><%= button_to "like" %></a>
