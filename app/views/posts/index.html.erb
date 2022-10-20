@@ -21,7 +21,14 @@
 <div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
-
+    <% if user_signed_in? %>
+      <% if post.liked?(current_user) %>
+        <%= button_to "like", like_path(post), method: "put", disabled: true %> 
+      <% else %>
+        <%= button_to "like", like_path(post), method: "put" %> 
+      <% end %>
+    <% end %>
+    : <%= post.likes.count %>
     <h2> Comments: </h2>
     <% if post.comments.empty? %>
       <p>No comments for this post...</p>

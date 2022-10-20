@@ -51,7 +51,6 @@ class PostsController < ApplicationController
 
   # DELETE /posts/1 or /posts/1.json
   def destroy
-    authorize! :destroy, @post, :message => "BEWARE: you are not authorized to destroy new posts."
     @post.destroy
     
     respond_to do |format|
@@ -60,6 +59,14 @@ class PostsController < ApplicationController
     end
   end
 
+  def like
+    @post = Post.all.find(params[:id])
+    Like.create(user_id: current_user.id, post_id: @post.id)
+    respond_to do |format|
+      format.html { redirect_to posts_url}
+      format.json { head :no_content }
+    end
+  end
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
