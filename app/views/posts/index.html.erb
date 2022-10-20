@@ -12,6 +12,12 @@
         margin: 4px 2px;
         cursor: pointer;
   }
+  .btn-green{
+    background-color: green;
+  }
+  .btn-red{
+    background-color: red;
+  }
 </style>
 <% if current_user==nil %>
   <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
@@ -23,12 +29,22 @@
     <%= render post %>
     <% if user_signed_in? %>
       <% if post.liked?(current_user) %>
-        <%= button_to "like", like_path(post), method: "put", disabled: true %> 
+        <%= button_to "like", like_path(post), method: "put", class:"btn-green" %>
       <% else %>
         <%= button_to "like", like_path(post), method: "put" %> 
       <% end %>
-    <% end %>
-    : <%= post.likes.count %>
+      : <%= post.likes.count - post.dislikes.count %>
+      <% if post.disliked?(current_user) %>
+        <%= button_to "dislike", dislike_path(post), method: "put", class:"btn-red"%> 
+      <% else %>
+        <%= button_to "dislike", dislike_path(post), method: "put" %> 
+      <% end %>
+    <% else %>
+      <a href="http://127.0.0.1:3000/users/sign_in"><%= button_to "like" %></a>
+      : <%= post.likes.count - post.dislikes.count %> 
+      <a href="http://127.0.0.1:3000/users/sign_in"><%= button_to "dislike" %></a>
+    <% end %> 
+
     <h2> Comments: </h2>
     <% if post.comments.empty? %>
       <p>No comments for this post...</p>

@@ -1,10 +1,14 @@
 class Post < ApplicationRecord
     has_many :comments, dependent: :destroy
     has_many :likes, dependent: :destroy
+    has_many :dislikes, dependent: :destroy
     belongs_to :user
     has_one_attached :image
     def liked?(user)
         !!self.likes.find{|like| like.user_id == user.id}
+    end
+    def disliked?(user)
+        !!self.dislikes.find{|dislike| dislike.user_id == user.id}
     end
     def self.all_category ; %w[Affari Intrattenimento Politica Salute Spettacolo Sport Tecnologia] ; end
     validates :title, :presence=> true, length: {in: 2..50 }

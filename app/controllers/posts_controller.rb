@@ -58,10 +58,35 @@ class PostsController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   def like
     @post = Post.all.find(params[:id])
-    Like.create(user_id: current_user.id, post_id: @post.id)
+    if(@post.liked?(current_user))
+      @like = Like.find_by user_id:current_user.id, post_id:@post.id
+      @like.destroy
+    else
+      Like.create(user_id: current_user.id, post_id: @post.id)
+      if(@post.disliked?(current_user))
+        @dislike = Dislike.find_by user_id:current_user.id, post_id:@post.id
+        @dislike.destroy
+      end
+    end
+    respond_to do |format|
+      format.html { redirect_to posts_url}
+      format.json { head :no_content }
+    end
+  end
+  def dislike
+    @post = Post.all.find(params[:id])
+    if(@post.disliked?(current_user))
+      @dislike = Dislike.find_by user_id:current_user.id, post_id:@post.id
+      @dislike.destroy
+    else
+      Dislike.create(user_id: current_user.id, post_id: @post.id)
+      if(@post.liked?(current_user))
+        @like = Like.find_by user_id:current_user.id, post_id:@post.id
+        @like.destroy
+      end
+    end
     respond_to do |format|
       format.html { redirect_to posts_url}
       format.json { head :no_content }
