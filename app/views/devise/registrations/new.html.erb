@@ -1,0 +1,47 @@
+  
+<h2>Sign up</h2>
+
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :nome %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "nome", required: true, minlength: 2 , maxlength: 15, size: 15 %>
+  </div>
+  <div class="field">
+    <%= f.label :cognome %><br />
+    <%= f.text_field :surname, autofocus: true, autocomplete: "cognome", required: true, minlength: 2 , maxlength: 15, size: 15 %>
+  </div>
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true, autocomplete: "username", required: true, minlength: 3 , maxlength: 15, size: 15 %>
+  </div>
+  <div class="field">
+    <%= f.label :telefono %><br />
+    <%= f.telephone_field :phone, autofocus: true, autocomplete: "telefono", minlength: 10 , maxlength: 10, size: 10 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", required: true, minlength: 5 , maxlength: 30, size: 30%>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password", required: true, minlength: 6 , maxlength: 30, size: 30 %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, minlength: 6 , maxlength: 30, size: 30 %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
