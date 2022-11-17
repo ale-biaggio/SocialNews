@@ -85,3 +85,9 @@ gem 'canard', '~> 0.6.2.pre'
 #Gemme oauth-facebook
 gem 'omniauth-facebook'
 gem 'omniauth-rails_csrf_protection'
+
+gem 'http'
+
+gem 'news-api'
+
+gem 'open-uri'
