@@ -7,7 +7,11 @@ class GoogleNews
         begin
             attempts += 1
 
-            response = HTTP.get("https://newsapi.org/v2/everything?q=farina&from=2022-11-17&sortBy=popularity&apiKey=4d5c3cbe2fd54b948ccabe755b9d6d38")
+            repubblica = HTTP.get("https://newsapi.org/v2/everything?sources=la-repubblica&sortBy=popularity&apiKey=4d5c3cbe2fd54b948ccabe755b9d6d38")
+            ansa = HTTP.get("https://newsapi.org/v2/everything?sources=ansa&sortBy=popularity&apiKey=4d5c3cbe2fd54b948ccabe755b9d6d38")
+            sole24 = HTTP.get("https://newsapi.org/v2/everything?sources=il-sole-24-ore&sortBy=popularity&apiKey=4d5c3cbe2fd54b948ccabe755b9d6d38")
+            football = HTTP.get("https://newsapi.org/v2/everything?sources=football-italia&sortBy=popularity&apiKey=4d5c3cbe2fd54b948ccabe755b9d6d38")
+            bbc = HTTP.get("https://newsapi.org/v2/everything?q=italy&source=bbc-news&sortBy=popularity&apiKey=4d5c3cbe2fd54b948ccabe755b9d6d38")
         
         rescue => e
             if attempts < 10

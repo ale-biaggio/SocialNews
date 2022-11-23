@@ -1,48 +1,38 @@
-more_users = [
+User.create!([
+    { 
+    name: "La Repubblica", 
+    surname: "La Repubblica", 
+    username: "La Repubblica",
+    email: "larepubblica@gmail.com",
+    password: "password"
+    },
     {
-    :name => "aaaaaaaaa", 
-    :surname => "ermatto", 
-    :username => "ajeje",
-    :email => "ddddddd@gmail",
-    :password => "peccatidigola",
-    :phone => "666"
-    }
-]
-
-more_users.each do |user|
-    User.create!(user) #Non deve essere nullo il campo posto o da errore
-end
-
-more_posts = [
+    name: "Ansa", 
+    surname: "Ansa", 
+    username:  "Ansa",
+    email: "ansa@gmail.com",
+    password: "password"
+    },
+    { 
+    name: "Il Sole 24 Ore", 
+    surname: "Il Sole 24 Ore", 
+    username:  "Il Sole 24 Ore",
+    email: "ilsole24ore@gmail.com",
+    password: "password"
+    },
     {
-    :title => "Farina come back", 
-    :category => "Intrattenimento", 
-    :body => "Farina ritorna con rails a mietere vittimeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
-    :rank => 8
+    name: "Football Italia", 
+    surname: "Football Italia", 
+    username:  "Football Italia",
+    email: "footballitalia@gmail.com",
+    password: "password"
+    },
+    { 
+    name: "BBC News", 
+    surname: "BBC News", 
+    username:  "BBC News",
+    email: "bbcnews@gmail.com",
+    password: "password"
     }
-]
+])
 
-more_posts.each do |post|
-    Post.create!(post) #Non deve essere nullo il campo posto o da errore
-end
-
-more_comments = [
-    {
-    :body => "Farina00", 
-    :like => 3 
-    }
-]
-
-more_comments.each do |comment|
-    Comment.create!(comment) #Non deve essere nullo il campo posto o da errore
-end
-
-
-post_counter = Post.all.size
-user_counter = User.all.size
-more_comments.each do |comment|
-  r = Comment.new(comment)
-  r.post = Post.find(rand(1..post_counter))
-  r.user = User.find(rand(1..user_counter))
-  r.save
-end
