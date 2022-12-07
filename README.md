@@ -29,3 +29,10 @@ deployment per heroku e distribuziuone
 
 
 Ripartire con can/cannot
+
+la-repubblica
+ansa
+il-sole-24-ore
+google-news-it
+football-italia
+bbc-news
