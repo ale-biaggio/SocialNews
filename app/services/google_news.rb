@@ -28,7 +28,7 @@ class GoogleNews
         tot_res = rep_json["totalResults"]
         n = 0
         affari, cultura, politica, spettacolo, sport = 0,0,0,0,0
-        while (n < tot_res - 1)
+        while (n < 30)
             keyword = rep_json["articles"][n]["url"].split("/")[3]
             if (affari < 3 && keyword == "economia")
                 m = Post.new
@@ -36,7 +36,7 @@ class GoogleNews
                 m['title'] = rep_json["articles"][n]["title"]
                 m['category'] = 'Affari'
                 m['body'] = rep_json["articles"][n]["content"]
-                m['rank'] = n
+                m['rank'] = 30-n
                 m.save!
                 affari += 1
             end
@@ -44,9 +44,9 @@ class GoogleNews
                 m = Post.new
                 m['user_id'] = 1
                 m['title'] = rep_json["articles"][n]["title"]
-                m['category'] = 'Cultura'
+                m['category'] = 'Intrattenimento'
                 m['body'] = rep_json["articles"][n]["content"]
-                m['rank'] = n
+                m['rank'] = 30-n
                 m.save!
                 cultura += 1
             end
@@ -56,7 +56,7 @@ class GoogleNews
                 m['title'] = rep_json["articles"][n]["title"]
                 m['category'] = 'Politica'
                 m['body'] = rep_json["articles"][n]["content"]
-                m['rank'] = n
+                m['rank'] = 30-n
                 m.save!
                 politica += 1
             end
@@ -64,9 +64,9 @@ class GoogleNews
                 m = Post.new
                 m['user_id'] = 1
                 m['title'] = rep_json["articles"][n]["title"]
-                m['category'] = 'Spettacoli'
+                m['category'] = 'Spettacolo'
                 m['body'] = rep_json["articles"][n]["content"]
-                m['rank'] = n
+                m['rank'] = 30-n
                 m.save!
                 spettacolo += 1
             end
@@ -76,12 +76,12 @@ class GoogleNews
                 m['title'] = rep_json["articles"][n]["title"]
                 m['category'] = 'Affari'
                 m['body'] = rep_json["articles"][n]["content"]
-                m['rank'] = n
+                m['rank'] = 30-n
                 m.save!
                 sport += 1
             end
             if(affari == 3 && cultura == 3 && politica == 3 && spettacolo == 3 && sport == 3)
-                n = tot_res
+                n = 30
             else
                 n += 1
             end
