@@ -72,7 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_20_085203) do
     t.string "title"
     t.string "category"
     t.text "body"
-    t.integer "rank"
+    t.integer "rank", default: 0
+    t.string "img_test"
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

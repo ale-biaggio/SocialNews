@@ -4,7 +4,8 @@ class CreatePosts < ActiveRecord::Migration[7.0]
       t.string :title
       t.string :category
       t.text :body
-      t.integer :rank
+      t.integer :rank, default: 0
+      t.string :img_test, default: nil
       t.references :user, null: false, foreign_key: true
       t.timestamps
     end

@@ -1,7 +1,7 @@
 <div id="<%= dom_id post %>">
   <p>
-    <strong>user:</strong>
-    <%= post.user.email %>
+    <strong>User:</strong>
+    <%= post.user.username %>
   </p>
   <p>
     <strong>Title:</strong>
@@ -20,12 +20,13 @@
 
   <p>
     <strong>Image:</strong>
-    <%= image_tag post.image if post.image.attached? %>
+    <br>
+    <%= image_tag post.image, :style => "width: 20%; border-radius: 5px;" if post.image.attached?%>
+    <%= image_tag post.img_test, :style => "width: 20%; border-radius: 5px;" if post.img_test != nil%>
   </p>
 
   <p>
     <strong>Rank:</strong>
-    <%= post.rank %>
   </p>
 
 </div>

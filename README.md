@@ -36,3 +36,9 @@ il-sole-24-ore
 google-news-it
 football-italia
 bbc-news
+
+Da fare:
+come creatore si visualizza username invece di email, stessa cosa nei commenti //FATTO
+rank post testate deve diventare il numero di like/dislike //FATTO
+immagini post //FATTO
+quando si mette like/dislike non si deve ricaricare pagina

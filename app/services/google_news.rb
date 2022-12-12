@@ -36,6 +36,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Affari'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 affari += 1
@@ -46,6 +47,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Cultura'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 cultura += 1
@@ -56,6 +58,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Politica'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 politica += 1
@@ -66,6 +69,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Spettacolo'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 spettacolo += 1
@@ -76,6 +80,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Sport'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 sport += 1
@@ -98,6 +103,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Affari'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 affari += 1
@@ -108,6 +114,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Cultura'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 cultura += 1
@@ -118,6 +125,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Politica'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 politica += 1
@@ -128,6 +136,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Sport'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 sport += 1
@@ -138,6 +147,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Tecnologia'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 tecnologia += 1
@@ -159,6 +169,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Affari'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 affari += 1
@@ -169,6 +180,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Sport'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 sport += 1
@@ -179,6 +191,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Tecnologia'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 tecnologia += 1
@@ -189,6 +202,7 @@ class GoogleNews
                 m['title'] = article["title"]
                 m['category'] = 'Spettacolo'
                 m['body'] = article["content"]
+                m['img_test'] = article["urlToImage"]
                 m['rank'] = n
                 m.save!
                 spettacolo += 1
