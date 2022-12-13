@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.all    
+    @posts = Post.all.order(:rank).reverse    
   end
 
   # GET /posts/new
@@ -63,11 +63,17 @@ class PostsController < ApplicationController
     if(@post.liked?(current_user))
       @like = Like.find_by user_id:current_user.id, post_id:@post.id
       @like.destroy
+      @post.rank -= 1
+      @post.save
     else
       Like.create(user_id: current_user.id, post_id: @post.id)
+      @post.rank += 1
+      @post.save
       if(@post.disliked?(current_user))
         @dislike = Dislike.find_by user_id:current_user.id, post_id:@post.id
         @dislike.destroy
+        @post.rank += 1
+        @post.save
       end
     end
     respond_to do |format|
@@ -80,11 +86,17 @@ class PostsController < ApplicationController
     if(@post.disliked?(current_user))
       @dislike = Dislike.find_by user_id:current_user.id, post_id:@post.id
       @dislike.destroy
+      @post.rank += 1
+      @post.save
     else
       Dislike.create(user_id: current_user.id, post_id: @post.id)
+      @post.rank -= 1
+      @post.save
       if(@post.liked?(current_user))
         @like = Like.find_by user_id:current_user.id, post_id:@post.id
         @like.destroy
+        @post.rank -= 1
+        @post.save
       end
     end
     respond_to do |format|
