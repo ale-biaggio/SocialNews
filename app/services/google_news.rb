@@ -42,6 +42,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     affari += 1
+                    n -= 3
                 end
                 if (cultura < 3 && keyword == "cultura")
                     m = Post.new
@@ -53,6 +54,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     cultura += 1
+                    n -= 3
                 end
                 if (politica < 3 && keyword == "politica")
                     m = Post.new
@@ -64,6 +66,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     politica += 1
+                    n -= 3
                 end
                 if (spettacolo < 3 && keyword == "spettacoli")
                     m = Post.new
@@ -75,6 +78,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     spettacolo += 1
+                    n -= 3
                 end
                 if (sport < 3 && keyword == "sport")
                     m = Post.new
@@ -86,8 +90,8 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     sport += 1
+                    n -= 3
                 end
-                n -= 1
             end
         end
 
@@ -95,7 +99,7 @@ class GoogleNews
         #salvataggio nel db degli articoli di ansa 
         ansa_json = ansa.parse
         tot_res = ansa_json["totalResults"]
-        n = 50
+        n = 59
         affari, cultura, politica, sport, tecnologia = 0,0,0,0,0
  
         ansa_json['articles'].each do |article|
@@ -112,6 +116,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     affari += 1
+                    n -= 3
                 end
                 if (cultura < 3 && keyword == "cultura")
                     m = Post.new
@@ -123,6 +128,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     cultura += 1
+                    n -= 3
                 end
                 if (politica < 3 && keyword == "politica")
                     m = Post.new
@@ -134,6 +140,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     politica += 1
+                    n -= 3
                 end
                 if (sport < 3 && keyword == "sport")
                     m = Post.new
@@ -145,6 +152,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     sport += 1
+                    n -= 3
                 end
                 if (tecnologia < 3 && keyword == "tecnologia")
                     m = Post.new
@@ -156,15 +164,15 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     tecnologia += 1
+                    n -= 3
                 end
             end
-            n -= 1
         end
 
         #salvataggio nel db degli articoli di bbc 
         bbc_json = bbc.parse
         tot_res = bbc_json["totalResults"]
-        n = 40
+        n = 58
         affari, spettacolo, sport, tecnologia = 0,0,0,0
  
         bbc_json['articles'].each do |article|
@@ -181,6 +189,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     affari += 1
+                    n -= 3
                 end
                 if (sport < 3 && keyword == "sports")
                     m = Post.new
@@ -192,6 +201,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     sport += 1
+                    n -= 3
                 end
                 if (tecnologia < 3 && keyword == "technology")
                     m = Post.new
@@ -203,6 +213,7 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     tecnologia += 1
+                    n -= 3
                 end
                 if (spettacolo < 3 && keyword == "entertainment")
                     m = Post.new
@@ -214,9 +225,9 @@ class GoogleNews
                     m['rank'] = n
                     m.save!
                     spettacolo += 1
+                    n -= 3
                 end
             end
-            n -= 1
         end
     end
 
