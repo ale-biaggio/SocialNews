@@ -5,8 +5,6 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :destroy, :update]
   end
-
-  get "/operations/save_posts", to: "operations#save_posts"
   put 'posts/:id/like', to: 'posts#like', as: 'like'
   put 'posts/:id/dislike', to: 'posts#dislike', as: 'dislike'
 

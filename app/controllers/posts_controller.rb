@@ -4,6 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
+    GoogleNews.save_posts_from_google
     @posts = Post.all.order(:rank).reverse    
   end
 

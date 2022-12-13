@@ -8,8 +8,8 @@ class GoogleNews
             attempts += 1
             repubblica = HTTP.get("https://newsapi.org/v2/everything?sources=la-repubblica&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
             ansa = HTTP.get("https://newsapi.org/v2/everything?sources=ansa&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
-            sole24 = HTTP.get("https://newsapi.org/v2/everything?sources=il-sole-24-ore&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
-            football = HTTP.get("https://newsapi.org/v2/everything?sources=football-italia&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
+            #sole24 = HTTP.get("https://newsapi.org/v2/everything?sources=il-sole-24-ore&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
+            #football = HTTP.get("https://newsapi.org/v2/everything?sources=football-italia&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
             bbc = HTTP.get("https://newsapi.org/v2/everything?q=italy&source=bbc-news&sortBy=popularity&apiKey=5e8be9cf55d3442883b6a248fbc8ab4b")
         
         rescue => e
@@ -29,63 +29,66 @@ class GoogleNews
         affari, cultura, politica, spettacolo, sport = 0,0,0,0,0
  
         rep_json['articles'].each do |article|
-            keyword = article["url"].split("/")[3]
-            if (affari < 3 && keyword == "economia")
-                m = Post.new
-                m['user_id'] = 1
-                m['title'] = article["title"]
-                m['category'] = 'Affari'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                affari += 1
+            title = article["title"]
+            if !Post.exists?(title: title)
+                keyword = article["url"].split("/")[3]
+                if (affari < 3 && keyword == "economia")
+                    m = Post.new
+                    m['user_id'] = 1
+                    m['title'] = article["title"]
+                    m['category'] = 'Affari'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    affari += 1
+                end
+                if (cultura < 3 && keyword == "cultura")
+                    m = Post.new
+                    m['user_id'] = 1
+                    m['title'] = article["title"]
+                    m['category'] = 'Cultura'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    cultura += 1
+                end
+                if (politica < 3 && keyword == "politica")
+                    m = Post.new
+                    m['user_id'] = 1
+                    m['title'] = article["title"]
+                    m['category'] = 'Politica'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    politica += 1
+                end
+                if (spettacolo < 3 && keyword == "spettacoli")
+                    m = Post.new
+                    m['user_id'] = 1
+                    m['title'] = article["title"]
+                    m['category'] = 'Spettacolo'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    spettacolo += 1
+                end
+                if (sport < 3 && keyword == "sport")
+                    m = Post.new
+                    m['user_id'] = 1
+                    m['title'] = article["title"]
+                    m['category'] = 'Sport'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    sport += 1
+                end
+                n -= 1
             end
-            if (cultura < 3 && keyword == "cultura")
-                m = Post.new
-                m['user_id'] = 1
-                m['title'] = article["title"]
-                m['category'] = 'Cultura'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                cultura += 1
-            end
-            if (politica < 3 && keyword == "politica")
-                m = Post.new
-                m['user_id'] = 1
-                m['title'] = article["title"]
-                m['category'] = 'Politica'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                politica += 1
-            end
-            if (spettacolo < 3 && keyword == "spettacoli")
-                m = Post.new
-                m['user_id'] = 1
-                m['title'] = article["title"]
-                m['category'] = 'Spettacolo'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                spettacolo += 1
-            end
-            if (sport < 3 && keyword == "sport")
-                m = Post.new
-                m['user_id'] = 1
-                m['title'] = article["title"]
-                m['category'] = 'Sport'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                sport += 1
-            end
-            n -= 1
         end
 
 
@@ -96,61 +99,64 @@ class GoogleNews
         affari, cultura, politica, sport, tecnologia = 0,0,0,0,0
  
         ansa_json['articles'].each do |article|
-            keyword = article["url"].split("/")[5]
-            if (affari < 3 && keyword == "economia")
-                m = Post.new
-                m['user_id'] = 2
-                m['title'] = article["title"]
-                m['category'] = 'Affari'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                affari += 1
-            end
-            if (cultura < 3 && keyword == "cultura")
-                m = Post.new
-                m['user_id'] = 2
-                m['title'] = article["title"]
-                m['category'] = 'Cultura'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                cultura += 1
-            end
-            if (politica < 3 && keyword == "politica")
-                m = Post.new
-                m['user_id'] = 2
-                m['title'] = article["title"]
-                m['category'] = 'Politica'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                politica += 1
-            end
-            if (sport < 3 && keyword == "sport")
-                m = Post.new
-                m['user_id'] = 2
-                m['title'] = article["title"]
-                m['category'] = 'Sport'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                sport += 1
-            end
-            if (tecnologia < 3 && keyword == "tecnologia")
-                m = Post.new
-                m['user_id'] = 2
-                m['title'] = article["title"]
-                m['category'] = 'Tecnologia'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                tecnologia += 1
+            title = article["title"]
+            if !Post.exists?(title: title)
+                keyword = article["url"].split("/")[5]
+                if (affari < 3 && keyword == "economia")
+                    m = Post.new
+                    m['user_id'] = 2
+                    m['title'] = article["title"]
+                    m['category'] = 'Affari'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    affari += 1
+                end
+                if (cultura < 3 && keyword == "cultura")
+                    m = Post.new
+                    m['user_id'] = 2
+                    m['title'] = article["title"]
+                    m['category'] = 'Cultura'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    cultura += 1
+                end
+                if (politica < 3 && keyword == "politica")
+                    m = Post.new
+                    m['user_id'] = 2
+                    m['title'] = article["title"]
+                    m['category'] = 'Politica'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    politica += 1
+                end
+                if (sport < 3 && keyword == "sport")
+                    m = Post.new
+                    m['user_id'] = 2
+                    m['title'] = article["title"]
+                    m['category'] = 'Sport'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    sport += 1
+                end
+                if (tecnologia < 3 && keyword == "tecnologia")
+                    m = Post.new
+                    m['user_id'] = 2
+                    m['title'] = article["title"]
+                    m['category'] = 'Tecnologia'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    tecnologia += 1
+                end
             end
             n -= 1
         end
@@ -162,55 +168,56 @@ class GoogleNews
         affari, spettacolo, sport, tecnologia = 0,0,0,0
  
         bbc_json['articles'].each do |article|
-            keyword = article["url"].split("/")[3]
-            if (affari < 3 && keyword == "business")
-                m = Post.new
-                m['user_id'] = 5
-                m['title'] = article["title"]
-                m['category'] = 'Affari'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                affari += 1
-            end
-            if (sport < 3 && keyword == "sports")
-                m = Post.new
-                m['user_id'] = 5
-                m['title'] = article["title"]
-                m['category'] = 'Sport'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                sport += 1
-            end
-            if (tecnologia < 3 && keyword == "technology")
-                m = Post.new
-                m['user_id'] = 5
-                m['title'] = article["title"]
-                m['category'] = 'Tecnologia'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                tecnologia += 1
-            end
-            if (spettacolo < 3 && keyword == "entertainment")
-                m = Post.new
-                m['user_id'] = 5
-                m['title'] = article["title"]
-                m['category'] = 'Spettacolo'
-                m['body'] = article["content"]
-                m['img_test'] = article["urlToImage"]
-                m['rank'] = n
-                m.save!
-                spettacolo += 1
+            title = article["title"]
+            if !Post.exists?(title: title)
+                keyword = article["url"].split("/")[3]
+                if (affari < 3 && keyword == "business")
+                    m = Post.new
+                    m['user_id'] = 5
+                    m['title'] = article["title"]
+                    m['category'] = 'Affari'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    affari += 1
+                end
+                if (sport < 3 && keyword == "sports")
+                    m = Post.new
+                    m['user_id'] = 5
+                    m['title'] = article["title"]
+                    m['category'] = 'Sport'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    sport += 1
+                end
+                if (tecnologia < 3 && keyword == "technology")
+                    m = Post.new
+                    m['user_id'] = 5
+                    m['title'] = article["title"]
+                    m['category'] = 'Tecnologia'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    tecnologia += 1
+                end
+                if (spettacolo < 3 && keyword == "entertainment")
+                    m = Post.new
+                    m['user_id'] = 5
+                    m['title'] = article["title"]
+                    m['category'] = 'Spettacolo'
+                    m['body'] = article["content"]
+                    m['img_test'] = article["urlToImage"]
+                    m['rank'] = n
+                    m.save!
+                    spettacolo += 1
+                end
             end
             n -= 1
         end
-
-        return true
     end
 
 end
