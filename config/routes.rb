@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:new, :create, :edit, :destroy, :update]
   end
-  put 'posts/:id/like', to: 'posts#like', as: 'like'
-  put 'posts/:id/dislike', to: 'posts#dislike', as: 'dislike'
+  post '/posts/:id/like' => 'posts#like', as: :like_post
+  post '/posts/:id/dislike' => 'posts#dislike', as: :dislike_post
 
 end

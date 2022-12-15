@@ -91,3 +91,6 @@ gem 'http'
 gem 'news-api'
 
 gem 'open-uri'
+
+gem 'jquery-rails'
+gem 'jquery'

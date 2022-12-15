@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    GoogleNews.save_posts_from_google
+    #GoogleNews.save_posts_from_google
     @posts = Post.all.order(:rank).reverse    
   end
 
@@ -77,10 +77,11 @@ class PostsController < ApplicationController
         @post.save
       end
     end
-    respond_to do |format|
-      format.html { redirect_to posts_url}
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+    #  format.html { redirect_to posts_url}
+    #  format.json { head :no_content }
+    #end
+    
   end
   def dislike
     @post = Post.all.find(params[:id])
@@ -100,10 +101,10 @@ class PostsController < ApplicationController
         @post.save
       end
     end
-    respond_to do |format|
-      format.html { redirect_to posts_url}
-      format.json { head :no_content }
-    end
+    #respond_to do |format|
+    #  format.html { redirect_to posts_url}
+    #  format.json { head :no_content }
+    #end
   end
   private
     # Use callbacks to share common setup or constraints between actions.
