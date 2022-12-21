@@ -56,10 +56,6 @@
       <% post.comments.each do |r| %>
         <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> -
 
-        <% if current_user!=nil and current_user.id == User.find(r.user_id).id %>
-         <%= link_to 'Edit', edit_post_comment_path(r.post, r) %>
-        <% end %>
-
         <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
          <%= button_to 'Delete', [r.post, r], :method => :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
