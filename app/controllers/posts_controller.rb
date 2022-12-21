@@ -4,7 +4,10 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    #GoogleNews.save_posts_from_google
+    if Post.all.count < 15
+      GoogleNews.save_posts_from_google
+    end
+
     @posts = Post.order(:rank).reverse.first(15)
     @comment = Comment.new
   end

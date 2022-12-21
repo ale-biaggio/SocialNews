@@ -87,13 +87,16 @@
         <%= form.text_area :body %>
       </div>
 
-      <div class="field">
-        <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
-      </div>
-
-      <div class="actions">
-        <%= form.submit "Add comment" %>
-      </div>
+      <% if user_signed_in? %>
+        <div class="field">
+          <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
+        </div>
+        <div class="actions">
+          <%= form.submit "Add comment" %>
+        </div>
+      <% else %>
+          <a href="http://127.0.0.1:3000/users/sign_in" class="button">Add a comment</a>
+      <% end %>
     <% end %>
 
     <% if current_user!=nil and current_user.id == post.user_id%>
