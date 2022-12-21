@@ -6,6 +6,7 @@ class PostsController < ApplicationController
   def index
     #GoogleNews.save_posts_from_google
     @posts = Post.order(:rank).reverse.first(15)
+    @comment = Comment.new
   end
 
   # GET /posts/new

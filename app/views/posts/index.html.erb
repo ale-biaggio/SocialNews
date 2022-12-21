@@ -68,7 +68,33 @@
       </ul>
     <% end %>
 
-    <%= link_to "Add a comment", new_post_comment_path(post) %>
+    <h3>Add Comment</h3>
+
+    <%= form_with model: [ post, @comment ] do |form| %>
+      <% if @comment.errors.any? %>
+        <div id="error_explanation">
+          <h4><%= pluralize(@comment.errors.count, "error") %> prohibited this review from being saved:</h4>
+
+          <ul>
+            <% @comment.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= form.text_area :body %>
+      </div>
+
+      <div class="field">
+        <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
+      </div>
+
+      <div class="actions">
+        <%= form.submit "Add comment" %>
+      </div>
+    <% end %>
 
     <% if current_user!=nil and current_user.id == post.user_id%>
       <%= link_to "Edit this post", edit_post_path(post) %>
@@ -113,4 +139,5 @@
       $(this).addClass('btn-red')
     }
   });
+  
 </script>
