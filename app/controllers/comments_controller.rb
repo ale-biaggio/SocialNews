@@ -11,10 +11,6 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
-  # GET /comments/1/edit
-  def edit
-  end
-
   # POST /comments or /comments.json
   def create
     id_post = params[:post_id]
