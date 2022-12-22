@@ -25,8 +25,11 @@
   <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
 <% end %>
 <h1>Posts</h1>
-
-<div id="posts">
+<% if user_signed_in? %>
+  <div id="posts" data-username="<%= current_user.username %>">
+<% else %>
+  <div id="posts">
+<% end %>
   <% i = 1 %>
   <% @posts.each do |post| %>
     <%= render post %>
@@ -50,14 +53,14 @@
 
     <h2> Comments: </h2>
     <% if post.comments.empty? %>
-      <p>No comments for this post...</p>
+      <p class="no-comment">No comments for this post...</p>
     <% else %>
-      <ul>
+      <ul class="comment-list">
       <% post.comments.each do |r| %>
-        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> -
+        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> </li>
 
         <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
-         <%= button_to 'Delete', [r.post, r], :method => :delete, data: { confirm: 'Are you sure?' } %>
+          <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
         <% end %>
 
       <% end %>
@@ -65,8 +68,14 @@
     <% end %>
 
     <h3>Add Comment</h3>
-
-    <%= form_with model: [ post, @comment ] do |form| %>
+    <% 
+      max_id = Comment.maximum(:id)
+      if max_id == nil
+        max_id = 0
+      end
+      post_id = post.id 
+    %>
+    <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
       <% if @comment.errors.any? %>
         <div id="error_explanation">
           <h4><%= pluralize(@comment.errors.count, "error") %> prohibited this review from being saved:</h4>
@@ -80,7 +89,7 @@
       <% end %>
 
       <div class="field">
-        <%= form.text_area :body %>
+        <%= form.text_area :body, class: "comment-text" %>
       </div>
 
       <% if user_signed_in? %>
@@ -88,7 +97,7 @@
           <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
         </div>
         <div class="actions">
-          <%= form.submit "Add comment" %>
+          <%= form.submit "Add comment"%>
         </div>
       <% else %>
           <a href="http://127.0.0.1:3000/users/sign_in" class="button">Add a comment</a>
@@ -138,5 +147,57 @@
       $(this).addClass('btn-red')
     }
   });
-  
+  $(".comment-form").submit(function(event) {
+    event.preventDefault();
+    var post_id = $(this).data('post-id');
+    var max_id = $(this).data('max-id');
+    console.log(post_id);
+    console.log(max_id);
+    var form = $(this);
+    var formUrl = $(this).attr("action");
+    var formData = $(this).serialize();
+    var formDataArray = $(this).serializeArray();
+    var username = $("#posts").attr("data-username");
+    var body = formDataArray[1].value;
+    $.ajax({
+      url: formUrl,
+      type: 'POST',
+      data: formData,
+      success: function(response) {
+        if (form.prev().prev().hasClass("no-comment")){
+          form.prev().prev().remove();
+          form.prev().prev().after('<ul><li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id='+post_id+' data-id='+(max_id+1)+'>Delete</button></ul>');
+        }
+        else{
+          form.prev().prev().append('<li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id='+post_id+' data-id='+(max_id+1)+'>Delete</button>');
+        }
+        form.find(".comment-text").val("");
+      },
+      error: function(error) {
+        alert('errore')
+      }
+    });
+  });
+  $('.delete').on('click', function() {
+    var button = $(this);
+    var post_id = $(this).data('p_id');
+    var comment_id =  $(this).data('id');
+    $.ajax({
+      url: "/posts/" + post_id + "/comments/" + comment_id,
+      type: 'DELETE',
+      data: {
+        authenticity_token: $('meta[name="csrf-token"]').attr('content'),
+        post_id: post_id,
+        id: comment_id
+      },
+      success: function(response) {
+        button.prev().remove();
+        button.remove();
+
+      },
+      error: function(error) {
+        alert('errore')
+      }
+    });
+  });
 </script>
