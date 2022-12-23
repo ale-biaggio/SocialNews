@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 		@users = User.all
 		@comment = Comment.new(comment_params)
 		@comment.post = @post
-
+    
     if @comment.save
 			redirect_to posts_path, notice: "A review has from #{@user.name} been successfully added to #{@post.title}." 
 		else

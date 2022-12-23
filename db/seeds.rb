@@ -33,6 +33,13 @@ User.create!([
     username:  "BBC News",
     email: "bbcnews@gmail.com",
     password: "password"
+    },
+    { 
+    name: "nome_prova", 
+    surname: "cognome_prova", 
+    username:  "utente_prova",
+    email: "11@1",
+    password: "123456"
     }
 ])
 

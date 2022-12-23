@@ -151,8 +151,6 @@
     event.preventDefault();
     var post_id = $(this).data('post-id');
     var max_id = $(this).data('max-id');
-    console.log(post_id);
-    console.log(max_id);
     var form = $(this);
     var formUrl = $(this).attr("action");
     var formData = $(this).serialize();
@@ -166,10 +164,10 @@
       success: function(response) {
         if (form.prev().prev().hasClass("no-comment")){
           form.prev().prev().remove();
-          form.prev().prev().after('<ul><li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id='+post_id+' data-id='+(max_id+1)+'>Delete</button></ul>');
+          form.prev().prev().after('<ul><li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
         }
         else{
-          form.prev().prev().append('<li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id='+post_id+' data-id='+(max_id+1)+'>Delete</button>');
+          form.prev().prev().append('<li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
         }
         form.find(".comment-text").val("");
       },
@@ -178,12 +176,14 @@
       }
     });
   });
-  $('.delete').on('click', function() {
+  $(document).on('click', '.delete', function() {
     var button = $(this);
-    var post_id = $(this).data('p_id');
-    var comment_id =  $(this).data('id');
+    var post_id = String($(this).data('p_id'));
+    var comment_id =  String($(this).data('id'));
+    var deleteUrl = "/posts/" + post_id + "/comments/" + comment_id;
+    console.log(deleteUrl);
     $.ajax({
-      url: "/posts/" + post_id + "/comments/" + comment_id,
+      url: deleteUrl,
       type: 'DELETE',
       data: {
         authenticity_token: $('meta[name="csrf-token"]').attr('content'),
