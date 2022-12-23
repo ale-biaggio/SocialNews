@@ -31,7 +31,6 @@ deployment per heroku e distribuziuone
 
 Da fare:
 
--commenti asincroni
 -infinite scroll
 -rimuovere post con html in vista
 -pagina api google maps
