@@ -25,14 +25,21 @@
   <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
 <% end %>
 <h1>Posts</h1>
+<% 
+  max_id = Comment.maximum(:id)
+  if max_id == nil
+    max_id = 0
+  end 
+%>
 <% if user_signed_in? %>
-  <div id="posts" data-username="<%= current_user.username %>">
+  <div id="posts" data-username="<%= current_user.username %>" data-max_id ="<%= max_id %>">
 <% else %>
-  <div id="posts">
+  <div id="posts" data-max_id ="<%= max_id %>">
 <% end %>
   <% i = 1 %>
   <% @posts.each do |post| %>
     <%= render post %>
+    <%= post_id = post.id %>
     <% if user_signed_in? %>
      <% if post.liked?(current_user) %>
         <%= button_to "Up", like_post_path(post), class: 'btn like-btn btn-green', id:"#{i}" %> 
@@ -57,24 +64,18 @@
     <% else %>
       <ul class="comment-list">
       <% post.comments.each do |r| %>
-        <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> </li>
+        <% if r.visible %>
+          <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> </li>
 
-        <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
-          <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
+          <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
+            <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
+          <% end %>
         <% end %>
-
       <% end %>
       </ul>
     <% end %>
 
     <h3>Add Comment</h3>
-    <% 
-      max_id = Comment.maximum(:id)
-      if max_id == nil
-        max_id = 0
-      end
-      post_id = post.id 
-    %>
     <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
       <% if @comment.errors.any? %>
         <div id="error_explanation">
@@ -117,6 +118,7 @@
 
 <%= link_to "New post", new_post_path %>
 <script>
+  var max_id = $('#posts').data('max_id')
   $('.btn').on('click', function() {
     if($(this).hasClass('btn-green')){
       $(this).removeClass('btn-green')
@@ -150,7 +152,6 @@
   $(".comment-form").submit(function(event) {
     event.preventDefault();
     var post_id = $(this).data('post-id');
-    var max_id = $(this).data('max-id');
     var form = $(this);
     var formUrl = $(this).attr("action");
     var formData = $(this).serialize();
@@ -170,6 +171,7 @@
           form.prev().prev().append('<li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
         }
         form.find(".comment-text").val("");
+        max_id+=1;
       },
       error: function(error) {
         alert('errore')
@@ -181,7 +183,6 @@
     var post_id = String($(this).data('p_id'));
     var comment_id =  String($(this).data('id'));
     var deleteUrl = "/posts/" + post_id + "/comments/" + comment_id;
-    console.log(deleteUrl);
     $.ajax({
       url: deleteUrl,
       type: 'DELETE',

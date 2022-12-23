@@ -44,6 +44,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_20_085203) do
     t.integer "like"
     t.integer "user_id", null: false
     t.integer "post_id", null: false
+    t.boolean "visible", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_comments_on_post_id"

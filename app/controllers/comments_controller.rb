@@ -20,7 +20,7 @@ class CommentsController < ApplicationController
 		@users = User.all
 		@comment = Comment.new(comment_params)
 		@comment.post = @post
-    
+
     if @comment.save
 			redirect_to posts_path, notice: "A review has from #{@user.name} been successfully added to #{@post.title}." 
 		else
@@ -44,7 +44,8 @@ class CommentsController < ApplicationController
 
   # DELETE /comments/1 or /comments/1.json
   def destroy
-    @comment.destroy
+    @comment.update(visible: false)
+    @comment.save
 
     respond_to do |format|
       format.turbo_stream { head :no_content }
