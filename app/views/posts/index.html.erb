@@ -39,7 +39,7 @@
   <% i = 1 %>
   <% @posts.each do |post| %>
     <%= render post %>
-    <%= post_id = post.id %>
+    <% post_id = post.id %>
     <% if user_signed_in? %>
      <% if post.liked?(current_user) %>
         <%= button_to "Up", like_post_path(post), class: 'btn like-btn btn-green', id:"#{i}" %> 
