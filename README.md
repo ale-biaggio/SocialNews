@@ -32,7 +32,7 @@ deployment per heroku e distribuziuone
 Da fare:
 
 -infinite scroll
--rimuovere post con html in vista
+-rimuovere post con html in vista (risolto ?)
 -pagina api google maps
 -pagine utenti (sia visita che modifica)
 -aggiustare Oauth

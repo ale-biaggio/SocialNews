@@ -34,10 +34,12 @@ class GoogleNews
                 keyword = article["url"].split("/")[3]
                 if (affari < 3 && keyword == "economia")
                     m = Post.new
+                    body = article['content'].split("…")                
                     m['user_id'] = 1
                     m['title'] = article["title"]
                     m['category'] = 'Affari'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -46,10 +48,12 @@ class GoogleNews
                 end
                 if (cultura < 3 && keyword == "cultura")
                     m = Post.new
+                    body = article['content'].split("…") 
                     m['user_id'] = 1
                     m['title'] = article["title"]
                     m['category'] = 'Cultura'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -58,10 +62,12 @@ class GoogleNews
                 end
                 if (politica < 3 && keyword == "politica")
                     m = Post.new
+                    body = article['content'].split("…") 
                     m['user_id'] = 1
                     m['title'] = article["title"]
                     m['category'] = 'Politica'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -70,10 +76,12 @@ class GoogleNews
                 end
                 if (spettacolo < 3 && keyword == "spettacoli")
                     m = Post.new
+                    body = article['content'].split("…") 
                     m['user_id'] = 1
                     m['title'] = article["title"]
                     m['category'] = 'Spettacolo'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -82,10 +90,12 @@ class GoogleNews
                 end
                 if (sport < 3 && keyword == "sport")
                     m = Post.new
+                    body = article['content'].split("…") 
                     m['user_id'] = 1
                     m['title'] = article["title"]
                     m['category'] = 'Sport'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -108,10 +118,12 @@ class GoogleNews
                 keyword = article["url"].split("/")[5]
                 if (affari < 3 && keyword == "economia")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 2
                     m['title'] = article["title"]
                     m['category'] = 'Affari'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -120,10 +132,12 @@ class GoogleNews
                 end
                 if (cultura < 3 && keyword == "cultura")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 2
                     m['title'] = article["title"]
                     m['category'] = 'Cultura'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -132,10 +146,12 @@ class GoogleNews
                 end
                 if (politica < 3 && keyword == "politica")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 2
                     m['title'] = article["title"]
                     m['category'] = 'Politica'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -144,10 +160,12 @@ class GoogleNews
                 end
                 if (sport < 3 && keyword == "sport")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 2
                     m['title'] = article["title"]
                     m['category'] = 'Sport'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -156,10 +174,12 @@ class GoogleNews
                 end
                 if (tecnologia < 3 && keyword == "tecnologia")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 2
                     m['title'] = article["title"]
                     m['category'] = 'Tecnologia'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -181,10 +201,12 @@ class GoogleNews
                 keyword = article["url"].split("/")[3]
                 if (affari < 3 && keyword == "business")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 5
                     m['title'] = article["title"]
                     m['category'] = 'Affari'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -193,10 +215,12 @@ class GoogleNews
                 end
                 if (sport < 3 && keyword == "sports")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 5
                     m['title'] = article["title"]
                     m['category'] = 'Sport'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -205,10 +229,12 @@ class GoogleNews
                 end
                 if (tecnologia < 3 && keyword == "technology")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 5
                     m['title'] = article["title"]
                     m['category'] = 'Tecnologia'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
@@ -217,10 +243,12 @@ class GoogleNews
                 end
                 if (spettacolo < 3 && keyword == "entertainment")
                     m = Post.new
+                    body = article['content'].split("…")
                     m['user_id'] = 5
                     m['title'] = article["title"]
                     m['category'] = 'Spettacolo'
-                    m['body'] = article["content"]
+                    m['body'] = body[0]
+                    m['url'] = article["url"]
                     m['img_test'] = article["urlToImage"]
                     m['rank'] = n
                     m.save!
