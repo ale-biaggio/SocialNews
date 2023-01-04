@@ -1,7 +1,7 @@
 <div id="<%= dom_id post %>" data-id="<%= post.id %>">
   <p>
     <strong>User:</strong>
-    <%= post.user.username %>
+    <%= link_to post.user.username, user_path(post.user.id), method: "get"%>
   </p>
   <p>
     <strong>Title:</strong>

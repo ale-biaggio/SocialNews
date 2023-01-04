@@ -40,6 +40,13 @@ User.create!([
     username:  "utente_prova",
     email: "11@1",
     password: "123456"
+    },
+    { 
+    name: "admin", 
+    surname: "admin", 
+    username:  "admin",
+    email: "admin@gmail.com",
+    password: "123456"
     }
 ])
 

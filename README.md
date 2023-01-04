@@ -34,7 +34,8 @@ Da fare:
 -infinite scroll
 -rimuovere post con html in vista (risolto ?)
 -pagina api google maps
--pagine utenti (sia visita che modifica)
+-pagine utenti (manca ajax)
 -aggiustare Oauth
+-follow utenti
 -front-end
 -test finali

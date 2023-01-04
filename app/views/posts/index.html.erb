@@ -24,7 +24,15 @@
 <% if current_user==nil %>
   <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
 <% end %>
+
+<% if current_user!=nil %>
+  <%= button_to "User", user_path(current_user.id), method: "get"%>
+<% end %>
+
 <h1>Posts</h1>
+
+<%= link_to "New post", new_post_path %>
+
 <% 
   max_id = Comment.maximum(:id)
   if max_id == nil
@@ -116,7 +124,6 @@
   <% end %>
 </div>
 
-<%= link_to "New post", new_post_path %>
 <script>
   var max_id = $('#posts').data('max_id')
   $('.btn').on('click', function() {
