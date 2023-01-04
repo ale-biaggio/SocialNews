@@ -10,6 +10,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @id= User.find(params[:id]).id
       @posts= Post.where(user_id: params[:id])
+      @comment = Comment.new
     end
   
     def update

@@ -5,12 +5,12 @@
 <%if can? :all, @user or (current_user!=nil and current_user.id == @id)%>
   <div>
     <%= link_to "Edit this user", edit_user_path(@user) %> |
-    
     <%if can? :all, @user%>
-    <%= link_to "Back to users", users_path %>
+      <%= link_to "Back to users", users_path %>
     <%end%>
-
     <%= button_to "Destroy this user", @user, method: :delete %>
   </div>
 <%end%>
-
+<% @posts.each do |post| %>
+  <%= render post %>
+<% end %>
