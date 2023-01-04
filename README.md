@@ -32,9 +32,9 @@ deployment per heroku e distribuziuone
 Da fare:
 
 -infinite scroll
--rimuovere post con html in vista (risolto ?)
 -pagina api google maps
 -pagine utenti (manca ajax)
+-render post su pagina utenti
 -aggiustare Oauth
 -follow utenti
 -front-end
