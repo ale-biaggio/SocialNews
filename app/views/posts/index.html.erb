@@ -23,9 +23,7 @@
 </style>
 <% if current_user==nil %>
   <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
-<% end %>
-
-<% if current_user!=nil %>
+<% else %>
   <%= button_to "User", user_path(current_user.id), method: "get"%>
 <% end %>
 
@@ -40,7 +38,7 @@
   end 
 %>
 <% if user_signed_in? %>
-  <div id="posts" data-username="<%= current_user.username %>" data-max_id ="<%= max_id %>">
+  <div id="posts" data-username="<%= current_user.username %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
 <% else %>
   <div id="posts" data-max_id ="<%= max_id %>">
 <% end %>
@@ -73,7 +71,7 @@
       <ul class="comment-list">
       <% post.comments.each do |r| %>
         <% if r.visible %>
-          <li> <%= User.find(r.user_id).username %> - <%= r.body %> - <%= r.like %> </li>
+          <li> <a href="/users/<%=r.user_id%>"><%= User.find(r.user_id).username %></a> - <%= r.body %> - <%= r.like %> </li>
 
           <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
             <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
@@ -164,6 +162,7 @@
     var formData = $(this).serialize();
     var formDataArray = $(this).serializeArray();
     var username = $("#posts").attr("data-username");
+    var user_id = $("#posts").attr("data-user_id");
     var body = formDataArray[1].value;
     $.ajax({
       url: formUrl,
@@ -172,10 +171,10 @@
       success: function(response) {
         if (form.prev().prev().hasClass("no-comment")){
           form.prev().prev().remove();
-          form.prev().prev().after('<ul><li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
+          form.prev().prev().after('<ul><li><a href="/users/'+user_id+'">' + username + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
         }
         else{
-          form.prev().prev().append('<li>' + username + ' - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
+          form.prev().prev().append('<li><a href="/users/'+user_id+'">' + username + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
         }
         form.find(".comment-text").val("");
         max_id+=1;

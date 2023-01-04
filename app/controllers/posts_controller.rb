@@ -7,7 +7,6 @@ class PostsController < ApplicationController
     if Post.all.count < 15
       GoogleNews.save_posts_from_google
     end
-
     @posts = Post.order(:rank).reverse.first(15)
     @comment = Comment.new
   end
@@ -15,7 +14,6 @@ class PostsController < ApplicationController
   # GET /posts/new
   def new
     @user = current_user
-    @users = User.all
     @post = Post.new
   end
 
@@ -26,10 +24,7 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
 		@user = current_user
-		@users = User.all
-
     @post = Post.new(post_params)
-    
     respond_to do |format|
       if @post.save
         format.html { redirect_to posts_url, notice: "Post was successfully created." }
