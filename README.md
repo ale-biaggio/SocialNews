@@ -33,7 +33,6 @@ Da fare:
 
 -infinite scroll
 -pagina api google maps
--pagine utenti (manca ajax)
 -render post su pagina utenti
 -aggiustare Oauth
 -follow utenti
