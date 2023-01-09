@@ -35,6 +35,6 @@ Da fare:
 -pagina api google maps
 -render post su pagina utenti
 -aggiustare Oauth
--follow utenti
+-follow utenti https://www.softcover.io/read/c17f3943/ruby_on_rails_tutorial_in_italiano/following_users
 -front-end
 -test finali
