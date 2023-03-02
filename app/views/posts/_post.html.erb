@@ -52,9 +52,9 @@
     <%= button_to "Down", dislike_post_path(post), class: 'btn dislike-btn', id: post_id %>
   <% end %>
 <% else %>
-  <a href="http://127.0.0.1:3000/users/sign_in"><%= button_to "Up" %></a>
-   <%= post.rank %> 
-  <a href="http://127.0.0.1:3000/users/sign_in"><%= button_to "Down" %></a>
+  <a href="http://127.0.0.1:3000/users/sign_in" class="button">Up</a><br>
+   <%= post.rank %><br>
+  <a href="http://127.0.0.1:3000/users/sign_in" class="button">Down</a>
 <% end %> 
 <h2> Comments: </h2>
 <% if post.comments.empty? %>
