@@ -12,9 +12,11 @@
 <% post_id = post.id %>
 <p>
   <strong>User:</strong>
-  <%= link_to post.user.username, user_path(post.user.id), method: "get"%>
+  <%= link_to post.user.name, user_path(post.user.id), method: "get"%>
+  <%= link_to post.user.surname, user_path(post.user.id), method: "get"%>
 </p>
 <p>
+
   <strong>Title:</strong>
   <%= post.title %>
 </p>
@@ -63,7 +65,7 @@
   <ul class="comment-list">
   <% post.comments.each do |r| %>
     <% if r.visible %>
-      <li> <a href="/users/<%=r.user_id%>"><%= User.find(r.user_id).username %></a> - <%= r.body %> - <%= r.like %> </li>
+      <li> <a href="/users/<%=r.user_id%>"><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></a> - <%= r.body %> - <%= r.like %> </li>
       <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
         <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
       <% end %>

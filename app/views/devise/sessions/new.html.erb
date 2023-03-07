@@ -26,8 +26,6 @@
 <%= render "devise/shared/links" %>
 <%= extra_params =  if approval_prompt = cookies[:google_oauth2_approval_prompt]
                       {approval_prompt: approval_prompt}
-                    else
-                      {}
                     end
   %>
 

@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :admin_only, :except => :show
+    before_action :admin_only, :except => [ :show, :edit, :destroy]
   
     def index
       @users = User.all
     end
-  
+    
+    def edit
+    end
+    
     def show
       @user = User.find(params[:id])
       @id= User.find(params[:id]).id
@@ -24,7 +27,7 @@ class UsersController < ApplicationController
     def destroy
         user = User.find(params[:id])
         user.destroy
-        redirect_to users_path, :notice => "User deleted."
+        redirect_to posts_url, :notice => "User deleted."
     end
     
     private
