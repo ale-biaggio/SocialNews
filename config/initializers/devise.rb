@@ -311,8 +311,13 @@ Devise.setup do |config|
   # config.sign_in_after_change_password = true
 
   #autenticazione oauth
-  config.omniauth :facebook, '506300451002268', '0a0d7417ca799a8da4831d9132aeb890'
-  OmniAuth.config.allowed_request_methods = %i[get]
-  config.navigational_formats = ['*/*', :html, :turbo_stream]
+  config.omniauth :facebook, Rails.application.credentials.dig(:facebook, :facebbok_client_id),  
+  Rails.application.credentials.dig(:facebook, :facebbok_client_secret), scope: 'public_profile, email'
 
+  OmniAuth.config.allowed_request_methods = %i[get]
+  OmniAuth.config.silence_get_warning = true
+  config.navigational_formats = ['*/*', :html, :turbo_stream]
+  
+  config.omniauth :google_oauth2, Rails.application.credentials.dig(:google, :google_client_id),  
+  Rails.application.credentials.dig(:google, :google_client_secret), scope: 'userinfo.email, userinfo.profile'
 end
