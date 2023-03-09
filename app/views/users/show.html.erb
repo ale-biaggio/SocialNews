@@ -1,4 +1,5 @@
 <p style="color: green"><%= notice %></p>
+<h1>PROFILO UTENTE</h1>
 
 <%= render @user %>
 
@@ -11,6 +12,7 @@
     <%= button_to "Destroy this user", @user, method: :delete %>
   </div>
 <%end%>
+<h1>BACHECA POST</h1>
 <% @posts.each do |post| %>
   <%= render post %>
 <% end %>

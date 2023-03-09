@@ -73,7 +73,7 @@
   <% end %>
   </ul>
 <% end %>
-<h3>Add Comment</h3>
+
 <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
   <% if @comment.errors.any? %>
     <div id="error_explanation">
