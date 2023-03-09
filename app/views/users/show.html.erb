@@ -5,7 +5,9 @@
 
 <%if can? :all, @user or (current_user!=nil and current_user.id == @id)%>
   <div>
-    <%= link_to "Edit this user", edit_user_path(@user) %> |
+    <% if (current_user!=nil and current_user.id == @id)%>
+      <%= link_to "Edit this user", edit_user_path(@user) %> |
+    <%end%>  
     <%if can? :all, @user%>
       <%= link_to "Back to users", users_path %>
     <%end%>
