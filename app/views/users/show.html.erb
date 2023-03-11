@@ -2,7 +2,10 @@
 <h1>PROFILO UTENTE</h1>
 
 <%= render @user %>
-
+<section class="stats">
+      <%= render 'shared/stats' %>
+</section>
+<%= render 'follow_form' if user_signed_in? %>
 <%if can? :all, @user or (current_user!=nil and current_user.id == @id)%>
   <div>
     <% if (current_user!=nil and current_user.id == @id)%>

@@ -5,7 +5,7 @@
   end 
 %>
 <% if user_signed_in? %>
-  <div id="posts" data-username="<%= current_user.username %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
+  <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
 <% else %>
   <div id="posts" data-max_id ="<%= max_id %>">
 <% end %>

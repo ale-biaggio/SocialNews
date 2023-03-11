@@ -97,3 +97,5 @@ gem 'open-uri'
 
 gem 'jquery-rails'
 gem 'jquery'
+gem 'faker'
+gem 'sass-rails'

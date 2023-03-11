@@ -1,3 +1,4 @@
+require 'faker'
 User.create!([
     { 
     name: "La Repubblica", 

@@ -36,7 +36,7 @@ $(".comment-form").submit(function(event) {
   var formUrl = $(this).attr("action");
   var formData = $(this).serialize();
   var formDataArray = $(this).serializeArray();
-  var username = $("#posts").attr("data-username");
+  var name = $("#posts").attr("data-name");
   var user_id = $("#posts").attr("data-user_id");
   var body = formDataArray[1].value;
   $.ajax({
@@ -46,10 +46,10 @@ $(".comment-form").submit(function(event) {
     success: function(response) {
       if (form.prev().prev().hasClass("no-comment")){
         form.prev().prev().remove();
-        form.prev().prev().after('<ul><li><a href="/users/'+user_id+'">' + username + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
+        form.prev().prev().after('<ul><li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
       }
       else{
-        form.prev().prev().append('<li><a href="/users/'+user_id+'">' + username + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
+        form.prev().prev().append('<li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
       }
       form.find(".comment-text").val("");
       max_id+=1;

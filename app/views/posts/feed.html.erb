@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+<% if current_user==nil %>
+  <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a>
+<% elsif can? :all, @user%>
+  <%= button_to "Users", users_path, method: "get"%>
+<% else %>
+  <%= button_to "User", user_path(current_user.id), method: "get"%>
+<% end %>
+
+<h1>Posts</h1>
+
+<%= link_to "New post", new_post_path %>
+  <% @posts.each do |post| %>
+    <%= render post %>
+  <% end %>
+</div>
+

@@ -2,14 +2,10 @@
 
 one:
   title: MyString
-  tag: MyString
   body: MyText
-  image: MyString
   rank: 1
 
 two:
   title: MyString
-  tag: MyString
   body: MyText
-  image: MyString
   rank: 1
