@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
   def feed
     following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
-    @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id), items: 10)
+    @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id), items: 5)
     @comment = Comment.new
     respond_to do |format|
       format.html # GET
@@ -15,7 +15,8 @@ class PostsController < ApplicationController
     if Post.all.count < 15
       GoogleNews.save_posts_from_google
     end
-    @pagy, @posts = pagy_countless(Post.order(:rank).reverse, items: 10)
+    #query -> Post.order(:rank).reverse
+    @pagy, @posts = pagy_countless(Post.all, items: 5)
     @comment = Comment.new
     respond_to do |format|
       format.html # GET
