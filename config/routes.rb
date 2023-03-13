@@ -7,6 +7,9 @@ Rails.application.routes.draw do
     end
   end
   resources :posts do
+    collection do
+      post :index, :feed
+    end
     resources :comments, only: [:create, :update, :destroy]
   end
   post '/posts/:id/like' => 'posts#like', as: :like_post

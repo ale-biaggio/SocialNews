@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
+    include Pagy::Backend
     # Confirms a logged-in user.
     def logged_in_user
         unless user_signed_in?

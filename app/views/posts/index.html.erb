@@ -11,8 +11,9 @@
 <h1>Posts</h1>
 
 <%= link_to "New post", new_post_path %>
-  <% @posts.each do |post| %>
-    <%= render post %>
-  <% end %>
+<div id="posts">
+    <%= render @posts %>
 </div>
-
+<div id="next_link">
+  <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
+</div>

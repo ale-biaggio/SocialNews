@@ -99,4 +99,4 @@ gem 'jquery-rails'
 gem 'jquery'
 gem 'faker'
 gem 'sass-rails'
-gem "will_paginate", "~> 3.0.4", :require => nil
+gem "pagy", "~> 6.0"

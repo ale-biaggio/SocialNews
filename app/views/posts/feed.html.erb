@@ -12,8 +12,12 @@
 <a href="http://127.0.0.1:3000/feed"><button>Seguiti</button></a>
 <h1>Posts</h1>
 <%= link_to "New post", new_post_path %>
+<div id="posts">
   <% @posts.each do |post| %>
     <%= render post %>
   <% end %>
+</div>
+<div id="next_link">
+  <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
 </div>
 
