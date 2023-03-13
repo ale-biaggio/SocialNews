@@ -33,8 +33,8 @@ Da fare:
 
 -infinite scroll
 -pagina api google maps
--render post su pagina utenti
--aggiustare Oauth
--follow utenti https://www.softcover.io/read/c17f3943/ruby_on_rails_tutorial_in_italiano/following_users
+-feed https://www.softcover.io/read/c17f3943/ruby_on_rails_tutorial_in_italiano/following_users
+-google traduttore
+-immagine profilo
 -front-end
 -test finali
