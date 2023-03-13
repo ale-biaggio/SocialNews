@@ -12,5 +12,5 @@ Rails.application.routes.draw do
   post '/posts/:id/like' => 'posts#like', as: :like_post
   post '/posts/:id/dislike' => 'posts#dislike', as: :dislike_post
   resources :relationships,       only: [:create, :destroy]
-
+  get '/feed', to: 'posts#feed'
 end

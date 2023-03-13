@@ -1,7 +1,11 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
   before_action :set_post, only: %i[ show edit update destroy ]
-
+  def feed
+    following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
+    @posts = Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id)
+    @comment = Comment.new
+  end
   # GET /posts or /posts.json
   def index
     if Post.all.count < 15
