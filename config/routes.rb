@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   post '/posts/:id/like' => 'posts#like', as: :like_post
   post '/posts/:id/dislike' => 'posts#dislike', as: :dislike_post
   post '/posts/:id/favorite' => 'posts#favorite', as: :favorite_post
-
   resources :relationships,       only: [:create, :destroy]
+  get '/users/:id/show_favorite', to: 'posts#show_favorite', as: :favorite_show
   get '/feed', to: 'posts#feed'
   get '/maps', to: 'posts#maps'
 end
