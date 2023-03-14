@@ -31,9 +31,7 @@ deployment per heroku e distribuziuone
 
 Da fare:
 
--infinite scroll
 -pagina api google maps
--feed https://www.softcover.io/read/c17f3943/ruby_on_rails_tutorial_in_italiano/following_users
 -google traduttore
 -immagine profilo
 -front-end
