@@ -3,13 +3,18 @@
   if max_id == nil
     max_id = 0
   end 
+  post_id = post.id
 %>
 <% if user_signed_in? %>
-  <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
+  <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>" data-post_id="<%= post.id %>">
+  <% if !post.favorited?(current_user) %>
+    <button type="button" class="favorite" data-post_id="<%=post_id%>">Favorite</button>     
+  <% else %>
+    <button type="button" class="favorite" data-post_id="<%=post_id%>">Remove favorite</button>     
+  <% end %>
 <% else %>
   <div id="posts" data-max_id ="<%= max_id %>">
 <% end %>
-<% post_id = post.id %>
 <p>
   <strong>User:</strong>
   <%= link_to post.user.name, user_path(post.user.id), method: "get"%>

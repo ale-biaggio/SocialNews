@@ -1,6 +1,15 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
   before_action :set_post, only: %i[ show edit update destroy ]
+  def favorite
+    @post = Post.all.find(params[:id])
+    @favorite = Favorite.find_by user_id:current_user.id, post_id:@post.id
+    if @favorite == nil
+      Favorite.create(user_id: current_user.id, post_id: @post.id)
+    else 
+      @favorite.destroy
+    end
+  end
   def maps
     @posts = Post.all
     @comment = Comment.new

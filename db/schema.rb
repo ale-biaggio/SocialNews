@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_11_112858) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_14_150118) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -58,6 +58,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_112858) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_dislikes_on_post_id"
     t.index ["user_id"], name: "index_dislikes_on_user_id"
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "post_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_favorites_on_post_id"
+    t.index ["user_id"], name: "index_favorites_on_user_id"
   end
 
   create_table "likes", force: :cascade do |t|
@@ -127,6 +136,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_11_112858) do
   add_foreign_key "comments", "users"
   add_foreign_key "dislikes", "posts"
   add_foreign_key "dislikes", "users"
+  add_foreign_key "favorites", "posts"
+  add_foreign_key "favorites", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"

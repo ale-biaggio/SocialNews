@@ -81,3 +81,26 @@ $(document).on('click', '.delete', function() {
     }
   });
 });
+$(document).on('click', '.favorite', function(event) {
+  var button = $(this);
+  var post_id = $(this).data('post_id');
+  var favoriteUrl = "/posts/" + post_id + "/favorite";
+  $.ajax({
+    url: favoriteUrl,
+    type: 'POST',
+    data: {
+      authenticity_token: $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function() {
+      if(button.text()=="Favorite"){
+        button.text("Remove favorite");
+      }
+      else{
+        button.text("Favorite");
+      }
+    },
+    error: function() {
+      alert('errore')
+    }
+  });
+});
