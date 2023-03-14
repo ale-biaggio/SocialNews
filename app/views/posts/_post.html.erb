@@ -103,5 +103,8 @@
   <%= link_to "Edit this post", edit_post_path(post) %>
 <% end %>
 
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6410620c82a5320015aeb382&product=sop' async='async' ></script>
+<div class="sharethis-inline-share-buttons" data-url="<%= post.url %>"></div>
+
 <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Delete post', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
 <hr>
