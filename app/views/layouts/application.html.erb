@@ -34,4 +34,14 @@
     <% end %>
     <%= yield %>
   </body>
+  <% if @pagy!=nil && @pagy.next   %>
+  <div id="next_link">
+    <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
+  </div>
+  <% end %>
+  <% if @pagy!=nil && @pagy.prev %>
+    <div id="prev_link">
+      <%= link_to "prev", pagy_url_for(@pagy, @pagy.prev) %>
+    </div>
+  <% end %>
 </html>
