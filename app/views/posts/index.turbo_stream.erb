@@ -7,3 +7,8 @@
     <%= button_to "next", pagy_url_for(@pagy, @pagy.next) %>
   <% end %>
 <% end %>
+<%= turbo_stream.update "prev_link" do %>
+  <% if @pagy.prev.present? %>
+    <%= button_to "prev", pagy_url_for(@pagy, @pagy.prev) %>
+  <% end %>
+<% end %>

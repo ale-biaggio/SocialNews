@@ -17,12 +17,22 @@
     <p class="alert"><%= alert %></p>
 
     <% if user_signed_in? %>
-    Logged in as <%= current_user.email%> [<%= link_to 'Fai il logout',
+    Logged in as <%= current_user.name + current_user.surname%> [<%= link_to 'Fai il logout',
     destroy_user_session_path, :method => :delete%>]
     <% if current_user.email == "admin@gmail.com" %>
     <% current_user.admin! %>
     <%end%>
     <% end %>
     <%= yield %>
+    <% if @pagy.next %>
+      <div id="next_link">
+        <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
+      </div>
+    <% end %>
+    <% if @pagy.prev %>
+      <div id="prev_link">
+        <%= link_to "prev", pagy_url_for(@pagy, @pagy.prev) %>
+      </div>
+    <% end %>
   </body>
 </html>
