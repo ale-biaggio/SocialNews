@@ -40,6 +40,14 @@ class PostsController < ApplicationController
       format.html # GET
       format.turbo_stream # POST
     end
+    
+    #ricerca per categoria
+    if params[:search]
+      @posts = Post.search(params[:search]).order("created_at DESC")
+    else
+      @posts = Post.all.order('created_at DESC')
+    end
+
   end
 
   # GET /posts/new

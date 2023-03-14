@@ -19,4 +19,8 @@ class Post < ApplicationRecord
     #validates :body, :presence=> true, length: {in: 100..1000}
     validates :category, :presence=> true, :inclusion => {:in => Post.all_category}
 
+    def self.search(search)
+       where("category LIKE ?", "%#{search}%")
+    end
+
 end
