@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   end
   resources :posts do
     collection do
-      post :index, :feed
+      post :index, :feed, :maps
     end
     resources :comments, only: [:create, :update, :destroy]
   end
@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   post '/posts/:id/dislike' => 'posts#dislike', as: :dislike_post
   resources :relationships,       only: [:create, :destroy]
   get '/feed', to: 'posts#feed'
+  get '/maps', to: 'posts#maps'
 end

@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
   before_action :authenticate_user!, :except => [:index]
   before_action :set_post, only: %i[ show edit update destroy ]
+  def maps
+    @posts = Post.all
+    @comment = Comment.new
+  end
   def feed
     following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
     @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id), items: 5)
