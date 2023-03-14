@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       @user = User.find(params[:id])
       @id= User.find(params[:id]).id
       @posts= Post.where(user_id: params[:id])
+      @pagy, @posts = pagy_countless(Post.where(user_id: params[:id]), items: 5)
       @comment = Comment.new
     end
   
