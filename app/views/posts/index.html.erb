@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 <% if current_user==nil %>
-  <a href="http://127.0.0.1:3000/users/sign_in" class="button">clicca qui per fare il login</a><br><br><br>
+  <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
 <% elsif can? :all, @user%>
   <%= button_to "Users", users_path, method: "get"%>
 <% else %>
