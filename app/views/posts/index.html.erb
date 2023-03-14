@@ -6,8 +6,8 @@
 <% else %>
   <%= button_to "User", user_path(current_user.id), method: "get"%>
 <% end %>
-<a href="http://127.0.0.1:3000"><button>Tutte le notizie</button></a>
-<a href="http://127.0.0.1:3000/feed"><button>Seguiti</button></a>
+<%= link_to "Tutte le notizie", root_path() %>
+<%= link_to "Seguiti", feed_path() %>
 <h1>Posts</h1>
 
 <%= link_to "New post", new_post_path %>
