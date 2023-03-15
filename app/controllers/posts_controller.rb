@@ -27,6 +27,8 @@ class PostsController < ApplicationController
       format.html # GET
       format.turbo_stream # POST
     end
+    def info
+    end
   end
   # GET /posts or /posts.json
   def index
