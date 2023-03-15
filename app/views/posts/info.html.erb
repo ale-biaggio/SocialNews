@@ -1,10 +1,42 @@
 <br><br>
 IMPOSTAZIONI
-<hr><br>
-<li><%= link_to "Informazioni Sviluppatori"%></li>
-<br>
-<li><%= link_to "Segnalazioni"%></li>
-<br>
-<li><%= link_to "Proposte per migliorare app"%></li>
-<br>
-<li><%= link_to "Richiesta assistenza"%></li>
+<button class="accordion">Info sviluppatori</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div>
+
+<button class="accordion">Segnalazioni</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div>
+
+<button class="accordion">Proposte per migliore app</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div>
+
+<button class="accordion">Richiedi assistenza</button>
+<div class="panel">
+  <p>Lorem ipsum...</p>
+</div>
+
+
+<script>
+var acc = document.getElementsByClassName("accordion");
+
+    for (let i = 0; i < acc.length; i++) {
+      acc[i].addEventListener("click", function() {
+        this.classList.toggle("active");
+        for (j = 0; j < acc.length; j++) {
+          if (j !== i)
+            acc[j].nextElementSibling.style.maxHeight = null;
+        }
+        var panel = this.nextElementSibling;
+        if (panel.style.maxHeight) {
+          panel.style.maxHeight = null;
+        } else {
+          panel.style.maxHeight = panel.scrollHeight + "px";
+        }
+      });
+    }
+</script>
