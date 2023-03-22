@@ -11,8 +11,8 @@ class ApplicationController < ActionController::Base
         end
     end
     def configure_permitted_parameters
-        devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :name, :surname, :phone, :username])
-        devise_parameter_sanitizer.permit(:account_update, keys: [:email, :password, :name, :surname, :phone, :username])
+        devise_parameter_sanitizer.permit(:sign_up, keys: [:avatar, :email, :password, :name, :surname, :phone, :username])
+        devise_parameter_sanitizer.permit(:account_update, keys: [:avatar, :email, :password, :name, :surname, :phone, :username])
     end
 
     rescue_from CanCan::AccessDenied do |exception|

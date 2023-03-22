@@ -14,7 +14,7 @@ class User < ApplicationRecord
                                   dependent:   :destroy
   has_many :following, through: :active_relationships, source: :followed
   has_many :followers, through: :passive_relationships, source: :follower
-
+  has_one_attached :avatar
   enum role: [:user, :admin]
   after_initialize :set_default_role, :if => :new_record?
   
