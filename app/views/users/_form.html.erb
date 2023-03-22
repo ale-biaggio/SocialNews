@@ -1,5 +1,12 @@
 <%= form_with(model: user) do |form| %>
-
+  <div>
+    <% if user.avatar.attached? %>
+      <%= image_tag(user.avatar, style:"width: 100px") %>
+    <% else %>
+      <%= image_tag("default_avatar.jpg", style:"width: 100px") %>
+    <% end %>
+    <%= form.file_field :avatar %>
+  </div>
   <div>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
