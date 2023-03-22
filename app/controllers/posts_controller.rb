@@ -35,8 +35,12 @@ class PostsController < ApplicationController
     if Post.all.count < 15
       GoogleNews.save_posts_from_google
     end
+    if params[:search]
+      @pagy, @posts = pagy_countless(Post.search(params[:search]).order("created_at DESC"), items: 5)
+    else
+      @pagy, @posts = pagy_countless(Post.all, items: 5)
+    end
     #query -> Post.order(:rank).reverse
-    @pagy, @posts = pagy_countless(Post.all, items: 5)
     @comment = Comment.new
     respond_to do |format|
       format.html # GET
@@ -44,11 +48,7 @@ class PostsController < ApplicationController
     end
     
     #ricerca per categoria
-    if params[:search]
-      @posts = Post.search(params[:search]).order("created_at DESC")
-    else
-      @posts = Post.all.order('created_at DESC')
-    end
+    
 
   end
 

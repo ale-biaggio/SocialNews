@@ -1,6 +1,6 @@
 <p style="color: green"><%= notice %></p>
 
-<%= form_tag(posts_path, :method => "get", id: "search-form") do %>
+<%= form_tag(posts_path, :method => "post", id: "search-form") do %>
     <%= select_tag :search, options_for_select([' ','Affari', 'Cultura','Politica','Salute','Spettacolo','Sport','Tecnologia']), placeholder: "" %>
     <%= submit_tag "Search category" %>
 <% end %>
