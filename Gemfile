@@ -104,4 +104,3 @@ gem "pagy", "~> 6.0"
 
 gem "google-cloud"
 gem "google-cloud-translate"
-gem "mailcatcher"

@@ -99,7 +99,6 @@ GEM
     childprocess (4.1.0)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
-    daemons (1.4.1)
     date (3.2.2)
     debase (0.2.5.beta2)
       debase-ruby_core_source (>= 0.10.12)
@@ -122,7 +121,6 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     e2mmap (0.1.0)
     erubi (1.11.0)
-    eventmachine (1.2.7)
     faker (3.1.1)
       i18n (>= 1.8.11, < 2)
     faraday (1.2.0)
@@ -413,10 +411,6 @@ GEM
       google-protobuf (~> 3.14)
       googleapis-common-protos (>= 1.3.11, < 2.0)
       grpc (~> 1.27)
-    haml (6.1.1)
-      temple (>= 0.8.2)
-      thor
-      tilt
     hashie (5.0.0)
     http (5.1.0)
       addressable (~> 2.8)
@@ -461,16 +455,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
-    mailcatcher (0.2.4)
-      eventmachine
-      haml
-      i18n
-      json
-      mail
-      sinatra
-      skinny (>= 0.1.2)
-      sqlite3-ruby
-      thin
     marcel (1.0.2)
     matrix (0.4.2)
     memoist (0.16.2)
@@ -483,8 +467,6 @@ GEM
     multi_json (1.15.0)
     multi_xml (0.6.0)
     multipart-post (2.3.0)
-    mustermann (3.0.0)
-      ruby2_keywords (~> 0.0.1)
     net-imap (0.2.3)
       digest
       net-protocol
@@ -633,14 +615,6 @@ GEM
       faraday (>= 0.17.5, < 3.a)
       jwt (>= 1.5, < 3.0)
       multi_json (~> 1.10)
-    sinatra (3.0.2)
-      mustermann (~> 3.0)
-      rack (~> 2.2, >= 2.2.4)
-      rack-protection (= 3.0.2)
-      tilt (~> 2.0)
-    skinny (0.2.2)
-      eventmachine (~> 1.0)
-      thin
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
@@ -669,19 +643,12 @@ GEM
     sqlite3 (1.5.0)
       mini_portile2 (~> 2.8.0)
     sqlite3 (1.5.0-x86_64-linux)
-    sqlite3-ruby (1.3.3)
-      sqlite3 (>= 1.3.3)
     stackdriver-core (1.5.0)
       google-cloud-core (~> 1.2)
     stimulus-rails (1.1.0)
       railties (>= 6.0.0)
     stringio (3.0.2)
     strscan (3.0.4)
-    temple (0.10.0)
-    thin (1.8.1)
-      daemons (~> 1.0, >= 1.0.9)
-      eventmachine (~> 1.0, >= 1.0.4)
-      rack (>= 1, < 3)
     thor (1.2.1)
     tilt (2.0.11)
     time (0.2.0)
@@ -746,7 +713,6 @@ DEPENDENCIES
   jbuilder
   jquery
   jquery-rails
-  mailcatcher
   news-api
   omniauth
   omniauth-facebook
