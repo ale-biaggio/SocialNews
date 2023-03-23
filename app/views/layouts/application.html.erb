@@ -38,7 +38,6 @@
       <%= link_to "Impostazioni", info_path() %>
     <% end %>
     <%= yield %>
-  </body>
   <% if @pagy!=nil && @pagy.next   %>
   <div id="next_link">
     <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
@@ -49,4 +48,7 @@
       <%= link_to "prev", pagy_url_for(@pagy, @pagy.prev) %>
     </div>
   <% end %>
+  <% notice if notice %>
+  <% alert if alert %>
+  </body>
 </html>
