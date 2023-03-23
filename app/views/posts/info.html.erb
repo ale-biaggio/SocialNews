@@ -7,17 +7,80 @@ IMPOSTAZIONI
 
 <button class="accordion">Segnalazioni</button>
 <div class="panel">
-  <p>Lorem ipsum...</p>
+  <p>Quando riceviamo una segnalazione, la analizziamo e, se dovessimo stabilire che i nostri Standard della community di SocialNews sono stati violati, adottiamo le misure necessarie.Se segnali dei messaggi, potrebbero essere usati per migliorare i nostri sistemi di controllo di altri contenuti segnalati che potrebbero non rispettare i nostri Standard della community. Quando contattiamo la persona segnalata, non includiamo alcuna informazione sulla persona che ha compilato la segnalazione. Tieni presente che la segnalazione di contenuti non ne garantisce la rimozione.</p>
+  <p><b>Segnalare contenuti:</b><br>- Profili<br>- Post<br>- Pagine<br>- Commenti<br>- Foto e video<br></p>
+  <p><b>Inviaci la tua segnalazione e ti risponderemo il prima possibile!</b></p>
+  <%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :"Inserisci la tua segnalazione", style: "display: block" %>
+    <%= form.text_area :text_area, :cols => 60, :rows => 10 %>
+  </div>
+  
+  <div>
+    <%= form.submit"Invia" %>
+  </div>
+<% end %>
 </div>
 
-<button class="accordion">Proposte per migliore app</button>
+<button class="accordion">Proposte per migliorare app</button>
 <div class="panel">
-  <p>Lorem ipsum...</p>
+  <p><b>Aiutaci a migliorare SocialNews!</b></p>
+  <p>Esprimi la tua opinione e proponi nuove idee per poter migliorare la nostra app.<br>Siamo sempre pronti per metterci in gioco e venirvi incontro per offrirvi la miglior esperienza possibile.</p>
+  <%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :"Inserisci la tua proposta", style: "display: block" %>
+    <%= form.text_area :text_area, :cols => 60, :rows => 10 %>
+  </div>
+  
+  <div>
+    <%= form.submit "Invia"%>
+  </div>
+<% end %>
 </div>
 
 <button class="accordion">Richiedi assistenza</button>
 <div class="panel">
-  <p>Lorem ipsum...</p>
+  <p><b>Tutto l'aiuto di cui hai bisogno!</b></p>
+  <p>Cerchi informazioni nel centro assistenza su come risolvere i problemi relativi alle inserzioni, gestione degli account, problemi con il tuo profilo, password o altro?<br> Siamo lieti di offrire la nostra assistenza, potete contattarci:</p>
+  <p><b>Numero verde:</b> 06123456789 <br><b>Email:</b> info@socialnews.com</p>
+  <p>Oppure potete direttamente compilare il seguente modulo. Fornisci alcuni dettagli e ti offriremo la soluzione migliore.<br>Risponderemo il prima possibile!</p>
+  <%= form_with model: @user do |form| %>
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :"Inserisci il tuo problema", style: "display: block" %>
+    <%= form.text_area :text_area , :cols => 60, :rows => 10%>
+  </div>
+  
+  <div>
+    <%= form.submit "Invia" %>
+  </div>
+<% end %>
 </div>
 
 
