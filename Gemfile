@@ -100,3 +100,7 @@ gem 'jquery'
 gem 'faker'
 gem 'sass-rails'
 gem "pagy", "~> 6.0"
+
+
+gem "google-cloud"
+gem "google-cloud-translate"
