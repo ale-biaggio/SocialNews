@@ -33,7 +33,12 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+<<<<<<< HEAD
 
 
 
 /home/gabrielecireddu/SocialNews/SocialNews/node_modules/.yarn-integrity
+=======
+/home/alessandro/assi/SocialNews/node_modules/.yarn-integrity
+/home/matteo/SocialNews/node_modules/.yarn-integrity
+>>>>>>> dcd279cd76645fbdffcbf4537e00daedc63a9bc0

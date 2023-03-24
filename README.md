@@ -33,6 +33,5 @@ Da fare:
 
 -pagina api google maps
 -google traduttore
--immagine profilo
 -front-end
 -test finali
