@@ -31,7 +31,10 @@ deployment per heroku e distribuziuone
 
 Da fare:
 
--pagina api google maps
+-google maps
+-ricerca utenti e argomenti
+-mailer 
+-verificato
 -google traduttore
 -front-end
 -test finali
