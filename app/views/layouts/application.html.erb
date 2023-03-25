@@ -35,7 +35,7 @@
       <%= link_to "Tutte le notizie", root_path() %>
       <%= link_to "Seguiti", feed_path() %>
       <%= link_to "Maps", maps_path() %>
-      <%= link_to "Impostazioni", info_path() %>
+      <%= link_to "Impostazioni", new_user_report_path() %>
     <% end %>
     <%= yield %>
   <% if @pagy!=nil && @pagy.next   %>

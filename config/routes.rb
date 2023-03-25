@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'user_reports/new'
+  get 'user_reports/create'
   devise_for :users, :controllers => {:omniauth_callbacks => 'omniauth' }
   root "posts#index"
   resources :users do
@@ -12,6 +14,7 @@ Rails.application.routes.draw do
     end
     resources :comments, only: [:create, :update, :destroy]
   end
+  resources :user_reports, only: [:new, :create]
   post '/posts/:id/like' => 'posts#like', as: :like_post
   post '/posts/:id/dislike' => 'posts#dislike', as: :dislike_post
   post '/posts/:id/favorite' => 'posts#favorite', as: :favorite_post
