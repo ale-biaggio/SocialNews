@@ -8,5 +8,6 @@
     <h1>Nuova segnalazione utente</h1>
     <p>Argomento: <%= @user_report.topic %></p>
     <p>Messaggio: <%= @user_report.message %></p>
+    <p>Immagine: <%= image_tag(@user_report.report_image, style:"width: 100px") if @user_report.report_image.attached? %></p>
   </body>
 </html>

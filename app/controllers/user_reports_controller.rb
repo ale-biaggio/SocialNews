@@ -20,6 +20,6 @@ class UserReportsController < ApplicationController
   private
 
   def user_report_params
-    params.require(:user_report).permit(:topic, :email, :message)
+    params.require(:user_report).permit(:report_image, :topic, :email, :message)
   end
 end

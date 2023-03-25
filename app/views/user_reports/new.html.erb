@@ -112,6 +112,10 @@ var acc = document.getElementsByClassName("accordion");
     <%= form.label :topic %>
     <%= form.select :topic, ['Segnala un problema', 'Proponi nuove funzionalità', 'Richiedi assistenza', 'Richiedi verificato'] %>
   </div>
+  <p> Allega una foto alla tua segnalazione, oppure la foto di un documento se stai richiedendo il verificato.</p>
+  <div>
+    <%= form.file_field :report_image %>
+  </div>
   <div class="form-group">
     <%= form.label :email %>
     <%= form.email_field :email, class: 'form-control' %>
