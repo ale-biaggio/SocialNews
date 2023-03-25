@@ -3,6 +3,25 @@
 <!--Script Google Maps-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNF-rSthM99v10XV-x25hDT-bBpxfTKY4&callback=initMap&v=weekly"
       async defer></script>
+<!-- script google translate-->
+<p><b>Traduci la pagina</b></p>
+<div id="google_translate_element"></div>
+
+<script type="text/javascript">
+
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
+
+
+
+<!-- fine google translate-->
+
+
 
 <%= stylesheet_link_tag 'post' %>
 <!DOCTYPE html>
