@@ -29,13 +29,15 @@
                 url: '/maps/' + title,
                 type: 'GET',
                 success: function(response) {
+                  console.log(response);
                   $("#markerModalLabel").text(title);
                   $('#markerModal').modal('show');
                   var postsHtml = '';
                   response.forEach(function(post) {
                     postsHtml += '<div class="post">';
+                    postsHtml += '<h4 class="post-author">' + post.author_name + '</h4>';
                     postsHtml += '<h3 class="post-title">' + post.title + '</h3>';
-                    postsHtml += '<p class="post-body">' + post.body + '</p>';
+                    postsHtml += '<p class="post-body">' + post.body + '...<a href = "' + post.url + '" target="_blank" rel="noopener noreferrer">Articolo completo</a></p>';
                     postsHtml += '<img class="post-img" src=' + post.img_test + ' style="width: 20%; border-radius: 5px;" >';
                     postsHtml += '</div>';
                   });

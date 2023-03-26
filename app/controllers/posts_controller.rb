@@ -18,7 +18,9 @@ class PostsController < ApplicationController
   def maps
     if(params[:title]!=nil)
       @title = params[:title]
-      @posts = Post.where("body LIKE ?", "%#{@title}%")
+      #@posts = Post.where("body LIKE ?", "%#{@title}%")
+      @posts = Post.joins(:user).where("body LIKE ?", "%#{params[:title]}%")
+                  .select("posts.*, users.name as author_name")
       respond_to do |format|
         format.json {render :json => @posts }
       end
