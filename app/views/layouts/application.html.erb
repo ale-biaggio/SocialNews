@@ -1,9 +1,13 @@
 <%= javascript_import_module_tag "post" %>
+
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<!-- primo script google translate-->
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
+</script>
 <!--Script Google Maps-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNF-rSthM99v10XV-x25hDT-bBpxfTKY4&callback=initMap&v=weekly"
       async defer></script>
-<!-- script google translate-->
+<!-- secondo script google translate-->
 <p><b>Traduci la pagina</b></p>
 <div id="google_translate_element"></div>
 
@@ -13,12 +17,6 @@ function googleTranslateElementInit() {
   new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
 }
 </script>
-
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
-
-
-
 <!-- fine google translate-->
 
 
