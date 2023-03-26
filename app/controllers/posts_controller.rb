@@ -16,9 +16,16 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
   def maps
-    @posts = Post.all
+    if(params[:title]!=nil)
+      @title = params[:title]
+      @posts = Post.where("body LIKE ?", "%#{@title}%")
+      respond_to do |format|
+        format.json {render :json => @posts }
+      end
+    end
     @comment = Comment.new
   end
+  
   def feed
     following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
     @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id), items: 5)

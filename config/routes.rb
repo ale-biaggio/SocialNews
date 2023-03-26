@@ -22,5 +22,6 @@ Rails.application.routes.draw do
   get '/users/:id/show_favorite', to: 'posts#show_favorite', as: :favorite_show
   get '/feed', to: 'posts#feed'
   get '/maps', to: 'posts#maps'
+  get '/maps/:title', to: 'posts#maps'
   get '/info', to: 'posts#info'
 end
