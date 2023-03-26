@@ -124,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_25_093116) do
     t.text "username", default: "", null: false
     t.integer "phone"
     t.integer "role"
+    t.integer "verified", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "email", default: "", null: false

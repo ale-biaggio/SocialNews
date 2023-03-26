@@ -14,5 +14,13 @@
     <strong>Email:</strong>
     <%= user.email %>
   </p>
-
+  <%if can? :all, @user%>
+    <% if user.verified == 1 %>
+      <%= button_to "Verificato", verified_user_path(user), class: 'verified like-btn btn-green', id:user.id %> 
+      <%= button_to "Elimina verificato", verified_user_path(user), class: 'verified dislike-btn', id:user.id %> 
+    <% else %>
+      <%= button_to "Verificato", verified_user_path(user), class: 'verified like-btn', id:user.id %> 
+      <%= button_to "Elimina verificato", verified_user_path(user), class: 'verified dislike-btn btn-red', id:user.id %> 
+    <% end %>
+  <%end%>
 </div>

@@ -46,7 +46,7 @@ User.create!([
     surname: "", 
     username:  "admin",
     email: "admin@gmail.com",
-    password: "123456"
+    password: "123456",
     }
 ])
 

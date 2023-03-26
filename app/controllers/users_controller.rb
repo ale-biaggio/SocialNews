@@ -32,7 +32,15 @@ class UsersController < ApplicationController
         user.destroy
         redirect_to posts_url, :notice => "User deleted."
     end
-    
+    def verified
+      user = User.find(params[:id])
+      if user.verified == 1
+        user.verified = 0
+      else
+        user.verified = 1
+      end
+      user.save
+    end
     private
     
     def admin_only

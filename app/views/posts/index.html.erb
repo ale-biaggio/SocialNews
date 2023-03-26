@@ -4,7 +4,6 @@
     <%= select_tag :search, options_for_select([' ','Affari', 'Cultura','Politica','Salute','Spettacolo','Sport','Tecnologia']), placeholder: "" %>
     <%= submit_tag "Search category" %>
 <% end %>
-
 <h1>Posts</h1>
 <%= link_to "New post", new_post_path %>
 <%= render @posts %>

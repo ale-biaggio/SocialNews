@@ -10,6 +10,7 @@ class AddDeviseToUsers < ActiveRecord::Migration[7.0]
       t.text :username, null: false, default: ""
       t.integer :phone
       t.integer :role
+      t.integer :verified, default: 0
 
       t.timestamps
       t.string :email, null: false, default: ""

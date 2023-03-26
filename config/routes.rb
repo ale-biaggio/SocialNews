@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   get '/maps', to: 'posts#maps'
   get '/maps/:title', to: 'posts#maps'
   get '/info', to: 'posts#info'
+  post '/users/:id/verified' => 'users#verified', as: :verified_user
 end

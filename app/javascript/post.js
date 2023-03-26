@@ -29,6 +29,32 @@ $('.btn').on('click', function() {
     $(this).addClass('btn-red')
   }
 });
+$('.verified').on('click', function() {
+  if($(this).hasClass('btn-green')){
+    $(this).removeClass('btn-green')
+  }
+  else if($(this).hasClass('btn-red')){
+    $(this).removeClass('btn-red')
+  }
+  else if($(this).hasClass('like-btn') && !$(this).hasClass('btn-green')){
+    if($('#'+String($(this).attr("id"))+'.dislike-btn').hasClass('btn-red')){
+      $('#'+String($(this).attr("id"))+'.dislike-btn').removeClass('btn-red')
+    }
+    else{
+    }  
+    $(this).addClass('btn-green')
+  }
+  else if($(this).hasClass('dislike-btn') && !$(this).hasClass('btn-red')){
+    if($('#'+String($(this).attr("id"))+'.like-btn').hasClass('btn-green')){
+      $('#'+String($(this).attr("id"))+'.like-btn').removeClass('btn-green')
+    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())-2)   
+    }
+    else{
+    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())-1)   
+    }
+    $(this).addClass('btn-red')
+  }
+});
 $(".comment-form").on('submit', function(event) {
   event.preventDefault();
   var post_id = $(this).data('post-id');
