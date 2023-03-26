@@ -29,7 +29,7 @@ $('.btn').on('click', function() {
     $(this).addClass('btn-red')
   }
 });
-$(".comment-form").submit(function(event) {
+$(".comment-form").on('submit', function(event) {
   event.preventDefault();
   var post_id = $(this).data('post-id');
   var form = $(this);
