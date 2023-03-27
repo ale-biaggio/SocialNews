@@ -15,10 +15,15 @@
     <p>
       <h2><%= post.title %></h2>
     </p>
-  <p>
-    <h5><%= link_to post.user.name, user_path(post.user.id), method: "get"%></h5>
-    <h5><%= link_to post.user.surname, user_path(post.user.id), method: "get"%></h5>
-  </p>
+  <div class='container'>
+    <div class='row'>
+      <h5><%= link_to post.user.name, user_path(post.user.id), method: "get"%></h5>
+      <h5><%= link_to post.user.surname, user_path(post.user.id), method: "get"%></h5>
+      <% if User.find(post.user.id).verified==1 %>
+        <%= image_tag("verified-icon.jpg", style:"width: 20px; height: 20px;", class:"verified-icon", id:post.user.id) %>
+      <% end %>
+    </div>
+  </div>
   <div class='container'>
     <div class='row'>
       <div class='col-3'>

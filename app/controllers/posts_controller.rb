@@ -42,11 +42,15 @@ class PostsController < ApplicationController
     if Post.all.count < 15
       GoogleNews.save_posts_from_google
     end
-    if params[:search]
-      @pagy, @posts = pagy_countless(Post.search(params[:search]).order("created_at DESC"), items: 5)
+   
+    if params[:keyword].present?
+      @pagy, @posts = pagy_countless(Post.where("title LIKE ? OR body LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(rank: :desc), items: 5)
+    elsif params[:category].present? 
+      @pagy, @posts = pagy_countless(Post.where(category: params[:category]).order(rank: :desc), items: 5)
     else
-      @pagy, @posts = pagy_countless(Post.all, items: 5)
+      @pagy, @posts = pagy_countless(Post.order(rank: :desc), items: 5)
     end
+
     #query -> Post.order(:rank).reverse
     @comment = Comment.new
     respond_to do |format|

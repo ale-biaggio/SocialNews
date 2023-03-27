@@ -29,30 +29,19 @@ $('.btn').on('click', function() {
     $(this).addClass('btn-red')
   }
 });
-$('.verified').on('click', function() {
-  if($(this).hasClass('btn-green')){
-    $(this).removeClass('btn-green')
+$(document).on('click', '.verified-btn, .unverified-btn', function() {
+  var id = $(this).attr("id");
+  if($(this).hasClass('verified-btn')){
+    $(this).text("Elimina verificato");
+    $(this).removeClass('verified-btn');
+    $(this).addClass('unverified-btn');
+    $('#'+String(id)+'.name').after('<img style="width: 15px" class="verified-icon" id="'+id+'" src="/assets/verified-icon.jpg">');   
   }
-  else if($(this).hasClass('btn-red')){
-    $(this).removeClass('btn-red')
-  }
-  else if($(this).hasClass('like-btn') && !$(this).hasClass('btn-green')){
-    if($('#'+String($(this).attr("id"))+'.dislike-btn').hasClass('btn-red')){
-      $('#'+String($(this).attr("id"))+'.dislike-btn').removeClass('btn-red')
-    }
-    else{
-    }  
-    $(this).addClass('btn-green')
-  }
-  else if($(this).hasClass('dislike-btn') && !$(this).hasClass('btn-red')){
-    if($('#'+String($(this).attr("id"))+'.like-btn').hasClass('btn-green')){
-      $('#'+String($(this).attr("id"))+'.like-btn').removeClass('btn-green')
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())-2)   
-    }
-    else{
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())-1)   
-    }
-    $(this).addClass('btn-red')
+  else if($(this).hasClass('unverified-btn')){
+    $(this).text("Conferma verificato");  
+    $(this).removeClass('unverified-btn');
+    $(this).addClass('verified-btn');
+    $('#'+String(id)+'.verified-icon').remove();
   }
 });
 $(".comment-form").on('submit', function(event) {
@@ -72,7 +61,7 @@ $(".comment-form").on('submit', function(event) {
     success: function(response) {
       if (form.prev().prev().hasClass("no-comment")){
         form.prev().prev().remove();
-        form.prev().prev().after('<ul><li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
+        form.prev().prev().append('<ul><li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
       }
       else{
         form.prev().prev().append('<li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
