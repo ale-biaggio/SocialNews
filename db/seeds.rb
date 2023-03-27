@@ -94,5 +94,32 @@ Post.create!([
     img_test: "https://lindro.it/wp-content/uploads/2023/03/Regno-Unito-Gran-Bretagna--696x522.jpg",
     user_id: 3
     },
+    { 
+    title: "Stipendi troppo bassi contro l'inflazione. La Germania paralizzata", 
+    category: "Affari", 
+    body: "AGI - Al via in Germania il mega-sciopero dei trasporti organizzato dai sindacati che chiedono aumenti salariali di fronte all'inflazione. I dipendenti di aeroporti, ferrovie, trasporti marittimi, compagnie autostradali, trasporti locali hanno iniziato a mezzanotte un'interruzione del lavoro di 24 ore. La mobilitazione si inserisce",
+    url: "https://www.agi.it/estero/news/2023-03-27/germania_mega-sciopero_trasporti_salari_bassi_contro_inflazione-20684365/",
+    rank: 35,
+    img_test: "https://images.agi.it/pictures/agi/agi/2023/03/27/085202027-95b70955-f5ee-4a34-b1aa-a273b75132aa.jpg",
+    user_id: 2
+    },
+    { 
+    title: "UE e Germania, accordo sui carburanti sintetici. Si sblocca la norma sullo stop alle endotermiche dal 2035", 
+    category: "Politica", 
+    body: "Accordo raggiunto con la Germania sui carburanti sintetici, si sblocca l'approvazione della norma sullo stop alla vendita di endotermiche dal 2035. E c'è un grande sconfitto: il governo",
+    url: "https://www.dmove.it/news/germania-e-fuel-accordo-unione-europea",
+    rank: 18,
+    img_test: "https://cdn.dmove.it/images/38259/Germany_Cover.jpeg",
+    user_id: 8
+    },
+    {
+    title: "Non solo pensioni, la Francia 'brucia': manifestante in fin di vita", 
+    category: "Affari", 
+    body: "Una battaglia che va avanti da anni per la costruzione di un mega bacino per la raccolta idrica nell'est del Paese diventa il nuovo fronte di scontro fra manifestanti e",
+    url: "https://europa.today.it/attualita/scontri-francia-polizia-manifestazioni-ecologisti-pensioni.html",
+    rank: 42,
+    img_test: "https://citynews-today.stgy.ovh/~media/horizontal-hi/3549548214790/proteste-ambientalisti-francia-lapresse.jpg",
+    user_id: 3
+    },
 ])
 
