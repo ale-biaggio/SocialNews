@@ -56,17 +56,17 @@
       <% end %>
     <% else %>
       <%= button_to like_post_path(post), class: 'btn like-btn', id:post_id do %>
-      <i class="fa-solid fa-caret-up fa-3x"></i>
+      <i class="fa-solid fa-caret-up fa-3x" style="color: gray;"></i>
       <% end %>
     <% end %>
      <span class="like-count" id="<%=post_id%>"><%= post.rank %></span>
     <% if post.disliked?(current_user) %>
       <%= button_to dislike_post_path(post), class: 'btn btn-red dislike-btn', id:post_id do %>
-      <i class="fa-solid fa-caret-down fa-2x" style="color: gray;"></i>
+      <i class="fa-solid fa-caret-down fa-3x" style="color: gray;"></i>
       <% end %>
     <% else %>
       <%= button_to dislike_post_path(post), class: 'btn dislike-btn', id: post_id do%>
-      <i class="fa-solid fa-caret-down fa-3x"></i>
+      <i class="fa-solid fa-caret-down fa-3x" style="color: gray;"></i>
       <% end %>
     <% end %>
   <% else %>
@@ -146,17 +146,17 @@ $(document).on('click', '.like-btn, .dislike-btn', function() {
 
       if ($this.hasClass('like-btn')) {
         if (thumb_color == 'rgb(0, 128, 0)') {
-          $this.find('i').css('color', '');
+          $this.find('i').css('color', 'gray');
         } else {
           $this.find('i').css('color', 'green');
-          $('.dislike-btn[id="'+post_id+'"]').find('i').css('color', '');
+          $('.dislike-btn[id="'+post_id+'"]').find('i').css('color', 'gray');
         }
       } else {
         if (thumb_color == 'rgb(255, 0, 0)') {
-          $this.find('i').css('color', '');
+          $this.find('i').css('color', 'gray');
         } else {
           $this.find('i').css('color', 'red');
-          $('.like-btn[id="'+post_id+'"]').find('i').css('color', '');
+          $('.like-btn[id="'+post_id+'"]').find('i').css('color', 'gray');
         }
       }
     }
