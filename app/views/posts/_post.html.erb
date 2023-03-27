@@ -5,122 +5,120 @@
   end 
   post_id = post.id
 %>
+  <% if user_signed_in? %>
+    <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
+    <% if !post.favorited?(current_user) %>
+  <button type="button" class="favorite" data-post_id="<%=post_id%>">Favorite</button>     
+    <% else %>
+  <button type="button" class="favorite" data-post_id="<%=post_id%>">Remove favorite</button>     
+    <% end %>
+  <% else %>
+    <div id="posts" data-max_id ="<%= max_id %>">
+  <% end %>
   <div id="post" data-post_id="<%= post.id %>">
-
-<div class='container' style="border-style: solid; border-color:black; border-radius:20px;">
-  <br>
-    <p>
-      <strong>#<%= post.category %></strong>
-    </p>
-    <p>
-      <h2><%= post.title %></h2>
-    </p>
-  <div class='container'>
-    <div class='row'>
-      <h5><%= link_to post.user.name, user_path(post.user.id), method: "get"%></h5>
-      <h5><%= link_to post.user.surname, user_path(post.user.id), method: "get"%></h5>
-      <% if User.find(post.user.id).verified==1 %>
-        <%= image_tag("verified-icon.jpg", style:"width: 20px; height: 20px;", class:"verified-icon", id:post.user.id) %>
+  <p>
+    <strong>User:</strong>
+    <%= link_to post.user.name, user_path(post.user.id), method: "get"%>
+    <%= link_to post.user.surname, user_path(post.user.id), method: "get"%>
+  <% if User.find(post.user.id).verified==1 %>
+    <%= image_tag("verified-icon.jpg", style:"width: 15px", class:"verified-icon", id:post.user.id) %>
+  <% end %>
+  </p>
+  <p>
+  <strong>Title:</strong>
+  <%= post.title %>
+  </p>
+  <p>
+    <strong>Category:</strong>
+    <%= post.category %>
+  </p>
+  <p>
+    <strong>Body:</strong>
+    <% if post.url != nil %>
+      <%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">Articolo completo</a>
+    <% else %>
+      <%= post.body %>
+    <% end %>
+  </p>
+  <p>
+    <strong>Image:</strong>
+    <br>
+    <%= image_tag post.image, :style => "width: 20%; border-radius: 5px;" if post.image.attached?%>
+    <%= image_tag post.img_test, :style => "width: 20%; border-radius: 5px;" if post.img_test != nil%>
+  </p>
+  <p>
+    <strong>Rank:</strong><i class="fa-sharp fa-solid fa-arrow-up-from-line"></i>
+  </p>
+  <% if user_signed_in? %>
+   <% if post.liked?(current_user) %>
+      <%= button_to like_post_path(post), class: 'btn like-btn btn-green', id:post_id do %> 
+      <i class="fa-solid fa-caret-up fa-3x" style="color: gray;"></i>
       <% end %>
-    </div>
-  </div>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-3'>
-        <%= image_tag post.image, :style => "width: 100%; border-radius: 5px;" if post.image.attached?%>
-        <%= image_tag post.img_test, :style => "width: 100%; border-radius: 5px;" if post.img_test != nil%>
-      </div>
-      <div class='col-9'>
-        <% if post.url != nil %>
-          <h4><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">Articolo completo</a></h4>
-        <% else %>
-          <h4><%= post.body %></h4>
+    <% else %>
+      <%= button_to like_post_path(post), class: 'btn like-btn', id:post_id do %>
+      <i class="fa-solid fa-caret-up fa-3x"></i>
+      <% end %>
+    <% end %>
+     <span class="like-count" id="<%=post_id%>"><%= post.rank %></span>
+    <% if post.disliked?(current_user) %>
+      <%= button_to dislike_post_path(post), class: 'btn btn-red dislike-btn', id:post_id do %>
+      <i class="fa-solid fa-caret-down fa-2x" style="color: gray;"></i>
+      <% end %>
+    <% else %>
+      <%= button_to dislike_post_path(post), class: 'btn dislike-btn', id: post_id do%>
+      <i class="fa-solid fa-caret-down fa-3x"></i>
+      <% end %>
+    <% end %>
+  <% else %>
+    <a href="http://127.0.0.1:3000/users/sign_in"><button>Up</button></a><br>
+     <%= post.rank %><br>
+    <a href="http://127.0.0.1:3000/users/sign_in"><button>Down</button></a>
+  <% end %> 
+  <h2> Comments: </h2>
+  <% if post.comments.empty? %>
+    <p class="no-comment">No comments for this post...</p>
+  <% else %>
+    <ul class="comment-list">
+    <% post.comments.each do |r| %>
+      <% if r.visible %>
+        <li> <a href="/users/<%=r.user_id%>"><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></a> - <%= r.body %> - <%= r.like %> </li>
+        <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
+          <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
         <% end %>
-      </div>
-    </div>
-  </div>
-  <br>
-  <div class='container'>
-    <div class='row'>
-      <div class='col-3'>
-        <% if user_signed_in? %>
-        <% if post.liked?(current_user) %>
-            <%= button_to "Up", like_post_path(post), class: 'btn like-btn btn-green', id:post_id %> 
-          <% else %>
-            <%= button_to "Up", like_post_path(post), class: 'btn like-btn', id:post_id %>
-          <% end %>
-          <span class="like-count" id="<%=post_id%>"><%= post.rank %></span>
-          <% if post.disliked?(current_user) %>
-            <%= button_to "Down", dislike_post_path(post), class: 'btn btn-red dislike-btn', id:post_id  %>
-          <% else %>
-            <%= button_to "Down", dislike_post_path(post), class: 'btn dislike-btn', id: post_id %>
-          <% end %>
-        <% else %>
-          <a href="http://127.0.0.1:3000/users/sign_in"><button>Up</button></a><br>
-          <%= post.rank %><br>
-          <a href="http://127.0.0.1:3000/users/sign_in"><button>Down</button></a>
-        <% end %> 
-      </div>
-      <div class='col-6'>
-        <% if post.comments.empty? %>
-          <p class="no-comment">No comments for this post...</p>
-        <% else %>
-          <ul class="comment-list">
-          <% post.comments.each do |r| %>
-            <% if r.visible %>
-              <li> <a href="/users/<%=r.user_id%>"><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></a> - <%= r.body %> - <%= r.like %> </li>
-              <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
-                <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
-              <% end %>
-            <% end %>
-          <% end %>
-          </ul>
-        <% end %>
+      <% end %>
+    <% end %>
+    </ul>
+  <% end %>
 
-        <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
-          <% if @comment.errors.any? %>
-            <div id="error_explanation">
-              <h4><%= pluralize(@comment.errors.count, "error") %> prohibited this review from being saved:</h4>
-              <ul>
-                <% @comment.errors.each do |error| %>
-                  <li><%= error.full_message %></li>
-                <% end %>
-              </ul>
-            </div>
+  <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h4><%= pluralize(@comment.errors.count, "error") %> prohibited this review from being saved:</h4>
+        <ul>
+          <% @comment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
           <% end %>
-          <div class="field" style="width:90%;">
-            <%= form.text_area :body, class: "comment-text", placeholder: "Lascia un commento", style: "width: 90%; height:30px;" %>
-          </div>
-          <% if user_signed_in? %>
-            <div class="field">
-              <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
-            </div>
-            <div class="actions">
-              <%= form.submit "Add comment", class: "comment-submit"%>
-            </div>
-          <% end %>
-        <% end %>
-        <% if current_user == nil %>
-          <a href="http://127.0.0.1:3000/users/sign_in"><button>Add a comment</button></a><br>
-        <% end %>  
-        <% if current_user!=nil and current_user.id == post.user_id%>
-          <%= link_to "Edit this post", edit_post_path(post) %>
-        <% end %>
+        </ul>
       </div>
-      <div class='col-3'>
-        <% if user_signed_in? %>
-          <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
-          <% if !post.favorited?(current_user) %>
-        <button type="button" class="favorite" data-post_id="<%=post_id%>">Favorite</button>     
-          <% else %>
-        <button type="button" class="favorite" data-post_id="<%=post_id%>">Remove favorite</button>     
-          <% end %>
-        <% else %>
-          <div id="posts" data-max_id ="<%= max_id %>">
-        <% end %>
-      </div>
+    <% end %>
+    <div class="field">
+      <%= form.text_area :body, class: "comment-text" %>
     </div>
-  </div>
+    <% if user_signed_in? %>
+      <div class="field">
+        <div style="display:none"> <%= form.select :user_id,[current_user.id] %> </div>
+      </div>
+      <div class="actions">
+        <%= form.submit "Add comment", class: "comment-submit"%>
+      </div>
+    <% end %>
+  <% end %>
+  <% if current_user == nil %>
+    <a href="http://127.0.0.1:3000/users/sign_in"><button>Add a comment</button></a><br>
+  <% end %>  
+  <% if current_user!=nil and current_user.id == post.user_id%>
+    <%= link_to "Edit this post", edit_post_path(post) %>
+  <% end %>
 
   <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6410620c82a5320015aeb382&product=sop' async='async' ></script>
   <div class="sharethis-inline-share-buttons" data-url="<%= post.url %>"></div>
@@ -128,7 +126,42 @@
   <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Delete post', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
   </div>
 
-</div>
-
 <hr>
 
+<script>
+$(document).on('click', '.like-btn, .dislike-btn', function() {
+  var $this = $(this);
+  var post_id = $this.attr('id');
+  var action = $this.attr('action');
+  var method = $this.attr('method');
+  var thumb_color = $this.find('i').css('color');
+
+  $.ajax({
+    url: action,
+    type: method,
+    data: { post_id: post_id },
+    success: function(data) {
+      var $like_count = $('#'+post_id+' .like-count');
+      $like_count.text(data.rank);
+
+      if ($this.hasClass('like-btn')) {
+        if (thumb_color == 'rgb(0, 128, 0)') {
+          $this.find('i').css('color', '');
+        } else {
+          $this.find('i').css('color', 'green');
+          $('.dislike-btn[id="'+post_id+'"]').find('i').css('color', '');
+        }
+      } else {
+        if (thumb_color == 'rgb(255, 0, 0)') {
+          $this.find('i').css('color', '');
+        } else {
+          $this.find('i').css('color', 'red');
+          $('.like-btn[id="'+post_id+'"]').find('i').css('color', '');
+        }
+      }
+    }
+  });
+
+  return false;
+});
+</script>

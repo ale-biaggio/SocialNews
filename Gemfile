@@ -105,8 +105,7 @@ gem "pagy", "~> 6.0"
 gem "google-cloud"
 gem "google-cloud-translate"
 
-
-
+gem "font-awesome-sass", "~> 6.3.0"
 
 
 group :development, :test do

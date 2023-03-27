@@ -1,3 +1,5 @@
+@import "font-awesome";
+
 button, input{
   background-color: #ffffff;
   color: white;
@@ -11,10 +13,10 @@ button, input{
   cursor: pointer;
 }
 .btn-green{
-  background-color: green;
+  background-color: rgb(255, 255, 255);
 }
 .btn-red{
-  background-color: red;
+  background-color: rgb(255, 255, 255);
 }
 .blue-btn{
   background-color: rgb(0, 174, 255);
