@@ -1,34 +1,24 @@
 <%= javascript_import_module_tag "post" %>
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <!-- primo script google translate-->
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
-</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <!--Script Google Maps-->
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNF-rSthM99v10XV-x25hDT-bBpxfTKY4&callback=initMap&v=weekly"
-      async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNF-rSthM99v10XV-x25hDT-bBpxfTKY4&callback=initMap&v=weekly"async defer></script>
 <!-- secondo script google translate-->
 <p><b>Traduci la pagina</b></p>
 <div id="google_translate_element"></div>
-
 <script type="text/javascript">
-
-function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
-}
+  function googleTranslateElementInit() {
+    new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
+  }
 </script>
 <!-- fine google translate-->
-
-
-
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
 <!-- Bootstrap JS -->
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-
 <%= stylesheet_link_tag 'post' %>
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -36,7 +26,6 @@ function googleTranslateElementInit() {
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>

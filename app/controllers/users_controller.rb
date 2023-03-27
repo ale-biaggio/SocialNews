@@ -33,13 +33,12 @@ class UsersController < ApplicationController
         redirect_to posts_url, :notice => "User deleted."
     end
     def verified
-      user = User.find(params[:id])
-      if user.verified == 1
-        user.verified = 0
+      @user = User.find(params[:id])
+      if @user.verified == 1
+        @user.update_attribute(:verified, 0)
       else
-        user.verified = 1
+        @user.update_attribute(:verified, 1)
       end
-      user.save
     end
     private
     
