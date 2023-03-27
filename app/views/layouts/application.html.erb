@@ -33,8 +33,9 @@
   <body>
     <p class="alert"><%= alert %></p>
     <% if user_signed_in? %>
-      Ciao, <%= current_user.name + current_user.surname%> [<%= link_to 'Fai il logout',
-      destroy_user_session_path, :method => :delete%>]<br>
+      Ciao, <%= current_user.name + current_user.surname%><%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
+      <i class="fa-solid fa-right-to-bracket">  Log out</i>
+      <%end%><br>
       <% if current_user.email == "admin@gmail.com" %>
         <% current_user.admin! %>
       <%end%>
@@ -43,12 +44,18 @@
       <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
     <% elsif can? :all, @user%>
       <%= button_to "Tutti gli utenti", users_path, method: "get"%>
-    <% else %>
-      <%= button_to "Il mio profilo", user_path(current_user.id), method: "get"%><br>
+    <% else %><br>
       <%= link_to "Tutte le notizie", root_path() %>
       <%= link_to "Seguiti", feed_path() %>
-      <%= link_to "Maps", maps_path() %>
-      <%= link_to "Impostazioni", new_user_report_path() %>
+      <%= link_to maps_path() , class: "btn mr-1" do%>
+        <i class="fa-solid fa-map-location-dot fa-xl"></i>
+      <%end%>
+      <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
+        <i class="fa-solid fa-gear fa-xl"></i> 
+      <% end %>
+      <%= link_to user_path(current_user.id), method: "get" , class: "btn" do%>
+        <i class="fa fa-user fa-xl"></i> 
+      <% end %>
     <% end %>
     <%= yield %>
   <% if @pagy!=nil && @pagy.next   %>
