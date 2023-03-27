@@ -20,6 +20,9 @@
     <strong>User:</strong>
     <%= link_to post.user.name, user_path(post.user.id), method: "get"%>
     <%= link_to post.user.surname, user_path(post.user.id), method: "get"%>
+  <% if User.find(post.user.id).verified==1 %>
+    <%= image_tag("verified-icon.jpg", style:"width: 15px", class:"verified-icon", id:post.user.id) %>
+  <% end %>
   </p>
   <p>
   <strong>Title:</strong>

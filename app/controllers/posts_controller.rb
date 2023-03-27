@@ -44,11 +44,11 @@ class PostsController < ApplicationController
     end
    
     if params[:keyword].present?
-      @pagy, @posts = pagy_countless(Post.where("title LIKE ? OR body LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order("created_at DESC"), items: 5)
+      @pagy, @posts = pagy_countless(Post.where("title LIKE ? OR body LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(rank: :desc), items: 5)
     elsif params[:category].present? 
-      @pagy, @posts = pagy_countless(Post.where(category: params[:category]).order("created_at DESC"), items: 5)
+      @pagy, @posts = pagy_countless(Post.where(category: params[:category]).order(rank: :desc), items: 5)
     else
-      @pagy, @posts = pagy_countless(Post.all, items: 5)
+      @pagy, @posts = pagy_countless(Post.order(rank: :desc), items: 5)
     end
 
     #query -> Post.order(:rank).reverse
