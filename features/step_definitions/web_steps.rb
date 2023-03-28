@@ -40,7 +40,9 @@ end
 When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
-
+When("I press the pencil button") do
+  find('a.pencil').click
+end
 When("I follow registration steps") do
   user1 = FactoryBot.create(:user1)
   user2 = FactoryBot.create(:user2)

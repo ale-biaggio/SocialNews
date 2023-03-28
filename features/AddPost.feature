@@ -8,7 +8,7 @@ Scenario: Add a post
     Given I am on the SocialNews home page
     When I follow registration steps
     Then I should be on the SocialNews home page
-    And I follow "New post"
+    And I press the pencil button
     When I fill in "Title" with "Nuovo post"
     And I select "Affari" from "Category"
     And I fill in "Body" with "Questo è un testo"
