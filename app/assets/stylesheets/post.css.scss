@@ -11,6 +11,23 @@ h5{
   border-radius: 20px;
 }
 
+.searchbar{
+  border-radius: 20px;
+}
+
+iframe{
+  display: none;
+}
+
+.home-buttons{
+  display: block;
+  border-top: unset;
+  border-right: unset;
+  border-left: unset;
+  border-bottom-left-radius: 0%;
+  border-bottom-right-radius: 0%;
+}
+
 button, input{
   background-color: #ffffff;
   color: white;

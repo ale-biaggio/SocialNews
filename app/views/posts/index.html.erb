@@ -1,8 +1,7 @@
     <nav class="navbar bg-light">
       <a class="navbar-brand">Social News</a>
       <%= form_tag(posts_path, method: "get") do %>
-        <%= text_field_tag(:keyword) %>
-        <%= submit_tag("Cerca") %>
+        <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
       <% end %>
           <% if current_user==nil %>
             <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
@@ -41,13 +40,13 @@
   <div class="container">
     <div class="row">
       <div class="col-4" style="text-align:center;">
-        <%= link_to "Tutte le notizie", root_path() %>
+        <%= link_to "Tutte le notizie", root_path(), class: "btn btn-outline-primary home-buttons" %>
       </div>
       <div class="col-4" style="text-align:center;">
-        <%= link_to "Seguiti", feed_path() %>
+        <%= link_to "Seguiti", feed_path(), class: "btn btn-outline-primary home-buttons" %>
       </div>
       <div class="col-4" style="text-align:center;">
-        <%= link_to "Esplora", maps_path() %>
+        <%= link_to "Esplora", maps_path(), class: "btn btn-outline-primary home-buttons" %>
       </div>
     </div>
   </div>
@@ -62,7 +61,7 @@
   <% end %>
 </div>
 
-<div class="container">
+<div class="container" style="width: 60%;">
   <h1>News:</h1>
   <%= link_to image_tag("pencil.png", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
 </div>

@@ -1,8 +1,7 @@
     <nav class="navbar bg-light">
       <a class="navbar-brand">Social News</a>
       <%= form_tag(posts_path, method: "get") do %>
-        <%= text_field_tag(:keyword) %>
-        <%= submit_tag("Cerca per argomento") %>
+        <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
       <% end %>
           <% if current_user==nil %>
             <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
@@ -22,6 +21,14 @@
             <%= link_to user_path(current_user.id), method: "get" , class: "btn" do%>
               <i class="fa fa-user fa-xl"></i> 
             <% end %>
+          <% end %>
+          <% if user_signed_in? %>
+            Ciao, <%= current_user.name + current_user.surname%><%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
+            <i class="fa-solid fa-right-to-bracket">  Log out</i>
+            <%end%><br>
+            <% if current_user.email == "admin@gmail.com" %>
+              <% current_user.admin! %>
+            <%end%>
           <% end %>
     </nav>
 
