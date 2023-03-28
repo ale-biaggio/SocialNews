@@ -1,5 +1,16 @@
 @import "font-awesome";
 
+h5{
+  font-weight: normal;
+}
+
+.pencil{
+  position: fixed;
+  bottom: 70px;
+  right: 65px;
+  border-radius: 20px;
+}
+
 button, input{
   background-color: #ffffff;
   color: white;
