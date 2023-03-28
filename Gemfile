@@ -109,6 +109,8 @@ gem "font-awesome-sass", "~> 6.3.0"
 
 
 group :development, :test do
+  gem 'factory_bot_rails'
+
   gem 'cucumber-rails', require:false
 
   %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|

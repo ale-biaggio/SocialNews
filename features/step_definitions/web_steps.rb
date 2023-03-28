@@ -41,6 +41,24 @@ When /^(.*) within (.*[^:]):$/ do |step, parent, table_or_string|
   with_scope(parent) { When "#{step}:", table_or_string }
 end
 
+When("I follow registration steps") do
+  user1 = FactoryBot.create(:user1)
+  user2 = FactoryBot.create(:user2)
+  user3 = FactoryBot.create(:user3)
+  user4 = FactoryBot.create(:user4)
+  user5 = FactoryBot.create(:user5)
+  user6 = FactoryBot.create(:user6)
+  user7 = FactoryBot.create(:user7)
+  user8 = FactoryBot.create(:user8)
+  user9 = FactoryBot.create(:user9)
+
+  click_link "Clicca qui per fare il login"
+  fill_in 'user[email]', with: '11@1'
+  fill_in 'user[password]', with: '123456'
+  click_button "Log in"
+end
+
+
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
 end
@@ -59,7 +77,6 @@ end
 
 When /^(?:|I )fill in "([^"]*)" with "([^"]*)"$/ do |field, value|
   fill_in(field, :with => value)
-  save_and_open_page
 end
 
 When /^(?:|I )fill in "([^"]*)" for "([^"]*)"$/ do |value, field|
