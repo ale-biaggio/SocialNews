@@ -61,10 +61,10 @@ $(".comment-form").on('submit', function(event) {
     success: function(response) {
       if (form.prev().prev().hasClass("no-comment")){
         form.prev().prev().remove();
-        form.prev().prev().append('<ul><li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
+        form.prev().append('<ul><li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
       }
       else{
-        form.prev().prev().append('<li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
+        form.prev().append('<li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
       }
       form.find(".comment-text").val("");
       max_id+=1;
