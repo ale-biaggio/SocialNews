@@ -8,12 +8,13 @@ Rails.application.routes.draw do
       get :following, :followers
     end
   end
-  resources :posts do
+  resources :posts, only: [:index, :new, :edit, :update, :destroy] do
     collection do
       post :index, :feed, :maps
     end
     resources :comments, only: [:create, :update, :destroy]
   end
+  post '/posts/create', to: 'posts#create'
   resources :user_reports, only: [:new, :create]
   post '/posts/:id/like' => 'posts#like', as: :like_post
   post '/posts/:id/dislike' => 'posts#dislike', as: :dislike_post
