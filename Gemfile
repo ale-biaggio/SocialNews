@@ -125,4 +125,6 @@ group :development, :test do
 
   gem "cucumber-rails-training-wheels"
 
+  gem 'rails-controller-testing'
+
 end
