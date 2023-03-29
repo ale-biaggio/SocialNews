@@ -109,6 +109,7 @@ gem "font-awesome-sass", "~> 6.3.0"
 
 
 group :development, :test do
+  gem 'selenium-webdriver'
   gem "devise"
   gem 'rspec'
   gem 'factory_bot_rails'

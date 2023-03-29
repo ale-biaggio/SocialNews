@@ -107,11 +107,11 @@ $(document).on('click', '.favorite', function(event) {
       authenticity_token: $('meta[name="csrf-token"]').attr('content'),
     },
     success: function() {
-      if(button.text()=="Favorite"){
-        button.text("Remove favorite");
+      if(button.text()=="favorite"){
+        button.text("unfavorite");
       }
       else{
-        button.text("Favorite");
+        button.text("favorite");
       }
     },
     error: function() {

@@ -8,7 +8,6 @@ Scenario: Add a favorite
     Given I am on the SocialNews home page
     When I follow registration steps
     Then I should be on the SocialNews home page
-    Then show me the page
     And I press the favorite button for the first post
     And I press user button
     Then I should be on the User page

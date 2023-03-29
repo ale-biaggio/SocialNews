@@ -19,16 +19,16 @@
       </div>
       <div class='col-1'>
         <% if user_signed_in? %>
-            <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>"></div>
+            <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>">
             <% if !post.favorited?(current_user) %>
-          <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px;") %></button>     
+          <button type="button" class="favorite" data-post_id="<%=post_id%>">favorite<%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px;") %></button>     
             <% else %>
           <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px;") %></button>     
             <% end %>
-          <% else %>
-            <div id="posts" data-max_id ="<%= max_id %>"></div>
-          <% end %>
-          <div id="post" data-post_id="<%= post.id %>"></div>
+        <% else %>
+          <div id="posts" data-max_id ="<%= max_id %>" data-post_id="<%= post.id %>">
+        <% end %>
+        </div>
           
       </div>
     </div>

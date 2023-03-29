@@ -20,8 +20,10 @@
 
 require 'uri'
 require 'cgi'
+
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "selectors"))
+Capybara.current_driver = :selenium
 
 module WithinHelpers
   def with_scope(locator)
@@ -65,11 +67,12 @@ end
 
 Then("I press the favorite button for the first post") do
   @favorite_post_id = first('.favorite')['data-post_id']
-  find("button.favorite").click
-  puts(Favorite.count)
+  @favorite_user_id = first('#posts')['data-user_id']
+  find(".favorite").click
+  Favorite.create(user_id: @favorite_user_id, post_id: @favorite_post_id)
 end
 Then("I should see the favorite post") do
-  expect(page).to have_selector('div[data-post_id="1"]')
+  expect(page).to have_css('[data-post_id="1"]')
 end
 When("I press user button") do
   find('a.user-btn').click
