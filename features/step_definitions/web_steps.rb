@@ -59,7 +59,12 @@ When("I follow registration steps") do
   fill_in 'user[password]', with: '123456'
   click_button "Log in"
 end
-
+When("I press the favorite button") do 
+  first('button.favorite').click
+end
+When("I press user button") do
+  find('a.user-btn').click
+end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|
   visit path_to(page_name)
