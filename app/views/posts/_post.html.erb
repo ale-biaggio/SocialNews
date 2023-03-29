@@ -8,22 +8,41 @@
 
 <div class='container' style="width: 60%; border-style: solid; border-color:black; border-radius:20px;">
   <br>
-
-  <p>
-    <strong>#<%= post.category %></strong>
-  </p>
   <div class='container'>
     <div class='row'>
-      <h5><%= link_to post.user.name, user_path(post.user.id), method: "get"%></h5>
-      <h5><%= link_to post.user.surname, user_path(post.user.id), method: "get"%></h5>
-      <% if User.find(post.user.id).verified==1 %>
-        <%= image_tag("verified-icon.jpg", style:"width: 20px; height: 20px;", class:"verified-icon", id:post.user.id) %>
-      <% end %>
+      <div class='col-11'>
+        <h5><%= link_to post.user.name, user_path(post.user.id), method: "get"%></h5>
+        <h5><%= link_to post.user.surname, user_path(post.user.id), method: "get"%></h5>
+        <% if User.find(post.user.id).verified==1 %>
+          <%= image_tag("verified-icon.png", style:"width: 15px; height: 15px;") %>
+        <% end %>
+      </div>
+      <div class='col-1'>
+        <% if user_signed_in? %>
+            <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>"></div>
+            <% if !post.favorited?(current_user) %>
+          <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px; color: yellow") %></button>     
+            <% else %>
+          <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px;") %></button>     
+            <% end %>
+          <% else %>
+            <div id="posts" data-max_id ="<%= max_id %>"></div>
+          <% end %>
+          <div id="post" data-post_id="<%= post.id %>"></div>
+          
+      </div>
     </div>
   </div>
-  <p>
-    <h2><%= post.title %></h2>
-  </p>
+  <div class='col-12'>
+    <p>
+      <strong>#<%= post.category %></strong>
+    </p>
+  </div>
+  <div class='col-12'>
+    <p>
+      <h5><%= post.title %></h5>
+    </p>
+  </div>
   <div class='container'>
     <div class='row'>
       <div class='col-4'>
@@ -32,9 +51,9 @@
       </div>
       <div class='col-8'>
         <% if post.url != nil %>
-          <h5><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></h5>
+          <p><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
         <% else %>
-          <h4><%= post.body %></h4>
+          <p><%= post.body %></p>
         <% end %>
       </div>
     </div>
@@ -139,17 +158,7 @@
         </div>
       </div>
       <div class='col-3'>
-        <% if user_signed_in? %>
-          <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>"></div>
-          <% if !post.favorited?(current_user) %>
-        <button type="button" class="favorite" data-post_id="<%=post_id%>">Favorite</button>     
-          <% else %>
-        <button type="button" class="favorite" data-post_id="<%=post_id%>">Remove favorite</button>     
-          <% end %>
-        <% else %>
-          <div id="posts" data-max_id ="<%= max_id %>"></div>
-        <% end %>
-        <div id="post" data-post_id="<%= post.id %>"></div>
+        
       </div>
     </div>
 

@@ -1,9 +1,11 @@
 @import "font-awesome";
-
-h5{
-  font-weight: normal;
+p{
+  margin-bottom: 5px;
 }
-
+.favorite{
+  border-style: none;
+  padding: 0px;
+}
 .pencil{
   position: fixed;
   bottom: 70px;
