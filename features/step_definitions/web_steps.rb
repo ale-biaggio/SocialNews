@@ -59,8 +59,12 @@ When("I follow registration steps") do
   fill_in 'user[password]', with: '123456'
   click_button "Log in"
 end
-When("I press the favorite button") do 
-  first('button.favorite').click
+Then("I press the favorite button for the first post") do
+  @favorite_post_id = first('.favorite')['data-post_id']
+  first('.favorite').click
+end
+Then("I should see the favorite post") do
+  expect(page).to have_selector("[data-post_id='#{@favorite_post_id}']")
 end
 When("I press user button") do
   find('a.user-btn').click
@@ -277,3 +281,4 @@ end
 Then /^show me the page$/ do
   save_and_open_page
 end
+

@@ -21,7 +21,7 @@
         <% if user_signed_in? %>
             <div id="posts" data-name="<%= current_user.name %>" data-user_id="<%= current_user.id %>" data-max_id ="<%= max_id %>"></div>
             <% if !post.favorited?(current_user) %>
-          <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px; color: yellow") %></button>     
+          <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px;") %></button>     
             <% else %>
           <button type="button" class="favorite" data-post_id="<%=post_id%>"><%= image_tag("favorite-icon.png", style:"width: 20px; height: 20px;") %></button>     
             <% end %>

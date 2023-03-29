@@ -25,7 +25,7 @@ module NavigationHelpers
       '/users/sign_up'
     when /^the User page/
       '/users/6'
-    when /^the Favourite page/
+    when /^the Favorite page/
       '/users/6/show_favorite'
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
