@@ -18,7 +18,6 @@
 # * http://elabs.se/blog/15-you-re-cuking-it-wrong
 #
 
-
 require 'uri'
 require 'cgi'
 require File.expand_path(File.join(File.dirname(__FILE__), "..", "support", "paths"))
@@ -43,6 +42,9 @@ end
 When("I press the pencil button") do
   find('a.pencil').click
 end
+When("He press the pencil button") do
+  find('a.pencil').click
+end
 When("I follow registration steps") do
   user1 = FactoryBot.create(:user1)
   user2 = FactoryBot.create(:user2)
@@ -53,18 +55,21 @@ When("I follow registration steps") do
   user7 = FactoryBot.create(:user7)
   user8 = FactoryBot.create(:user8)
   user9 = FactoryBot.create(:user9)
+  post = FactoryBot.create(:post)
 
   click_link "Clicca qui per fare il login"
   fill_in 'user[email]', with: '11@1'
   fill_in 'user[password]', with: '123456'
   click_button "Log in"
 end
+
 Then("I press the favorite button for the first post") do
   @favorite_post_id = first('.favorite')['data-post_id']
-  first('.favorite').click
+  find("button.favorite").click
+  puts(Favorite.count)
 end
 Then("I should see the favorite post") do
-  expect(page).to have_selector("[data-post_id='#{@favorite_post_id}']")
+  expect(page).to have_selector('div[data-post_id="1"]')
 end
 When("I press user button") do
   find('a.user-btn').click

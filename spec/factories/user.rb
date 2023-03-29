@@ -54,11 +54,11 @@ FactoryBot.define do
         after(:create) { |user6| user6.confirm }
     end
     factory :user7, class: User do
-    name { "Mario" }
-    email { "test@example.com" }
-    password { "password" }
+        name { "Mario" }
+        email { "test@example.com" }
+        password { "password" }
 
-    after(:create) { |user7| user7.confirm }
+        after(:create) { |user7| user7.confirm }
     end
     factory :user8, class: User do
         name {"admin"} 
@@ -77,6 +77,13 @@ FactoryBot.define do
         password {"123456"}
  
         after(:create) { |user9| user9.confirm }
+    end
+    factory :post do
+        title {"Titolo prova"}
+        category {"Affari"}
+        body {"Body prova"} 
+        rank {999}
+        user_id {6}
     end
 end
 
