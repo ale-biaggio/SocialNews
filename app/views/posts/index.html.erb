@@ -21,7 +21,7 @@
 
 <div class="container" style="text-align: center;">
   <div class="row align-items-center d-flex justify-content-between">
-    <% Post.distinct.pluck(:category).each do |category| %>
+    <% Post.all_category.each do |category| %>
       <div class="col">
         <%= link_to category, posts_path(category: category), class: "category-link btn btn-outline-success home-buttons" %>
       </div>
@@ -32,7 +32,7 @@
   </div>
   <div id="form-container" style="display: none; text-align: right; ">
     <%= form_tag(posts_path, method: "get") do %>
-      <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar") %>
+      <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar2") %>
     <% end %>
   </div>
 </div>
