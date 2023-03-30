@@ -47,7 +47,17 @@
     text-decoration: none !important;
     border: none !important;
   }
- 
+  
+  .fa-magnifying-glass {
+    color: #14a112 !important;
+  }
+  
+  .btn-link:hover .fa-magnifying-glass {
+    color: white !important;
+  }
+  
+  
+  
   /*.accordion:after {
     content: '\02795'; /* Unicode character for "plus" sign (+) 
     font-size: 13px;

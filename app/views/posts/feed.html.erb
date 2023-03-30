@@ -22,11 +22,9 @@
 
 <div class="container" style="text-align: center;">
   <div class="row">
-    <% Post.distinct.pluck(:category).each do |category| %>
-      <div class="col-2">
-        <%= link_to category, feed_path(category: category), class: "category-link btn btn-outline-success home-buttons" %>
-      </div>
-    <% end %>
+    <% Post.all_category.each do |category| %>
+  <div class="col">
+    <%= link_to category, posts_path(category: category), class: "category-link btn btn-outline-success home-buttons" %>
   </div>
 </div>
 
