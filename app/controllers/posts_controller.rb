@@ -16,6 +16,7 @@ class PostsController < ApplicationController
     @comment = Comment.new
   end
   def maps
+    @current_view = 'posts/maps'
     if(params[:title]!=nil)
       @title = params[:title]
       #@posts = Post.where("body LIKE ?", "%#{@title}%")
@@ -29,8 +30,9 @@ class PostsController < ApplicationController
   end
   
   def feed
+    @current_view = 'posts/feed'
     following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
-    @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids}) OR user_id = :user_id", user_id: current_user.id), items: 5)
+    @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids})", user_id: current_user.id), items: 5)
     @comment = Comment.new
     respond_to do |format|
       format.html # GET
@@ -49,7 +51,7 @@ class PostsController < ApplicationController
     #if (Post.all.count < 15 && User.all.count != 0)
     #  GoogleNews.save_posts_from_google
     #end
-   
+    @current_view = 'posts/index'   
     if params[:keyword].present?
       @pagy, @posts = pagy_countless(Post.where("title LIKE ? OR body LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(rank: :desc), items: 5)
     elsif params[:category].present? 

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
     :following, :followers]
     def index
+      @current_view = 'users/index'
       @users = User.all
     end
     
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
     end
     
     def show
+      @current_view = 'users/show'
       @user = User.find(params[:id])
       @id= User.find(params[:id]).id
       @posts= Post.where(user_id: params[:id])

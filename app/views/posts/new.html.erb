@@ -1,39 +1,3 @@
-<nav class="navbar bg-light">
-      <%= link_to "Social News", root_path(), class: "navbar-brand" %>
-      <%= form_tag(posts_path, method: "get") do %>
-        <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
-      <% end %>
-          <% if current_user==nil %>
-            <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
-          <% elsif can? :all, @user%>
-            <%= button_to "Tutti gli utenti", users_path, method: "get"%>
-          <% else %>
-            <!--script google translate-->
-            <div id="google_translate_element"></div>
-            <script type="text/javascript">
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
-              }
-            </script>
-            <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
-              <i class="fa-solid fa-gear fa-xl"></i> 
-            <% end %>
-            <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
-              <i class="fa fa-user fa-xl"></i> 
-            <% end %>
-          <% end %>
-          <% if user_signed_in? %>
-            Ciao, <%= current_user.name + current_user.surname%><%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
-            <i class="fa-solid fa-right-to-bracket">  Log out</i>
-            <%end%><br>
-            <% if current_user.email == "admin@gmail.com" %>
-              <% current_user.admin! %>
-            <%end%>
-          <% end %>
-</nav>
-
-<br>
-
 <div class="container" style="text-align:center;">
   <h1>Scrivi un Articolo</h1>
 </div>
