@@ -32,6 +32,7 @@
           <% end %>
     </nav>
 
+<br>
 
 <% if current_user!=nil %><br>
   <div class="container">
@@ -95,11 +96,19 @@
                   var postsHtml = '';
                   response.forEach(function(post) {
                     postsHtml += '<div class="post">';
+                    postsHtml += '#<strong class="post-cathergory">' + post.category + '</strong>';
                     postsHtml += '<h4 class="post-author">' + post.author_name + '</h4>';
                     postsHtml += '<h3 class="post-title">' + post.title + '</h3>';
-                    postsHtml += '<p class="post-body">' + post.body + '...<a href = "' + post.url + '" target="_blank" rel="noopener noreferrer">Articolo completo</a></p>';
-                    postsHtml += '<img class="post-img" src=' + post.img_test + ' style="width: 20%; border-radius: 5px;" >';
+                    postsHtml += '<div class="row">';
+                    postsHtml += '<div class="col-4">';
+                    postsHtml += '<img class="post-img" src=' + post.img_test + ' style="width: 100%; border-radius: 5px;" >';
                     postsHtml += '</div>';
+                    postsHtml += '<div class="col-8">';
+                    postsHtml += '<p class="post-body">' + post.body + '...<a href = "' + post.url + '" target="_blank" rel="noopener noreferrer">Articolo completo</a></p>';
+                    postsHtml += '</div>';
+                    postsHtml += '</div>';
+                    postsHtml += '</div>';
+                    postsHtml += '<hr>';
                   });
                   $('#markerModal .modal-body').html(postsHtml);
                 },

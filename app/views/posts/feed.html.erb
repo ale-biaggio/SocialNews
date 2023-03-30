@@ -34,6 +34,8 @@
 
 <p style="color: green"><%= notice %></p>
 
+<br>
+
 <% if current_user!=nil %><br>
   <div class="container">
     <div class="row">
@@ -50,12 +52,19 @@
   </div>
 <% end %>
 
+<br>
+
 <div class="container" style="text-align: center;">
-  <%= form_tag(feed_path, method: "get") do %>
-    <%= select_tag(:category, options_for_select(Post.distinct.pluck(:category)), include_blank: true) %>
-    <%= submit_tag("Filtra") %>
-  <% end %>
+  <div class="row">
+    <% Post.distinct.pluck(:category).each do |category| %>
+      <div class="col-2">
+        <%= link_to category, feed_path(category: category), class: "category-link btn btn-outline-success home-buttons" %>
+      </div>
+    <% end %>
+  </div>
 </div>
+
+<br>
 
 <div class="container" style="width: 60%;">
   <h1>News:</h1>
