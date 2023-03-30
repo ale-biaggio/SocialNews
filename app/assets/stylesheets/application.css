@@ -42,7 +42,11 @@
   body {
     background-color: #e6e6e6;
   }
- 
+
+  .btn-link {
+    text-decoration: none !important;
+    border: none !important;
+  }
   
   /*.accordion:after {
     content: '\02795'; /* Unicode character for "plus" sign (+) 
