@@ -50,10 +50,12 @@
   </div>
 <% end %>
 
-<%= form_tag(posts_path, :method => "get", id: "search-form") do %>
-    <%= select_tag :search, options_for_select([' ','Affari', 'Cultura','Politica','Salute','Spettacolo','Sport','Tecnologia']), placeholder: "" %>
-    <%= submit_tag "Search category" %>
-<% end %>
+<div class="container" style="text-align: center;">
+  <%= form_tag(feed_path, method: "get") do %>
+    <%= select_tag(:category, options_for_select(Post.distinct.pluck(:category)), include_blank: true) %>
+    <%= submit_tag("Filtra") %>
+  <% end %>
+</div>
 
 <div class="container" style="width: 60%;">
   <h1>News:</h1>

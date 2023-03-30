@@ -36,6 +36,13 @@ class PostsController < ApplicationController
       format.html # GET
       format.turbo_stream # POST
     end
+    if params[:keyword].present?
+      @pagy, @posts = pagy_countless(current_user.feed.where("title LIKE ? OR body LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(rank: :desc), items: 5)
+    elsif params[:category].present? 
+      @pagy, @posts = pagy_countless(current_user.feed.where(category: params[:category]).order(rank: :desc), items: 5)
+    else
+      @pagy, @posts = pagy_countless(current_user.feed.order(rank: :desc), items: 5)
+    end
   end
   # GET /posts or /posts.json
   def index
