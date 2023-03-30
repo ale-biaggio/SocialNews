@@ -37,9 +37,11 @@
           <% end %>
           </div>
           <div class="col-6">
-          <%= form_tag(posts_path, method: "get") do %>
-            <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
-          <% end %>
+          <% if user_signed_in? %>
+            <%= form_tag(users_path, method: "get") do %>
+              <%= text_field_tag(:user_name ,nil, placeholder: 'Cerca utente...',class: "searchbar") %>
+            <% end %>
+          <%end%>
           </div>
           <% if current_user==nil %>
             <div class="col-4">
