@@ -139,11 +139,29 @@ Post.create!([
     {
     title: "Non solo pensioni, la Francia 'brucia': manifestante in fin di vita", 
     category: "Affari", 
-    body: "Una battaglia che va avanti da anni per la costruzione di un mega bacino per la raccolta idrica nell'est del Paese diventa il nuovo fronte di scontro fra manifestanti e",
+    body: "Una battaglia che va avanti da anni in Francia, per la costruzione di un mega bacino per la raccolta idrica nell'est del Paese diventa il nuovo fronte di scontro fra manifestanti e",
     url: "https://europa.today.it/attualita/scontri-francia-polizia-manifestazioni-ecologisti-pensioni.html",
     rank: 42,
     img_test: "https://citynews-today.stgy.ovh/~media/horizontal-hi/3549548214790/proteste-ambientalisti-francia-lapresse.jpg",
     user_id: 3
+    },
+    {
+    title: "La curiosa legge tedesca sulle finestre", 
+    category: "Cultura", 
+    body: "In Germania, esiste una legge che obbliga i proprietari di case ad avere finestre con doppi vetri. Ma la legge va oltre: se una persona si lamenta del rumore proveniente da una casa, il proprietario è obbligato a installare finestre con un coefficiente di isolamento acustico superiore.",
+    url: "",
+    rank: 35,
+    img_test: "https://www.google.com/search?q=germania&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi67aPayYT-AhUlgP0HHZ2lCSEQ_AUoAnoECAIQBA&biw=1366&bih=625&dpr=1#imgrc=0xxkZNhYWI02rM",
+    user_id: 6
+    },
+    {
+    title: "La curiosa legge tedesca sulle finestre", 
+    category: "Cultura", 
+    body: "In Germania, esiste una legge che obbliga i proprietari di case ad avere finestre con doppi vetri. Ma la legge va oltre: se una persona si lamenta del rumore proveniente da una casa, il proprietario è obbligato a installare finestre con un coefficiente di isolamento acustico superiore.",
+    url: "",
+    rank: 35,
+    img_test: "https://www.google.com/search?q=germania&source=lnms&tbm=isch&sa=X&ved=2ahUKEwi67aPayYT-AhUlgP0HHZ2lCSEQ_AUoAnoECAIQBA&biw=1366&bih=625&dpr=1#imgrc=0xxkZNhYWI02rM",
+    user_id: 6
     },
 ])
 
