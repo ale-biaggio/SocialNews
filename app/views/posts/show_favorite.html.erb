@@ -3,6 +3,9 @@
   <% @posts.each do |post| %>
     <%= render post %>
   <% end %>
+  <div>
+  <%= link_to "Back", @user %> 
+</div>
 </div>
 <div id="next_link">
   <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
