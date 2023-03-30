@@ -25,7 +25,9 @@
   <body>
   <% if show_navbar? %>
     <nav class="navbar bg-light">
-      <%= link_to "Social News", root_path(), class: "navbar-brand" %>
+      <%= link_to root_path() do %>
+        <%= image_tag("icona.png", size: "45x45") %>
+      <% end %>
       <%= form_tag(posts_path, method: "get") do %>
         <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
       <% end %>
