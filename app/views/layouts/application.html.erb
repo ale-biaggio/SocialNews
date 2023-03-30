@@ -73,21 +73,22 @@ function toggleWidget() {
             <%= image_tag "default_avatar.jpg", size: "30x30" %>
           <% end %>
         <% end %>
-        <ul class="dropdown-menu">
-          <li>
-            <% if can? :all, @user%>
-              <%= button_to "Tutti gli utenti", users_path, method: "get"%>
-            <% else %>
-              <%= link_to "Impostazioni", new_user_report_path()%>
-            <%end%>
-          </li>
-          <li>
-            <%= link_to "Il mio profilo", user_path(current_user.id), method: "get" %>
-          </li>
-          <li>
-            <%= link_to "Esci",  destroy_user_session_path(), :method => :delete %>
-          </li>
-        </ul>
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <li>
+              <% if can? :all, @user %>
+                <%= button_to "Tutti gli utenti", users_path, method: "get" %>
+              <% else %>
+                <%= link_to "Impostazioni", new_user_report_path() %>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to "Il mio profilo", user_path(current_user.id), method: "get" %>
+            </li>
+            <li>
+              <%= link_to "Esci",  destroy_user_session_path(), :method => :delete %>
+            </li>
+          </ul>
+
       <% else %>
         <%= link_to "Accedi o registrati",new_user_session_path %>
       <% end %>

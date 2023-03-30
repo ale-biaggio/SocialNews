@@ -88,26 +88,23 @@
         <% if post.comments.empty? %>
           <p class="no-comment">No comments for this post...</p>
         <% else %>
-          <ul class="comment-list">
-          <% post.comments.each do |r| %>
-            <% if r.visible %>
-
-              <ul class="list-group">
-                <li class="list-group-item" style="word-wrap: break-word; ">
-                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%></div></a> "<%= r.body %>"
-                  <!-- La delete del commento stava fuori aa questa lista prima -->
-                
-                  <!-- fine delete commento -->
-                </li>
-              </ul>
+          <div class="comment-container" style="max-height: 200px; overflow: auto;">
+            <ul class="comment-list">
+              <% post.comments.each do |r| %>
+                <% if r.visible %>
+                  <ul class="list-group">
+                    <li class="list-group-item" style="word-wrap: break-word;">
+                      <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%></div></a> "<%= r.body %>"
+                    </li>
+                  </ul>
                   <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
                     <button type="button" class="delete btn btn-danger" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
                   <% end %>
+                <% end %>
+              <% end %>
+            </ul>
+          </div>
 
-              
-            <% end %>
-          <% end %>
-          </ul>
         <% end %>
         <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
           <% if @comment.errors.any? %>
