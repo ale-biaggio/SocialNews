@@ -52,26 +52,17 @@
         <% end %>
         <ul class="dropdown-menu">
           <li>
-            <% if current_user==nil %>
-              <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
-            <% elsif can? :all, @user%>
+            <% if can? :all, @user%>
               <%= button_to "Tutti gli utenti", users_path, method: "get"%>
             <% else %>
-              <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
-                <i class="fa-solid fa-gear fa-xl"></i> 
-              <% end %>
+              <%= link_to "Impostazioni", new_user_report_path()%>
             <%end%>
           </li>
           <li>
-            <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
-              <i class="fa fa-user fa-xl"></i> 
-            <% end %>
+            <%= link_to "Il mio profilo", user_path(current_user.id), method: "get" %>
           </li>
           <li>
-            Ciao, <%= current_user.name + current_user.surname%>
-            <%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
-              <i class="fa-solid fa-right-to-bracket">  Log out</i>
-            <%end%>
+            <%= link_to "Esci",  destroy_user_session_path(), :method => :delete %>
           </li>
         </ul>
       <% else %>

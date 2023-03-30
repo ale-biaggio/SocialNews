@@ -93,11 +93,14 @@
             <% if r.visible %>
 
               <ul class="list-group">
-                <li class="list-group-item" style="word-wrap: break-word; white-space: pre-wrap;">
-                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></div></a> "<%= r.body %> "<%= r.like %>
-                  <!-- La delete del commento stava fuori aa questa lista prima -->
-                
-                  <!-- fine delete commento -->
+                <li class="list-group-item" style="word-wrap: break-word; white-space: pre-wrap; overflow-wrap: break-word;">
+                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;">
+                    <div style="word-wrap: break-word; overflow-wrap: break-word;">
+                      <%= User.find(r.user_id).name%> 
+                      <%= User.find(r.user_id).surname %>
+                      <%= r.body %>
+                    </div>
+                  </a> 
                 </li>
               </ul>
                   <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
