@@ -28,8 +28,14 @@ p{
   border-radius: 20px;
 }
 
-.searchbar{
+.searchbar1{
   border-radius: 20px;
+  width: 1000px;
+}
+
+.searchbar2{
+  border-radius: 20px;
+  width: 300px;
 }
 
 iframe{
@@ -145,23 +151,3 @@ gravatar {
 .alert.show {
   display: block;
 }
-
-.alert-signup {
-  position: relative;
-  padding: 0.75rem 1.25rem;
-  margin-bottom: 1rem;
-  border: 1px solid transparent;
-  border-radius: 0.25rem;
-  text-align: center;
-  color: #721c24;
-  background-color: #f8d7da;
-  border-color: #f5c6cb;
-}
-
-//.delete { ==> relativa alla versione con dentro il bottone
- // position: relative;
- // left: 470px;
- // top:10px;
-  
-//}
-
