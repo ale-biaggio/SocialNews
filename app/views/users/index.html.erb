@@ -1,21 +1,39 @@
 <p style="color: green"><%= notice %></p>
-
-<h1>Users</h1>
-
+<br>
+<div class="container" style="width: 60%;">
+  <h1>Lista utenti:</h1>
+</div>
+<br>
 <div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <%if can? :all, @user%>
-      <% if user.verified == 1 %>
-        <%= button_to "Elimina verificato", verified_user_path(user), class: 'unverified-btn', id:user.id %> 
-      <% else %>
-        <%= button_to "Conferma verificato", verified_user_path(user), class: 'verified-btn', id:user.id %> 
-      <% end %>
-    <%end%>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
+    <% @users.each do |user| %>
+      <div class='container' style="width: 60%; background-color: white; text-align:center;">
+        <br>
+        <%= render user %>
+        <br>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <p>
+              <%= link_to "Visualizza profilo Utente", user, class: "btn btn-primary", style: "width: 100%" %>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+            <%if can? :all, @user%>
+              <% if user.verified == 1 %>
+                <div class="col-12">
+                  <%= button_to "Elimina verificato", verified_user_path(user), class: 'btn btn-danger unverified-btn', id:user.id %> 
+                </div>
+              <% else %>
+                <div class="col-12">
+                  <%= button_to "Conferma verificato", verified_user_path(user), class: 'btn btn-success verified-btn', id:user.id %> 
+                </div>
+              <% end %>
+            <%end%>
+        </div>
+      </div>
+      <br>
+    </div>
+    <br>
   <% end %>
 </div>
-
-<%= link_to "New user", new_user_path %>

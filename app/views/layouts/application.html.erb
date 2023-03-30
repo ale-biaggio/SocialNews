@@ -29,52 +29,78 @@
   <%end%>
   <% if show_navbar? %>
     <nav class="navbar bg-light">
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-2">
-          <%= link_to root_path() do %>
-            <%= image_tag("icona.png", size: "45x45") %>
-          <% end %>
-          </div>
-          <div class="col-6">
-          <%= form_tag(posts_path, method: "get") do %>
-            <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
-          <% end %>
-          </div>
-          <% if current_user==nil %>
-            <div class="col-4">
-            <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
-            </div>
-          <% elsif can? :all, @user%>
-            <div class="col-4">
-            <%= button_to "Tutti gli utenti", users_path, method: "get"%>
-            </div>
+      <%= link_to root_path() do %>
+        <%= image_tag("icona.png", size: "45x45") %>
+      <% end %>
+      <!--script google translate-->
+        <div id="google_translate_element"></div>
+        <script type="text/javascript">
+          function googleTranslateElementInit() {
+            new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
+          }
+        </script>
+      <% if user_signed_in? %>
+        <%= form_tag(users_path, method: "get") do %>
+          <%= text_field_tag(:user_name ,nil, placeholder: 'Cerca utente...',class: "searchbar") %>
+        <% end %>        
+        <%= link_to  "#", class: "navbar-right dropdown-toggle", data: { toggle: "dropdown" } do %>
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, size: "30x30" %>
           <% else %>
-            <div class="col-2">
-            <!--script google translate-->
-            <div id="google_translate_element"></div>
-            <script type="text/javascript">
-              function googleTranslateElementInit() {
-                new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
-              }
-            </script>
-            </div>
-            <div class="col-2">
-            <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
-              <i class="fa-solid fa-gear fa-xl"></i> 
-            <% end %>
+            <%= image_tag "default_avatar.jpg", size: "30x30" %>
+          <% end %>
+        <% end %>
+        <ul class="dropdown-menu">
+          <li>
+            <% if current_user==nil %>
+              <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
+            <% elsif can? :all, @user%>
+              <%= button_to "Tutti gli utenti", users_path, method: "get"%>
+            <% else %>
+              <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
+                <i class="fa-solid fa-gear fa-xl"></i> 
+              <% end %>
+            <%end%>
+          </li>
+          <li>
             <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
               <i class="fa fa-user fa-xl"></i> 
             <% end %>
-            </div>
-          <% end %>
-        </div>
-      </div>
+          </li>
+          <li>
+            Ciao, <%= current_user.name + current_user.surname%>
+            <%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
+              <i class="fa-solid fa-right-to-bracket">  Log out</i>
+            <%end%>
+          </li>
+        </ul>
+      <% else %>
+        <%= link_to "Accedi o registrati",new_user_session_path %>
+      <% end %>
     </nav>
   <% end %>
   <%= yield %>
-
-
+  <div class="container" style="text-align:center;">
+    <div class="row">
+      <div class="col-6">
+        <% if @pagy!=nil && @pagy.prev %>
+          <div id="prev_link">
+            <%= link_to pagy_url_for(@pagy, @pagy.prev) do %>
+              <%= image_tag "button_prev_page.png", alt: "Pagina precedente", style: "width:30px;"%>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      <div class="col-6">
+        <% if @pagy!=nil && @pagy.next   %>
+          <div id="next_link">
+            <%= link_to pagy_url_for(@pagy, @pagy.next) do %>
+              <%= image_tag "button_next_page.png", alt: "Prossima pagina", style: "width:30px;"%>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   <% notice if notice %>
   <% alert if alert %> 
   </body>

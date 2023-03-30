@@ -1,4 +1,4 @@
-User.create!([
+users = [
     { 
     name: "La Repubblica", 
     surname: "", 
@@ -35,10 +35,10 @@ User.create!([
     password: "password"
     },
     { 
-    name: "nome_prova", 
+    name: "Mario Rossi", 
     surname: "", 
-    username:  "utente_prova",
-    email: "11@1",
+    username:  "mario_rossi",
+    email: "mariorossi@gmail.com",
     password: "123456"
     },
     { 
@@ -55,8 +55,32 @@ User.create!([
     email: "ilfattoquotidiano@gmail.com",
     password: "123456"
     }
-])
+]
 
+users.each do |user_data|
+    user = User.new(user_data)
+    user.skip_confirmation!
+    user.save!    
+    case user.username
+        when "La Repubblica"
+            image_path = Rails.root.join("app/assets/images/repubblica.png")
+        when "Ansa"
+            image_path = Rails.root.join("app/assets/images/ansa.png")
+        when "Il Sole 24 Ore"
+            image_path = Rails.root.join("app/assets/images/sole24.png")
+        when "Football Italia"
+            image_path = Rails.root.join("app/assets/images/ball.png")
+        when "BBC News"
+            image_path = Rails.root.join("app/assets/images/bbc.png")
+        when "mario_rossi"
+            image_path = Rails.root.join("app/assets/images/mario.png")
+        when "admin"
+            image_path = Rails.root.join("app/assets/images/admin.jpg")
+        when "Il Fatto Quotidiano"
+            image_path = Rails.root.join("app/assets/images/fatto.jpg")
+        end
+        user.avatar.attach(io: File.open(Rails.root.join(image_path)), filename: File.basename(image_path), content_type: "image/png")
+  end
 Post.create!([
     { 
     title: "Informatico in Spagna. “In Italia non sopportavo più la maleducazione. Valencia è il miglior compromesso al mondo”", 
