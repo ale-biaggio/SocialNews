@@ -102,10 +102,10 @@ $(".comment-form").on('submit', function(event) {
     success: function(response) {
       if (form.prev().prev().hasClass("no-comment")){
         form.prev().prev().remove();
-        form.prev().append('<ul><li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button></ul>');
+        form.prev().append('<ul class="list-group"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name + '</div></a> ' + body + '</li></ul><button type="button" class="delete btn btn-danger" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
       }
       else{
-        form.prev().append('<li><a href="/users/'+user_id+'">' + name + '</a> - ' + body + ' - </li><button type="button" class="delete" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
+        form.prev().append('<li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name + '</div></a>' + body + '</li></ul><button type="button" class="delete btn btn-danger" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
       }
       form.find(".comment-text").val("");
       max_id+=1;
