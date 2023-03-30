@@ -11,8 +11,10 @@
   <div class='container'>
     <div class='row'>
       <div class='col-11'>
-        <h5><%= link_to post.user.name, user_path(post.user.id), method: "get"%></h5>
-        <h5><%= link_to post.user.surname, user_path(post.user.id), method: "get"%></h5>
+        <h5><b><%= link_to post.user.name, user_path(post.user.id), method: "get", class: "text-dark" %></h5></b>
+        <h5><b><%= link_to post.user.surname, user_path(post.user.id), method: "get", class: "text-dark" %></h5></b>
+
+
         <% if User.find(post.user.id).verified==1 %>
           <%= image_tag("verified-icon.png", style:"width: 15px; height: 15px;") %>
         <% end %>
@@ -53,7 +55,7 @@
         <% if post.url != nil %>
           <p><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
         <% else %>
-          <p><%= post.body %></p>
+        <p style="font-weight: normal;"><%= post.body %></p>
         <% end %>
       </div>
     </div>

@@ -151,3 +151,33 @@ gravatar {
 .alert.show {
   display: block;
 }
+
+
+.comment-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.comment-container::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+.comment-container::-webkit-scrollbar-thumb {
+  background-color: #7e7e7e;
+  border-radius: 5px;
+}
+
+/* Imposta la larghezza della barra di scorrimento */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Imposta il colore di sfondo della parte della barra di scorrimento che indica lo spazio non utilizzato */
+::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* Imposta il colore della parte della barra di scorrimento che indica lo spazio utilizzato */
+::-webkit-scrollbar-thumb {
+  background-color: #797979;
+  border-radius: 5px;
+}
