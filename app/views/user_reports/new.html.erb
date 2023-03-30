@@ -105,24 +105,30 @@ var acc = document.getElementsByClassName("accordion");
 </script>
 <h1>Segnala un problema</h1>
 -->
-<h1>Nuova Segnalazione</h1>
+<br>
+<div class='container' style="width: 60%; background-color: white; text-align:center;">
+  <br>
+  <h1>Nuova Segnalazione</h1>
+  <br>
 
-<%= form_with model: @user_report, url: user_reports_path do |form| %>
-  <div class="form-group">
-    <%= form.label :topic %>
-    <%= form.select :topic, ['Segnala un problema', 'Proponi nuove funzionalità', 'Richiedi assistenza', 'Richiedi verificato'] %>
-  </div>
-  <p> Allega una foto alla tua segnalazione, oppure la foto di un documento se stai richiedendo il verificato.</p>
-  <div>
-    <%= form.file_field :report_image %>
-  </div>
-  <div class="form-group">
-    <%= form.label :email %>
-    <%= form.email_field :email, class: 'form-control' %>
-  </div>
-  <div class="form-group">
-    <%= form.label :message %>
-    <%= form.text_area :message, class: 'form-control' %>
-  </div>
-  <%= form.submit 'Invia segnalazione', class: 'btn btn-primary' %>
-<% end %>
+  <%= form_with model: @user_report, url: user_reports_path do |form| %>
+    <div class="form-group">
+      <%= form.label :topic %>
+      <%= form.select :topic, ['Segnala un problema', 'Proponi nuove funzionalità', 'Richiedi assistenza', 'Richiedi verificato'] %>
+    </div>
+    <h5> Allega una foto alla tua segnalazione, oppure la foto di un documento se stai richiedendo il verificato.</h5>
+    <div>
+      <%= form.file_field :report_image %>
+    </div>
+    <div class="form-group">
+      <%= form.label :email %>
+      <%= form.email_field :email, class: 'form-control' %>
+    </div>
+    <div class="form-group">
+      <%= form.label :message %>
+      <%= form.text_area :message, class: 'form-control' %>
+    </div>
+    <%= form.submit 'Invia segnalazione', class: 'btn btn-dark' %>
+  <% end %>
+  <br>
+</div>
