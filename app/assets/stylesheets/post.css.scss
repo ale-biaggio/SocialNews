@@ -4,9 +4,13 @@ p{
 }
 .rank-btn{
   width: 30%;
+  height: 50px;
   padding: 0px;
   margin: 0px;
   border-style: none;
+}
+.rank-btn:focus {
+  outline: none;
 }
 
 .rank-btn img {
