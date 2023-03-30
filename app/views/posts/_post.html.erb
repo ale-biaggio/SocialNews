@@ -93,8 +93,8 @@
             <% if r.visible %>
 
               <ul class="list-group">
-                <li class="list-group-item" style="word-wrap: break-word; white-space: pre-wrap;">
-                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></div></a> "<%= r.body %> "<%= r.like %>
+                <li class="list-group-item" style="word-wrap: break-word; ">
+                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></div></a> "<%= r.body %>"
                   <!-- La delete del commento stava fuori aa questa lista prima -->
                 
                   <!-- fine delete commento -->
