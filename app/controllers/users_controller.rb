@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
     before_action :authenticate_user!
-    before_action :admin_only, :except => [ :show, :edit, :destroy, :update]
     before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
     :following, :followers]
     def index
       @current_view = 'users/index'
       @users = User.all
+      if params[:user_name].present?
+        @users = User.where("name LIKE ? OR username LIKE ?", "%#{params[:user_name]}%", "%#{params[:user_name]}%")
+      else 
+        @users = User.all
+      end
     end
     
     def edit

@@ -30,6 +30,11 @@
 </div>
 
 <br>
+<div class="container" style="text-align: center;">
+  <%= form_tag(posts_path, method: "get") do %>
+    <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar") %>
+  <% end %>
+</div>
 
 <div class="container" style="width: 60%;">
   <h1>News:</h1>
