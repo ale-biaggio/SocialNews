@@ -98,6 +98,9 @@ $(document).on('click', '.delete', function() {
 });
 $(document).on('click', '.favorite', function(event) {
   var button = $(this);
+  var image = button.find('img');
+  var emptyStarPath = image.data('empty-star-path');
+  var yellowStarPath = image.data('yellow-star-path');
   var post_id = $(this).data('post_id');
   var favoriteUrl = "/posts/" + post_id + "/favorite";
   $.ajax({
@@ -107,11 +110,10 @@ $(document).on('click', '.favorite', function(event) {
       authenticity_token: $('meta[name="csrf-token"]').attr('content'),
     },
     success: function() {
-      if(button.text()=="favorite"){
-        button.text("unfavorite");
-      }
-      else{
-        button.text("favorite");
+      if (image.attr('src') == yellowStarPath) {
+        image.attr('src', emptyStarPath);
+      } else {
+        image.attr('src', yellowStarPath);
       }
     },
     error: function() {
