@@ -26,16 +26,26 @@
 
   <%= yield %>
 
+<div class="container" style="text-align:center;">
+
   <% if @pagy!=nil && @pagy.next   %>
-  <div id="next_link">
-    <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
-  </div>
+    <div id="next_link">
+      <%= link_to pagy_url_for(@pagy, @pagy.next) do %>
+        <%= image_tag "button_next_page.png", alt: "Prossima pagina", style: "width:30px;"%>
+      <% end %>
+    </div>
   <% end %>
   <% if @pagy!=nil && @pagy.prev %>
     <div id="prev_link">
-      <%= link_to "prev", pagy_url_for(@pagy, @pagy.prev) %>
+      <%= link_to pagy_url_for(@pagy, @pagy.prev) do %>
+        <%= image_tag "button_prev_page.png", alt: "Pagina precedente", style: "width:30px;"%>
+      <% end %>
     </div>
   <% end %>
+
+<br>
+
+</div>
   <% notice if notice %>
   <% alert if alert %>
   </body>
