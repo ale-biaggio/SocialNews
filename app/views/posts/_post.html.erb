@@ -91,10 +91,20 @@
           <ul class="comment-list">
           <% post.comments.each do |r| %>
             <% if r.visible %>
-              <li> <a href="/users/<%=r.user_id%>"><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></a> - <%= r.body %> - <%= r.like %> </li>
-              <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
-                <button type="button" class="delete" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
-              <% end %>
+
+              <ul class="list-group">
+                <li class="list-group-item" style="word-wrap: break-word; white-space: pre-wrap;">
+                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%> <%= User.find(r.user_id).surname %></div></a> "<%= r.body %> "<%= r.like %>
+                  <!-- La delete del commento stava fuori aa questa lista prima -->
+                
+                  <!-- fine delete commento -->
+                </li>
+              </ul>
+                  <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
+                    <button type="button" class="delete btn btn-danger" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
+                  <% end %>
+
+              
             <% end %>
           <% end %>
           </ul>
