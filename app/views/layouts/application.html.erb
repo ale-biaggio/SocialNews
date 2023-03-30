@@ -32,37 +32,50 @@
       <%= link_to root_path() do %>
         <%= image_tag("icona.png", size: "45x45") %>
       <% end %>
-      <% if user_signed_in? %>
-        <%= form_tag(users_path, method: "get") do %>
-          <%= text_field_tag(:user_name ,nil, placeholder: 'Cerca utente...',class: "searchbar") %>
-        <% end %>
-      <%end%>
-      <% if current_user==nil %>
-        <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
-      <% elsif can? :all, @user%>
-        <%= button_to "Tutti gli utenti", users_path, method: "get"%>
-      <% else %>
-        <!--script google translate-->
+      <!--script google translate-->
         <div id="google_translate_element"></div>
         <script type="text/javascript">
           function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
           }
         </script>
-        <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
-          <i class="fa-solid fa-gear fa-xl"></i> 
-        <% end %>
-        <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
-          <i class="fa fa-user fa-xl"></i> 
-        <% end %>
-      <% end %>
       <% if user_signed_in? %>
-        Ciao, <%= current_user.name + current_user.surname%><%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
-        <i class="fa-solid fa-right-to-bracket">  Log out</i>
-        <%end%><br>
-        <% if current_user.email == "admin@gmail.com" %>
-          <% current_user.admin! %>
-        <%end%>
+        <%= form_tag(users_path, method: "get") do %>
+          <%= text_field_tag(:user_name ,nil, placeholder: 'Cerca utente...',class: "searchbar") %>
+        <% end %>        
+        <%= link_to  "#", class: "navbar-right dropdown-toggle", data: { toggle: "dropdown" } do %>
+          <% if current_user.avatar.attached? %>
+            <%= image_tag current_user.avatar, size: "30x30" %>
+          <% else %>
+            <%= image_tag "default_avatar.jpg", size: "30x30" %>
+          <% end %>
+        <% end %>
+        <ul class="dropdown-menu">
+          <li>
+            <% if current_user==nil %>
+              <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
+            <% elsif can? :all, @user%>
+              <%= button_to "Tutti gli utenti", users_path, method: "get"%>
+            <% else %>
+              <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
+                <i class="fa-solid fa-gear fa-xl"></i> 
+              <% end %>
+            <%end%>
+          </li>
+          <li>
+            <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
+              <i class="fa fa-user fa-xl"></i> 
+            <% end %>
+          </li>
+          <li>
+            Ciao, <%= current_user.name + current_user.surname%>
+            <%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
+              <i class="fa-solid fa-right-to-bracket">  Log out</i>
+            <%end%>
+          </li>
+        </ul>
+      <% else %>
+        <%= link_to "Accedi o registrati",new_user_session_path %>
       <% end %>
     </nav>
   <% end %>
