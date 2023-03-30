@@ -1,5 +1,5 @@
-<p class="alert"><%= alert %></p>
-<p style="color: green"><%= notice %></p>
+<p class="alert alert-danger"><%= alert %></p>
+<p class="alert alert-success"><%= notice %></p>
 
 <% if current_user!=nil %><br>
   <div class="container">
@@ -37,3 +37,16 @@
 </div>
 <br>
 <%= render @posts %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var alerts = document.querySelectorAll(".alert");
+
+    alerts.forEach(function(alert) {
+      if (alert.innerHTML.trim() !== "") {
+        alert.classList.add("show");
+      }
+    });
+  });
+
+</script>
