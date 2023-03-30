@@ -1,33 +1,74 @@
 var max_id = $('#posts').data('max_id')
-$('.btn').on('click', function() {
-  if($(this).hasClass('btn-green')){
-    $(this).removeClass('btn-green')
-    $('#'+String($(this).attr("id"))+'.like-count').text($('#'+String($(this).attr("id"))+'.like-count').text()-1)   
+$(document).on('click', '.rank-btn', function() {
+  var button = $(this);
+  var image = button.find('img');
+  var post_id = String($(this).data('post_id'));
+  var greenUpPath = image.data('green-up-path');
+  var whiteUpPath = image.data('white-up-path');
+  var redDownPath = image.data('red-down-path');
+  var whiteDownPath = image.data('white-down-path');
+  var rank = $('body').find('.like-count#'+post_id);
+  var rankValue = parseInt($('body').find('.like-count#'+post_id).text());
+  if(button.hasClass("up")){
+    var url = "/posts/" + post_id + "/like";
+    var action = "up";
+    var upBtn = button;
+    var upImage = button.find('img');
+    var downBtn = $('body').find('.down[data-post_id="'+post_id+'"]');
+    var downImage = downBtn.find('img');
   }
-  else if($(this).hasClass('btn-red')){
-    $(this).removeClass('btn-red')
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())+1)   
+  else if(button.hasClass("down")){
+    var url = "/posts/" + post_id + "/dislike";
+    var action = "down";
+    var upBtn = $('body').find('.up[data-post_id="'+post_id+'"]');
+    var upImage = upBtn.find('img');
+    var downBtn = button;
+    var downImage = downBtn.find('img');
   }
-  else if($(this).hasClass('like-btn') && !$(this).hasClass('btn-green')){
-    if($('#'+String($(this).attr("id"))+'.dislike-btn').hasClass('btn-red')){
-      $('#'+String($(this).attr("id"))+'.dislike-btn').removeClass('btn-red')
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())+2)   
+  $.ajax({
+    url: url,
+    type: 'POST',
+    data: {
+      authenticity_token: $('meta[name="csrf-token"]').attr('content'),
+    },
+    success: function(response) {
+      if(action=="up"){
+        if (upImage.attr('src') == whiteUpPath) {
+          if (downImage.attr('src') == redDownPath) {
+            downImage.attr('src', whiteDownPath);
+            rank.text(String(rankValue + 2));
+          }
+          else {
+            rank.text(String(rankValue + 1));
+          }
+          upImage.attr('src', greenUpPath);
+        } 
+        else if (upImage.attr('src') == greenUpPath) {
+          upImage.attr('src', whiteUpPath);
+          rank.text(String(rankValue - 1));
+        }
+      }
+      else if(action=="down"){
+        if (downImage.attr('src') == whiteDownPath) {
+          if (upImage.attr('src') == greenUpPath) {
+            upImage.attr('src', whiteUpPath);
+            rank.text(String(rankValue - 2));
+          }
+          else{
+            rank.text(String(rankValue - 1));
+          }
+          downImage.attr('src', redDownPath);
+        } 
+        else if (downImage.attr('src') == redDownPath) {
+          downImage.attr('src', whiteDownPath);
+          rank.text(String(rankValue + 1));
+        }
+      }
+    },
+    error: function(error) {
+      alert('errore')
     }
-    else{
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())+1)   
-    }  
-    $(this).addClass('btn-green')
-  }
-  else if($(this).hasClass('dislike-btn') && !$(this).hasClass('btn-red')){
-    if($('#'+String($(this).attr("id"))+'.like-btn').hasClass('btn-green')){
-      $('#'+String($(this).attr("id"))+'.like-btn').removeClass('btn-green')
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())-2)   
-    }
-    else{
-    $('#'+String($(this).attr("id"))+'.like-count').text(parseInt($('#'+String($(this).attr("id"))+'.like-count').text())-1)   
-    }
-    $(this).addClass('btn-red')
-  }
+  });
 });
 $(document).on('click', '.verified-btn, .unverified-btn', function() {
   var id = $(this).attr("id");

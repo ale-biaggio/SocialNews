@@ -63,50 +63,28 @@
 
   <div class='container'>
     <div class='row'>
-      <div class='col-3'>
-          <% if user_signed_in? %>
-            <div class='row'>
-              <div class='col-4'>
-                <% if post.liked?(current_user) %>
-                  <%= button_to like_post_path(post), class: 'btn like-btn btn-green', id:post_id do %> 
-                  <i class="fa-solid fa-caret-up fa-3x" style="color: gray;"></i>
-                  <% end %>
-                <% else %>
-                  <%= button_to like_post_path(post), class: 'btn like-btn', id:post_id do %>
-                  <i class="fa-solid fa-caret-up fa-3x" style="color: gray;"></i>
-                  <% end %>
-                <% end %>
-              </div>
-              <div class='col-4' style='text-align: center; display: contents;'>
-                <span class="like-count" id="<%=post_id%>" style="padding-top: 20px;"><%= post.rank %></span>
-              </div>
-              <div class='col-4'>
-                <% if post.disliked?(current_user) %>
-                  <%= button_to dislike_post_path(post), class: 'btn btn-red dislike-btn', id:post_id do %>
-                  <i class="fa-solid fa-caret-down fa-3x" style="color: gray;"></i>
-                  <% end %>
-                <% else %>
-                  <%= button_to dislike_post_path(post), class: 'btn dislike-btn', id: post_id do%>
-                  <i class="fa-solid fa-caret-down fa-3x" style="color: gray;"></i>
-                  <% end %>
-              </div>
-            </div>
-            <% end %>
+      <div class='col-4'>
+        <% if user_signed_in? %>
+          <% if post.liked?(current_user) %>
+            <button type="button" class="rank-btn up green-up" data-post_id="<%=post_id%>"><%= image_tag("green-up.png", data: { green_up_path: image_path('green-up.png'), white_up_path: image_path('white-up.png'), red_down_path: image_path("red-down.png"), white_down_path: image_path("white-down.png")}) %></button>     
+            <span class="like-count" style='text-align: center; display: contents;' id="<%=post_id%>" style="padding-top: 20px;"><%= post.rank %></span>
+            <button type="button" class="rank-btn down white-down" data-post_id="<%=post_id%>"><%= image_tag("white-down.png", data: { green_up_path: image_path('green-up.png'), white_up_path: image_path('white-up.png'), red_down_path: image_path("red-down.png"), white_down_path: image_path("white-down.png")}) %></button>     
+          <% elsif !post.liked?(current_user) && post.disliked?(current_user)%>
+            <button type="button" class="rank-btn up white-up" data-post_id="<%=post_id%>"><%= image_tag("white-up.png", data: { green_up_path: image_path('green-up.png'), white_up_path: image_path('white-up.png'), red_down_path: image_path("red-down.png"), white_down_path: image_path("white-down.png")}) %></button>     
+            <span class="like-count" style='text-align: center; display: contents;' id="<%=post_id%>" style="padding-top: 20px;"><%= post.rank %></span>                
+            <button type="button" class="rank-btn down red-down" data-post_id="<%=post_id%>"><%= image_tag("red-down.png", data: { green_up_path: image_path('green-up.png'), white_up_path: image_path('white-up.png'), red_down_path: image_path("red-down.png"), white_down_path: image_path("white-down.png")}) %></button>     
           <% else %>
-            <div class='row'>
-              <div class='col-4'>
-                  <i class="fa-solid fa-caret-up fa-3x" style="color: gray;"></i>
-              </div>
-              <div class='col-4'>
-                <span class="like-count" id="<%=post_id%>" style="padding-top: 20px;"><%= post.rank %></span>
-              </div>
-              <div class='col-4'>
-                  <i class="fa-solid fa-caret-down fa-3x" style="color: gray;"></i>
-              </div>
-            </div>
-          <% end %> 
-      </div>
-      <div class='col-6'>
+            <button type="button" class="rank-btn up white-up" data-post_id="<%=post_id%>"><%= image_tag("white-up.png", data: { green_up_path: image_path('green-up.png'), white_up_path: image_path('white-up.png'), red_down_path: image_path("red-down.png"), white_down_path: image_path("white-down.png")}) %></button>     
+            <span class="like-count" style='text-align: center; display: contents;' id="<%=post_id%>" style="padding-top: 20px;"><%= post.rank %></span>                  
+            <button type="button" class="rank-btn down white-down" data-post_id="<%=post_id%>"><%= image_tag("white-down.png", data: { green_up_path: image_path('green-up.png'), white_up_path: image_path('white-up.png'), red_down_path: image_path("red-down.png"), white_down_path: image_path("white-down.png")}) %></button>     
+          <% end %>
+        <% else %>
+          <a href="/users/sign_in"><button type="button" class="rank-btn"><%= image_tag("white-up.png")%></button></a>     
+          <span class="like-count" id="<%=post_id%>" style="padding-top: 20px;"><%= post.rank %></span>
+          <a href="/users/sign_in"><button type="button" class="rank-btn"><%= image_tag("white-down.png")%></button></a>  
+        <% end %> 
+        </div>
+      <div class='col-8'>
         <% if post.comments.empty? %>
           <p class="no-comment">No comments for this post...</p>
         <% else %>
@@ -157,9 +135,6 @@
           </div>
         </div>
       </div>
-      <div class='col-3'>
-        
-      </div>
     </div>
 
   <script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=6410620c82a5320015aeb382&product=sop' async='async' ></script>
@@ -171,40 +146,3 @@
 
 <hr>
 
-<script>
-$(document).on('click', '.like-btn, .dislike-btn', function() {
-  var $this = $(this);
-  var post_id = $this.attr('id');
-  var action = $this.attr('action');
-  var method = $this.attr('method');
-  var thumb_color = $this.find('i').css('color');
-
-  $.ajax({
-    url: action,
-    type: method,
-    data: { post_id: post_id },
-    success: function(data) {
-      var $like_count = $('#'+post_id+' .like-count');
-      $like_count.text(data.rank);
-
-      if ($this.hasClass('like-btn')) {
-        if (thumb_color == 'rgb(0, 128, 0)') {
-          $this.find('i').css('color', 'gray');
-        } else {
-          $this.find('i').css('color', 'green');
-          $('.dislike-btn[id="'+post_id+'"]').find('i').css('color', 'gray');
-        }
-      } else {
-        if (thumb_color == 'rgb(255, 0, 0)') {
-          $this.find('i').css('color', 'gray');
-        } else {
-          $this.find('i').css('color', 'red');
-          $('.like-btn[id="'+post_id+'"]').find('i').css('color', 'gray');
-        }
-      }
-    }
-  });
-
-  return false;
-});
-</script>
