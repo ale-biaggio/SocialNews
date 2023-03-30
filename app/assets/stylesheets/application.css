@@ -55,7 +55,9 @@
   .btn-link:hover .fa-magnifying-glass {
     color: white !important;
   }
-  
+  .clickable {
+    cursor: pointer;
+  }
   
   
   /*.accordion:after {

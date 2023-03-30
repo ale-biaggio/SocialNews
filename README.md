@@ -31,10 +31,6 @@ deployment per heroku e distribuziuone
 
 Da fare:
 
--google maps
--ricerca utenti e argomenti
--mailer 
--verificato
--google traduttore
--front-end
--test finali
+icona profilo vicino a nome
+verificato di default
+commenti remove

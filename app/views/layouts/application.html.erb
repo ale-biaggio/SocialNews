@@ -39,32 +39,21 @@
         <% end %> 
 
         <i class="fas fa-language fa-lg clickable" onclick="toggleWidget()"></i>
-<div id="google_translate_element" style="display: none;"></div>
+      <div id="google_translate_element" style="display: none;"></div>
 
-<script>
-var widgetShown = false;
-
-function toggleWidget() {
-  if (widgetShown) {
-    document.getElementById("google_translate_element").style.display = "none";
-    widgetShown = false;
-  } else {
-    new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
-    document.getElementById("google_translate_element").style.display = "block";
-    widgetShown = true;
-  }
-}
-</script>
-
-<style>
-.clickable {
-  cursor: pointer;
-}
-</style>
- 
-
-        
-
+      <script>
+        var widgetShown = false;
+        function toggleWidget() {
+          if (widgetShown) {
+            document.getElementById("google_translate_element").style.display = "none";
+            widgetShown = false;
+          } else {
+            new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
+            document.getElementById("google_translate_element").style.display = "block";
+            widgetShown = true;
+          }
+        }
+      </script>
 
         <%= link_to  "#", class: "navbar-right dropdown-toggle", data: { toggle: "dropdown" } do %>
           <% if current_user.avatar.attached? %>

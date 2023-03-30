@@ -48,9 +48,9 @@ class PostsController < ApplicationController
   end
   # GET /posts or /posts.json
   def index
-    #if (Post.all.count < 15 && User.all.count != 0)
-    #  GoogleNews.save_posts_from_google
-    #end
+    if (Post.all.count < 15 && User.all.count != 0)
+      GoogleNews.save_posts_from_google
+    end
     @current_view = 'posts/index'   
     if params[:keyword].present?
       @pagy, @posts = pagy_countless(Post.where("title LIKE ? OR body LIKE ?", "%#{params[:keyword]}%", "%#{params[:keyword]}%").order(rank: :desc), items: 5)
