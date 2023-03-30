@@ -1,5 +1,5 @@
     <nav class="navbar bg-light">
-      <a class="navbar-brand">Social News</a>
+      <%= link_to "Social News", root_path(), class: "navbar-brand" %>
       <%= form_tag(posts_path, method: "get") do %>
         <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
       <% end %>

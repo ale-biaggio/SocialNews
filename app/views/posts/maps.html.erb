@@ -1,5 +1,5 @@
     <nav class="navbar bg-light">
-      <a class="navbar-brand">Social News</a>
+      <%= link_to "Social News", root_path(), class: "navbar-brand" %>
       <%= form_tag(posts_path, method: "get") do %>
         <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
       <% end %>
@@ -32,6 +32,25 @@
           <% end %>
     </nav>
 
+
+<% if current_user!=nil %><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-4" style="text-align:center;">
+        <%= link_to "Tutte le notizie", root_path(), class: "btn btn-outline-primary home-buttons" %>
+      </div>
+      <div class="col-4" style="text-align:center;">
+        <%= link_to "Seguiti", feed_path(), class: "btn btn-outline-primary home-buttons" %>
+      </div>
+      <div class="col-4" style="text-align:center;">
+        <%= link_to "Esplora", maps_path(), class: "btn btn-outline-primary home-buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<br>
+
 <div id="map"></div>
 
 
@@ -42,6 +61,10 @@
         map = new google.maps.Map(document.getElementById("map"), {
             center: pos,
             zoom: 4,
+            mapTypeControl: false,
+            zoomControl: false,
+            fullscreenControl: false,
+            streetViewControl: false
         });
 
         var m = [

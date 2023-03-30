@@ -1,16 +1,59 @@
-<p style="color: green"><%= notice %></p>
-<h1>PROFILO UTENTE</h1>
+    <nav class="navbar bg-light">
+      <%= link_to "Social News", root_path(), class: "navbar-brand" %>
+      <%= form_tag(posts_path, method: "get") do %>
+        <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
+      <% end %>
+          <% if current_user==nil %>
+            <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
+          <% elsif can? :all, @user%>
+            <%= button_to "Tutti gli utenti", users_path, method: "get"%>
+          <% else %>
+            <!--script google translate-->
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
+              }
+            </script>
+            <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
+              <i class="fa-solid fa-gear fa-xl"></i> 
+            <% end %>
+            <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
+              <i class="fa fa-user fa-xl"></i> 
+            <% end %>
+          <% end %>
+          <% if user_signed_in? %>
+            Ciao, <%= current_user.name + current_user.surname%><%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
+            <i class="fa-solid fa-right-to-bracket">  Log out</i>
+            <%end%><br>
+            <% if current_user.email == "admin@gmail.com" %>
+              <% current_user.admin! %>
+            <%end%>
+          <% end %>
+    </nav>
 
+<p style="color: green"><%= notice %></p>
+<br>
 <%= render @user %>
+
 <section class="stats">
-      <%= render 'shared/stats' %>
+  <%= render 'shared/stats' %>
 </section>
 <%= render 'follow_form' if user_signed_in? %>
 <%if can? :all, @user or (current_user!=nil and current_user.id == @id)%>
   <div>
     <% if (current_user!=nil and current_user.id == @id)%>
-      <%= link_to "Edit", edit_user_path(@user) %> 
-      <%= link_to "Favorites", favorite_show_path(@user) %> 
+    <br>
+    <div class="container">
+      <div class="row">
+        <div class="col-6" style="text-align:center;">
+          <%= link_to "Edit", edit_user_path(@user), class: "btn btn-outline-primary home-buttons"  %> 
+        </div>
+        <div class="col-6" style="text-align:center;">
+          <%= link_to "Favorites", favorite_show_path(@user), class: "btn btn-outline-primary home-buttons"  %> 
+        </div>
+      </div>
+    </div>
     <%end%>  
     <%if can? :all, @user%>
       <%= link_to "Back to users", users_path %>
@@ -18,7 +61,10 @@
     <%= button_to "Destroy this user", @user, method: :delete %>
   </div>
 <%end%>
-<h1>BACHECA POST</h1>
+<hr>
+<div class="container" style="width: 60%;">
+  <h1>Post:</h1>
+</div>
 <% @posts.each do |post| %>
   <%= render post %>
 <% end %>

@@ -1,12 +1,64 @@
+    <nav class="navbar bg-light">
+      <%= link_to "Social News", root_path(), class: "navbar-brand" %>
+      <%= form_tag(posts_path, method: "get") do %>
+        <%= text_field_tag(:keyword, nil, placeholder: 'Cerca...',class: "searchbar") %>
+      <% end %>
+          <% if current_user==nil %>
+            <%= link_to "Clicca qui per fare il login", new_user_session_path() %>
+          <% elsif can? :all, @user%>
+            <%= button_to "Tutti gli utenti", users_path, method: "get"%>
+          <% else %>
+            <!--script google translate-->
+            <div id="google_translate_element"></div>
+            <script type="text/javascript">
+              function googleTranslateElementInit() {
+                new google.translate.TranslateElement({pageLanguage: 'it'}, 'google_translate_element');
+              }
+            </script>
+            <%= link_to new_user_report_path(),  class: "btn mr-1" do %>
+              <i class="fa-solid fa-gear fa-xl"></i> 
+            <% end %>
+            <%= link_to user_path(current_user.id), method: "get" , class: "user-btn btn" do%>
+              <i class="fa fa-user fa-xl"></i> 
+            <% end %>
+          <% end %>
+          <% if user_signed_in? %>
+            Ciao, <%= current_user.name + current_user.surname%><%= link_to  destroy_user_session_path, :method => :delete, class: "btn" do%>
+            <i class="fa-solid fa-right-to-bracket">  Log out</i>
+            <%end%><br>
+            <% if current_user.email == "admin@gmail.com" %>
+              <% current_user.admin! %>
+            <%end%>
+          <% end %>
+    </nav>
+
 <p style="color: green"><%= notice %></p>
+
+<% if current_user!=nil %><br>
+  <div class="container">
+    <div class="row">
+      <div class="col-4" style="text-align:center;">
+        <%= link_to "Tutte le notizie", root_path(), class: "btn btn-outline-primary home-buttons" %>
+      </div>
+      <div class="col-4" style="text-align:center;">
+        <%= link_to "Seguiti", feed_path(), class: "btn btn-outline-primary home-buttons" %>
+      </div>
+      <div class="col-4" style="text-align:center;">
+        <%= link_to "Esplora", maps_path(), class: "btn btn-outline-primary home-buttons" %>
+      </div>
+    </div>
+  </div>
+<% end %>
 
 <%= form_tag(posts_path, :method => "get", id: "search-form") do %>
     <%= select_tag :search, options_for_select([' ','Affari', 'Cultura','Politica','Salute','Spettacolo','Sport','Tecnologia']), placeholder: "" %>
     <%= submit_tag "Search category" %>
 <% end %>
 
-<h1>Posts</h1>
-<%= link_to "New post", new_post_path %>
+<div class="container" style="width: 60%;">
+  <h1>News:</h1>
+  <%= link_to image_tag("pencil.png", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
+</div>
 <div id="posts">
     <%= render @posts %>
 </div>
