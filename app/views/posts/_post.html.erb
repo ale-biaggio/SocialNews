@@ -53,9 +53,9 @@
       </div>
       <div class='col-8'>
         <% if post.url != nil %>
-          <p><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
+          <p style="font-weight: normal;"><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
         <% else %>
-          <p><%= post.body %></p>
+          <p style="font-weight: normal;"><%= post.body %></p>
         <% end %>
       </div>
     </div>
