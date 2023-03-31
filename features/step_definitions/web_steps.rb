@@ -59,7 +59,7 @@ When("I follow registration steps") do
   user9 = FactoryBot.create(:user9)
   post = FactoryBot.create(:post)
 
-  click_link "Clicca qui per fare il login"
+  click_link "Accedi o registrati"
   fill_in 'user[email]', with: '11@1'
   fill_in 'user[password]', with: '123456'
   click_button "Log in"
@@ -68,14 +68,14 @@ end
 Then("I press the favorite button for the first post") do
   @favorite_post_id = first('.favorite')['data-post_id']
   @favorite_user_id = first('#posts')['data-user_id']
-  find(".favorite").click
+  first(".favorite").click
   Favorite.create(user_id: @favorite_user_id, post_id: @favorite_post_id)
 end
 Then("I should see the favorite post") do
   expect(page).to have_css('[data-post_id="1"]')
 end
 When("I press user button") do
-  find('a.user-btn').click
+  find('a.mio-profilo').click
 end
 
 Given /^(?:|I )am on (.+)$/ do |page_name|

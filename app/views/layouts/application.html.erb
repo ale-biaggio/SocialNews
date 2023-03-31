@@ -82,7 +82,7 @@ function toggleWidget() {
               <% end %>
             </li>
             <li>
-              <%= link_to "Il mio profilo", user_path(current_user.id), method: "get" %>
+              <%= link_to "Il mio profilo", user_path(current_user.id), method: "get", class:"mio-profilo" %>
             </li>
             <li>
               <%= link_to "Esci",  destroy_user_session_path(), :method => :delete %>
