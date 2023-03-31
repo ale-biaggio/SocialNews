@@ -95,27 +95,13 @@ $(".comment-form").on('submit', function(event) {
   var name = $("#posts").attr("data-name");
   var user_id = $("#posts").attr("data-user_id");
   var body = formDataArray[1].value;
+  var imagePath = document.querySelector('.comment-list').getAttribute('data-image-path');
   $.ajax({
     url: formUrl,
     type: 'POST',
     data: formData,
     success: function(response) {
-      //if (noComment.length!=0){
-      //  noComment.remove();
-      //  form.prev().append('<ul class="list-group"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name + '</div></a> ' + body + '</li></ul><button type="button" class="delete btn btn-danger" data-p_id="'+post_id+'" data-id='+(max_id+1)+'>Delete</button>');
-      //}
-      //else{
-        var commentList = $('body').find('.comment-li#'+post_id);
-        alert(commentList.length)
-        commentList.append('<li class="list-group-item" style="word-wrap: break-word; ">'+
-                            '<a href="/users/'+user_id+'" style="margin-left: 0;">'+
-                              '<div>' + 
-                                name + 
-                              '</div></a>' + body + 
-                          '</li>'+
-                          '<button type="button" class="delete btn btn-danger" data-p_id="'+post_id+'" data-id='+(max_id+1)+'">'+
-                          'Delete</button>');
-      //}
+      $('body').find('.comment-list[data-post-id="'+post_id+'"]').append('<div class="row" data-id="'+(max_id+1)+'"><div class="col-10"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name + '</div></a>' + body + '</li></div><div class="col-2"><button type="button" class="delete-btn" data-p_id="'+post_id+'" data-id='+(max_id+1)+'><img style="width: 20px; heigth: 20px;" src="'+imagePath+'"+></button></div></div>');
       form.find(".comment-text").val("");
       max_id+=1;
     },
@@ -138,8 +124,7 @@ $(document).on('click', '.delete', function() {
       id: comment_id
     },
     success: function(response) {
-      button.prev().remove();
-      button.remove();
+      $('.row[data-id="'+comment_id+'"]').remove();
     },
     error: function(error) {
       alert('errore')

@@ -17,6 +17,10 @@ p{
   width: 60%;
   height: 60%;
 }
+.comment-list{
+  padding: 0px;
+  margin: 0px;
+}
 .favorite{
   border-style: none;
   padding: 0px;
@@ -131,7 +135,9 @@ gravatar {
   border-radius: 0.25rem;
   text-align: center;
 }
-
+.list-group-item{
+  border-style: none;
+}
 .alert-success {
   color: #155724;
   background-color: #d4edda;
@@ -147,7 +153,11 @@ gravatar {
 .alert {
   display: none;
 }
-
+.delete-btn{
+  padding-top: 20px;
+  padding-left: 0px;  
+  border-style: none;
+}
 .alert.show {
   display: block;
 }

@@ -53,7 +53,7 @@
       </div>
       <div class='col-8'>
         <% if post.url != nil %>
-          <p><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
+          <p style="font-weight: normal;"><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
         <% else %>
         <p style="font-weight: normal;"><%= post.body %></p>
         <% end %>
@@ -87,33 +87,30 @@
         <% end %> 
         </div>
       <div class='col-8'>
-        <!--<% if post.comments.empty? %>
-          <p class="no-comment" data-post_id="<%=post_id%>">No comments for this post...</p>
-        <% else %>-->
-          <ul class="comment-list list-group">
-            <% post.comments.each do |r| %>
-              <% if r.visible %>
-              <div class='row'>
-                <div class='col-10 comment-li' id="<%=post.id%>">
-                  <li class="list-group-item" style="word-wrap: break-word; ">
-                  <a href="/users/<%=r.user_id%>" style="margin-left: 0;">
-                    <div>
-                      <%= User.find(r.user_id).name%>
-                    </div>
-                  </a> 
-                  "<%= r.body %>"
-                  </li>
-                </div>
-                <div class='col-2'>
-                  <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
-                    <button type="button" class="delete btn btn-danger" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>">Delete</button>     
-                  <% end %>
-                </div> 
-              </div>   
-              <% end %>
-            <% end %>
-          </ul>
-        <% end %>
+        <% #if post.comments.empty? %>
+        <% #else %>
+          <div class="comment-container" style="max-height: 200px; overflow: auto;">
+              <ul class="comment-list" data-post-id="<%=post_id%>" data-image-path=<%=image_path('secchio.png')%>>
+                <% post.comments.each do |r| %>
+                  <div class="row" data-id="<%=r.id%>">
+                    <% if r.visible %>
+                      <div class="col-10">
+                        <li class="list-group-item" style="word-wrap: break-word;">
+                          <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%></div></a> "<%= r.body %>"
+                        </li>
+                      </div>
+                      <div class="col-2">
+                        <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
+                          <button type="button" class="delete-btn" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>"><%= image_tag("secchio.png", size: "20x20")%></button>     
+                        <% end %>
+                      </div>
+                    <% end %>
+                  </div>
+                <% end %>
+              </ul>
+          </div>
+
+        <% #end %>
         <%= form_with model: [ post, @comment ], data: { post_id: post_id, max_id: max_id }, class: "comment-form" do |form| %>
           <% if @comment.errors.any? %>
             <div id="error_explanation">
