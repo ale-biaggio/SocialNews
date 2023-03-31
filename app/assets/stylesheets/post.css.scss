@@ -135,8 +135,16 @@ gravatar {
   border-radius: 0.25rem;
   text-align: center;
 }
-.list-group-item{
+li.list-group-item{
   border-style: none;
+}
+
+.list-group-item:last-child {
+  padding: 3px;
+  margin-bottom: 10px;
+  border-bottom-right-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+  display: flex;
 }
 .alert-success {
   color: #155724;
