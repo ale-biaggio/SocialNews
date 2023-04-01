@@ -92,20 +92,22 @@
           <div class="comment-container" style="max-height: 200px; overflow: auto; overflow-x: hidden;">
               <ul class="comment-list" data-post-id="<%=post_id%>" data-image-path=<%=image_path('secchio.png')%>>
                 <% post.comments.each do |r| %>
-                  <div class="row" data-id="<%=r.id%>">
-                    <% if r.visible %>
-                      <div class="col-10">
-                        <li class="list-group-item" style="word-wrap: break-word;">
-                          <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name%></div></a> "<%= r.body %>"
-                        </li>
+                  <% if r.visible %>
+                    <div class="container">
+                      <div class="row list-group-item" data-id="<%=r.id%>">
+                        <div class="col-10">
+                          <li class="list-group-item" style="word-wrap: break-word;">
+                            <a href="/users/<%=r.user_id%>" style="margin-left: 0;"><div><%= User.find(r.user_id).name+": "%></div></a>"<%= r.body %>"
+                          </li>
+                        </div>
+                        <div class="col-2">
+                          <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
+                            <button type="button" class="delete btn" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>"><%= image_tag("secchio.png", size: "20x20")%></button>     
+                          <% end %>
+                        </div>
                       </div>
-                      <div class="col-2">
-                        <% if can? :destroy , r or (current_user!=nil and current_user.id == User.find(r.user_id).id) %>
-                          <button type="button" class="delete-btn" data-p_id="<%=r.post.id%>" data-id="<%=r.id%>"><%= image_tag("secchio.png", size: "20x20")%></button>     
-                        <% end %>
-                      </div>
-                    <% end %>
-                  </div>
+                    </div>
+                  <% end %>
                 <% end %>
               </ul>
           </div>
@@ -137,6 +139,7 @@
                   <%= form.submit "+", class: "comment-submit", style: "border-radius:20px;"%>
                 </div>
               <% end %>
+            </div>
         <% end %>
         <% if current_user == nil %>
           <a href="http://127.0.0.1:3000/users/sign_in"><button style="border-radius:20px;">+</button></a><br>

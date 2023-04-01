@@ -101,7 +101,7 @@ $(".comment-form").on('submit', function(event) {
     type: 'POST',
     data: formData,
     success: function(response) {
-      $('body').find('.comment-list[data-post-id="'+post_id+'"]').append('<div class="row" data-id="'+(max_id+1)+'"><div class="col-10"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name + '</div></a>' + body + '</li></div><div class="col-2"><button type="button" class="delete-btn" data-p_id="'+post_id+'" data-id='+(max_id+1)+'><img style="width: 20px; heigth: 20px;" src="'+imagePath+'"+></button></div></div>');
+      $('body').find('.comment-list[data-post-id="'+post_id+'"]').append('<div class="container"><div class="row list-group-item" data-id="'+(max_id+1)+'"><div class="col-10"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name +": "+ '</div></a>' + body + '</li></div><div class="col-2"><button type="button" class="delete btn" data-p_id="'+post_id+'" data-id='+(max_id+1)+'><img style="width: 20px; heigth: 20px;" src="'+imagePath+'"+></button></div></div></div>');
       form.find(".comment-text").val("");
       max_id+=1;
     },
