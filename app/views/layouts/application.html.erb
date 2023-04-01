@@ -11,6 +11,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <%= stylesheet_link_tag 'post' %>
 
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -28,15 +29,18 @@
     <%end%>
   <%end%>
   <% if show_navbar? %>
-    <nav class="navbar bg-light">
+    <nav class="navbar navbar-fixed-top" style="z-index:1; ">
       <%= link_to root_path() do %>
         <%= image_tag("icona.png", size: "45x45") %>
       <% end %>
       
       <% if user_signed_in? %>
         <%= form_tag(users_path, method: "get") do %>
-          <%= text_field_tag(:user_name ,nil, placeholder: 'Cerca utente...',class: "searchbar1") %>
-        <% end %> 
+          <div class="searchbar-container">
+            <span class="fa fa-search"></span>
+            <%= text_field_tag(:user_name ,nil, placeholder: 'Cerca utente...',class: "searchbar1") %>
+          </div>
+        <% end %>
 
         <i class="fas fa-language fa-lg clickable" onclick="toggleWidget()"></i>
       <div id="google_translate_element" style="display: none;"></div>
@@ -67,14 +71,14 @@
               <% if can? :all, @user %>
                 <%= button_to "Tutti gli utenti", users_path, method: "get" %>
               <% else %>
-                <%= link_to "Impostazioni", new_user_report_path() %>
+                <%= link_to "<i class='fas fa-cog'></i> Impostazioni".html_safe, new_user_report_path() %>
               <% end %>
             </li>
             <li>
-              <%= link_to "Il mio profilo", user_path(current_user.id), method: "get", class:"mio-profilo" %>
+             <%= link_to "<i class='fas fa-user'></i> Il mio profilo".html_safe, user_path(current_user.id), method: "get", class:"mio-profilo" %>
             </li>
             <li>
-              <%= link_to "Esci",  destroy_user_session_path(), :method => :delete %>
+             <%= link_to "<i class='fas fa-sign-out-alt'></i> Logout".html_safe, destroy_user_session_path, method: :delete %>
             </li>
           </ul>
 

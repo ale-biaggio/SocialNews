@@ -4,35 +4,41 @@ users = [
     surname: "", 
     username: "La Repubblica",
     email: "larepubblica@gmail.com",
-    password: "password"
+    password: "password",
+    verified: 1
     },
     {
     name: "Ansa", 
     surname: "", 
     username:  "Ansa",
     email: "ansa@gmail.com",
-    password: "password"
+    password: "password",
+    verified: 1
     },
     { 
     name: "Il Sole 24 Ore", 
     surname: "", 
     username:  "Il Sole 24 Ore",
     email: "ilsole24ore@gmail.com",
-    password: "password"
+    password: "password",
+    verified: 1
+
     },
     {
     name: "Football Italia", 
     surname: "", 
     username:  "Football Italia",
     email: "footballitalia@gmail.com",
-    password: "password"
+    password: "password",
+    verified: 1
     },
     { 
     name: "BBC News", 
     surname: "", 
     username:  "BBC News",
     email: "bbcnews@gmail.com",
-    password: "password"
+    password: "password",
+    verified: 1
     },
     { 
     name: "Mario Rossi", 
@@ -46,14 +52,15 @@ users = [
     surname: "", 
     username:  "admin",
     email: "admin@gmail.com",
-    password: "123456",
+    password: "123456"
     },
     {
     name: "Il Fatto Quotidiano", 
     surname: "", 
     username:  "Il Fatto Quotidiano",
     email: "ilfattoquotidiano@gmail.com",
-    password: "123456"
+    password: "123456",
+    verified: 1
     }
 ]
 

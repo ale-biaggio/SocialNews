@@ -6,17 +6,15 @@
   post_id = post.id
 %>
 
-<div class='container' style="width: 60%; background-color: white;">
+<div class='container  post' style="width: 60%; background-color: white;">
   <br>
   <div class='container'>
     <div class='row'>
-      <div class='col-11'>
-        <h5><b><%= link_to post.user.name, user_path(post.user.id), method: "get", class: "text-dark" %></h5></b>
+      <div class='col-11' style='text-align: center; display: contents;'>
+        <h5><b><%= link_to post.user.name, user_path(post.user.id), method: "get", class: "text-dark" , style: 'padding-left: 15px;'%></h5></b>
         <h5><b><%= link_to post.user.surname, user_path(post.user.id), method: "get", class: "text-dark" %></h5></b>
-
-
         <% if User.find(post.user.id).verified==1 %>
-          <%= image_tag("verified-icon.png", style:"width: 15px; height: 15px;") %>
+          <%= image_tag("verified-icon.jpg", style:"width: 15px; height: 15px;") %>
         <% end %>
       </div>
       <div class='col-1'>
@@ -47,10 +45,12 @@
   </div>
   <div class='container'>
     <div class='row'>
-      <div class='col-4'>
-        <%= image_tag post.image, :style => "width: 100%; border-radius: 5px;" if post.image.attached?%>
-        <%= image_tag post.img_test, :style => "width: 100%; border-radius: 5px;" if post.img_test != nil%>
-      </div>
+      <% if post.image.attached? || post.img_test != nil%>
+        <div class='col-4'>
+          <%= image_tag post.image, :style => "width: 100%; border-radius: 5px;" if post.image.attached?%>
+          <%= image_tag post.img_test, :style => "width: 100%; border-radius: 5px;" if post.img_test != nil%>
+        </div>
+      <% end %>
       <div class='col-8'>
         <% if post.url != nil %>
           <p style="font-weight: normal;"><%= post.body %>...<a href = "<%= post.url %>" target="_blank" rel="noopener noreferrer">articolo completo</a></p>
@@ -141,12 +141,6 @@
               <% end %>
             </div>
         <% end %>
-        <% if current_user == nil %>
-          <a href="http://127.0.0.1:3000/users/sign_in"><button style="border-radius:20px;">+</button></a><br>
-        <% end %>  
-        <% if current_user!=nil and current_user.id == post.user_id%>
-          <%= link_to "Edit this post", edit_post_path(post) %>
-        <% end %>
           </div>
         </div>
       </div>
@@ -159,8 +153,18 @@
       </div>
       <div class='col-4'></div>
     </div>
-  <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Delete post', post, method: :delete, data:{ confirm: 'Are you sure?' } end%>
-  </div>
+    <% if (current_user!=nil && current_user.id == post.user_id) %>
+      <div class='row'>
+        <div class="col-3"></div>
+        <div class="col-3" style='text-align: center;'>
+          <%= link_to "Modifica", edit_post_path(post), class: "btn feed-link" %>
+        </div> 
+        <div class="col-3" style='text-align: center; margin: 0px'>
+          <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Elimina', post, class: "btn delete-link", method: :delete, data:{ confirm: 'Are you sure?' } end%>
+        </div> 
+        <div class="col-3"></div>
+      </div>
+    <% end %>
 </div>
 
 <hr>

@@ -1,3 +1,3 @@
 class UserReport < ApplicationRecord
-    has_one_attached :report_image
+    has_one_attached :report_image, dependent: :destroy
 end

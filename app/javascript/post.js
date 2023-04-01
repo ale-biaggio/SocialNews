@@ -156,3 +156,36 @@ $(document).on('click', '.favorite', function(event) {
     }
   });
 });
+document.addEventListener('DOMContentLoaded', () => {
+  const currentUrl = window.location.href;
+  if (currentUrl == "http://127.0.0.1:3000/"){
+    $('body').find(".1").addClass("feed-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/feed"){
+    $('body').find(".2").addClass("feed-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/maps"){
+    $('body').find(".3").addClass("feed-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Affari"){
+    $('body').find(".4").addClass("category-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Cultura"){
+    $('body').find(".5").addClass("category-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Politica"){
+    $('body').find(".6").addClass("category-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Salute"){
+    $('body').find(".7").addClass("category-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Spettacolo"){
+    $('body').find(".8").addClass("category-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Sport"){
+    $('body').find(".9").addClass("category-link-clicked")
+  }
+  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Tecnologia"){
+    $('body').find(".10").addClass("category-link-clicked")
+  }
+});

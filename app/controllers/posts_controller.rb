@@ -32,7 +32,7 @@ class PostsController < ApplicationController
   def feed
     @current_view = 'posts/feed'
     following_ids = "SELECT followed_id FROM relationships WHERE  follower_id = :user_id"
-    @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids})", user_id: current_user.id), items: 5)
+    @pagy, @posts = pagy_countless(Post.where("user_id IN (#{following_ids})"), items: 5)
     @comment = Comment.new
     respond_to do |format|
       format.html # GET
@@ -88,7 +88,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
     respond_to do |format|
       if @post.save
-        format.html { redirect_to root_path, notice: "Post was successfully created." }
+        format.html { redirect_to user_path(current_user), notice: "Post was successfully created." }
         format.json { head :no_content }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -101,7 +101,7 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
-        format.html { redirect_to root_path, notice: "Post was successfully updated." }
+        format.html { redirect_to user_path(current_user), notice: "Post was successfully updated." }
         format.json { head :no_content }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -115,7 +115,7 @@ class PostsController < ApplicationController
     @post.destroy
     
     respond_to do |format|
-      format.html { redirect_to root_path, notice: "Post was successfully destroyed." }
+      format.html { redirect_to user_path(current_user), notice: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end

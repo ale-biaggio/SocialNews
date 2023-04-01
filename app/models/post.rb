@@ -4,7 +4,7 @@ class Post < ApplicationRecord
     has_many :dislikes, dependent: :destroy
     has_many :favorites, dependent: :destroy
     belongs_to :user
-    has_one_attached :image
+    has_one_attached :image, dependent: :destroy
     def liked?(user)
         !!self.likes.find{|like| like.user_id == user.id}
     end

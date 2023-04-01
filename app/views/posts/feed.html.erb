@@ -1,40 +1,44 @@
 <p style="color: green"><%= notice %></p>
-
 <br>
-
-<% if current_user!=nil %><br>
-  <div class="container">
-    <div class="row">
-      <div class="col-4" style="text-align:center;">
-        <%= link_to "Tutte le notizie", root_path(), class: "btn btn-outline-primary home-buttons" %>
+<div class="container-fluid" style="text-align: center;">
+  <div class="row align-items-center d-flex justify-content-between">
+    <% if current_user!=nil %>
+      <div class="col-3" style="text-align:center;"></div>
+      <div class="col" style="text-align:center;">
+        <%= link_to "Tutte le notizie", root_path(), class: "btn feed-link home-buttons 1" %>
       </div>
-      <div class="col-4" style="text-align:center;">
-        <%= link_to "Seguiti", feed_path(), class: "btn btn btn-primary home-buttons" %>
+      <div class="col" style="text-align:center;">
+        <%= link_to "Seguiti", feed_path(), class: "btn feed-link home-buttons 2" %>
       </div>
-      <div class="col-4" style="text-align:center;">
-        <%= link_to "Esplora", maps_path(), class: "btn btn-outline-primary home-buttons" %>
+      <div class="col" style="text-align:center;">
+        <%= link_to "Esplora", maps_path(), class: "btn feed-link home-buttons 3" %>
       </div>
+      <div class="col-3" style="text-align:center;"></div>
+    <% end %>
+  </div>
+  <div class="row align-items-center d-flex justify-content-between">
+    <% i = 4%>
+    <% Post.all_category.each do |category| %>
+      <div class="col">
+        <%= link_to category, posts_path(category: category), class: "category-link btn  home-buttons "+i.to_s %>
+      </div>
+      <% i += 1 %>
+    <% end %>
+    <div class="col-auto">
+      <a href="#" class="btn home-buttons btn-link" id="show-form-btn"><i class="fa-solid fa-magnifying-glass" style="color: #14a112;"></i></a>
+    </div>
+    <div id="form-container" style="display: none; text-align: right; ">
+      <%= form_tag(posts_path, method: "get") do %>
+        <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar2") %>
+      <% end %>
     </div>
   </div>
-<% end %>
-
-<br>
-
-<div class="container" style="text-align: center;">
-  <div class="row">
-    <% Post.all_category.each do |category| %>
-  <div class="col">
-    <%= link_to category, posts_path(category: category), class: "category-link btn btn-outline-success home-buttons" %>
-  </div>
-  <% end %>
 </div>
-
 <br>
 
 <div class="container" style="width: 60%;">
   <h1>News:</h1>
-  <%= link_to image_tag("pencil.png", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
+  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
 </div>
-<div id="posts">
-    <%= render @posts %>
-</div>
+<br>
+<%= render @posts %>
