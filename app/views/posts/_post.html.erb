@@ -89,7 +89,7 @@
       <div class='col-8'>
         <% #if post.comments.empty? %>
         <% #else %>
-          <div class="comment-container" style="max-height: 200px; overflow: auto;">
+          <div class="comment-container" style="max-height: 200px; overflow: auto; overflow-x: hidden;">
               <ul class="comment-list" data-post-id="<%=post_id%>" data-image-path=<%=image_path('secchio.png')%>>
                 <% post.comments.each do |r| %>
                   <div class="row" data-id="<%=r.id%>">
