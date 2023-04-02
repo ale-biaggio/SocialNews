@@ -32,25 +32,35 @@ deployment per heroku e distribuziuone
 Ordine:
 
 da visitatore:
-    guarda home page e filtra per categorie o argomento
-    guarda maps
-    visitare link completo articolo
-    vedere profili utenti
-    registrarsi (oauth ecc)
+    guarda home page e filtra per categorie o argomento     gab
+    guarda maps         gab
+    visitare link completo articolo     gab
+    vedere profili utenti       gab
+    registrarsi (oauth ecc)     mart
 da utente registrato:
-    vedere il prorpio profilo
-    modificare proprio profilo (foto, ecc)
-    ed eliminarlo
-    cercare altri utenti
-    seguire o no utenti
-    vedere feed seguiti
-    salvare nei preferiti i post
-    pubblicare articoli, modificarli ed eliminarli
-    commentare articoli e lasciare up e down
-    recupero password
-    richiedere verificato e fare segnalazioni varie
-    tradurre home e feed
-    logout
+    vedere il prorpio profilo       mart
+    modificare proprio profilo (foto, ecc)      ale
+    ed eliminarlo       ale
+    cercare altri utenti        ale
+    seguire o no utenti     met
+    vedere feed seguiti         met
+    salvare nei preferiti i post    met
+    pubblicare articoli, modificarli ed eliminarli      ale
+    commentare articoli e lasciare up e down        ale
+    richiedere verificato e fare segnalazioni varie     ale
+    tradurre home e feed            mett
+    recupero password   met
+    logout          mart
 da admin:
-    eliminare articoli,utenti
-    mettere e tiogliere verificato
+    eliminare articoli,utenti   mart
+    mettere e tiogliere verificato      mart
+
+cucumber   met
+rspec    gab
+
+
+
+ale 6
+gab  5 (con test)
+met     5 (con test)
+mart  5
