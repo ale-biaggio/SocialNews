@@ -1,4 +1,5 @@
-<p style="color: green"><%= notice %></p>
+<p class="alert alert-danger"><%= alert %></p>
+<p class="alert alert-success"><%= notice %></p>
 <br>
 <div class="container" style="width: 60%;">
   <h1>Lista utenti:</h1>
@@ -37,3 +38,16 @@
     <br>
   <% end %>
 </div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var alerts = document.querySelectorAll(".alert");
+
+    alerts.forEach(function(alert) {
+      if (alert.innerHTML.trim() !== "") {
+        alert.classList.add("show");
+      }
+    });
+  });
+
+</script>

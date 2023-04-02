@@ -1,4 +1,5 @@
-<p style="color: green"><%= notice %></p>
+<p class="alert alert-danger"><%= alert %></p>
+<p class="alert alert-success"><%= notice %></p>
 <br>
 <div class="container-fluid" style="text-align: center;">
   <div class="row align-items-center d-flex justify-content-between">
@@ -42,3 +43,17 @@
 </div>
 <br>
 <%= render @posts %>
+
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var alerts = document.querySelectorAll(".alert");
+
+    alerts.forEach(function(alert) {
+      if (alert.innerHTML.trim() !== "") {
+        alert.classList.add("show");
+      }
+    });
+  });
+
+</script>
