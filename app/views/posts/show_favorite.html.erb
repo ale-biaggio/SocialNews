@@ -1,13 +1,9 @@
-<h1>Favorites:</h1>
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-  <% end %>
-  <div>
-  <%= link_to "Back", @user %> 
+<div class="container posts" style="width: 60%; padding-top: 120px;">
+  <h1 style="text-align: center">Favorites</h1>
+  <div id="posts">
+    <% @posts.each do |post| %>
+      <%= render post %>
+    <% end %>
+    <%= link_to "Back", user_path(@user), class:"btn feed-link" %> 
+  </div>
 </div>
-</div>
-<div id="next_link">
-  <%= link_to "next", pagy_url_for(@pagy, @pagy.next) %>
-</div>
-

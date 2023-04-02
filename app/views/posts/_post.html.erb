@@ -159,14 +159,22 @@
     </div>
     <% if can? :destroy, post or (current_user!=nil && current_user.id == post.user_id) %>
       <div class='row'>
-        <div class="col-3"></div>
-        <div class="col-3" style='text-align: center;'>
-          <%= link_to "Modifica", edit_post_path(post), class: "btn feed-link" %>
-        </div> 
-        <div class="col-3" style='text-align: center; margin: 0px'>
-          <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Elimina', post, class: "btn delete-link", method: :delete, data:{ confirm: 'Are you sure?' } end%>
-        </div> 
-        <div class="col-3"></div>
+        <% if !can? :destroy, post %>
+          <div class="col-3"></div>
+          <div class="col-3" style='text-align: center;'>
+            <%= link_to "Modifica", edit_post_path(post), class: "btn feed-link" %>
+          </div> 
+          <div class="col-3" style='text-align: center; margin: 0px'>
+            <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Elimina', post, class: "btn delete-link", method: :delete, data:{ confirm: 'Are you sure?' } end%>
+          </div> 
+          <div class="col-3"></div>
+        <% else %>
+          <div class="col-5"></div>
+          <div class="col-2" style='text-align: center; margin: 0px'>
+            <%= if can? :destroy, post or (current_user!=nil and current_user.id == post.user_id) then button_to 'Elimina', post, class: "btn delete-link", method: :delete, data:{ confirm: 'Are you sure?' } end%>
+          </div> 
+          <div class="col-5"></div>
+        <% end %>
       </div>
     <% end %>
   </div>

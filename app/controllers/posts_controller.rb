@@ -11,6 +11,7 @@ class PostsController < ApplicationController
     end
   end
   def show_favorite
+    @user = current_user
     favorited_ids = "SELECT post_id FROM favorites WHERE  user_id = :user_id"
     @pagy, @posts = pagy_countless(Post.where("id IN (#{favorited_ids})", user_id: params[:id]), items: 5)
     @comment = Comment.new
