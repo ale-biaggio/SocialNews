@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-    before_action :authenticate_user!
-    before_action :logged_in_user, only: [:index, :edit, :update, :destroy,
-    :following, :followers]
+    before_action :authenticate_user!, :except => [:show]
+    before_action :logged_in_user, only: [:index, :edit, :update, :destroy,:following, :followers]
     def index
       @current_view = 'users/index'
       @users = User.all

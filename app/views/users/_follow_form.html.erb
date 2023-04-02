@@ -1,10 +1,10 @@
 <div class="container" style="width: 60%;">
   <div class="row">
-    <div class="col-4">
+    <div class="col-2">
     </div>
-    <div class="col-8">
+    <div class="col-10">
       <% unless current_user==(@user) %>
-        <div id="follow_form">
+        <div id="follow_form"  style="width: 200px; padding-left: 45px">
         <% if current_user.following?(@user) %>
           <%= render 'unfollow' %>
         <% else %>

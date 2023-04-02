@@ -75,13 +75,19 @@ $(document).on('click', '.verified-btn, .unverified-btn', function() {
   if($(this).hasClass('verified-btn')){
     $(this).text("Elimina verificato");
     $(this).removeClass('verified-btn');
+    $(this).removeClass('feed-link');
     $(this).addClass('unverified-btn');
-    $('#'+String(id)+'.name').after('<img style="width: 15px" class="verified-icon" id="'+id+'" src="/assets/verified-icon.jpg">');   
+    $(this).addClass('delete-link');
+    $(this).css("color", "#c02635");
+    $('#'+String(id)+'.name').after('<img style="width: 20px; padding-bottom: 5px; padding-left: 3px;" class="verified-icon" id="'+id+'" src="/assets/verified-icon.jpg">');   
   }
   else if($(this).hasClass('unverified-btn')){
     $(this).text("Conferma verificato");  
     $(this).removeClass('unverified-btn');
+    $(this).removeClass('delete-link');
     $(this).addClass('verified-btn');
+    $(this).addClass('feed-link');
+    $(this).css("color", "#1169B2");
     $('#'+String(id)+'.verified-icon').remove();
   }
 });

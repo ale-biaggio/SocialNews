@@ -1,22 +1,22 @@
-<p class="alert alert-danger"><%= alert %></p>
-<p class="alert alert-success"><%= notice %></p>
+<p class="alert alert-danger" style="z-index: 1; margin-top: 78px; position: absolute;"><%= alert %></p>
+<p class="alert alert-success" style="z-index: 1; margin-top: 78px;position: absolute;"><%= notice %></p>
 <br>
 <span class="page" style="display: none;"><%=@current_view%></span>
 <div class="container-fluid double-bar" style="text-align: center; z-index:0;">
   <div class="row align-items-center d-flex justify-content-between">
+    <div class="col-3" style="text-align:center;"></div>
+    <div class="col" style="text-align:center;">
+      <%= link_to "Home", root_path(), class: "btn feed-link home-buttons 1 font-size: 20px;" %>
+    </div>
     <% if current_user!=nil %>
-      <div class="col-3" style="text-align:center;"></div>
-      <div class="col" style="text-align:center;">
-        <%= link_to "Home", root_path(), class: "btn feed-link home-buttons 1 font-size: 20px;" %>
-      </div>
       <div class="col" style="text-align:center;">
         <%= link_to "Seguiti", feed_path(), class: "btn feed-link home-buttons 2 font-size: 20px;" %>
       </div>
-      <div class="col" style="text-align:center;">
-        <%= link_to "Esplora", maps_path(), class: "btn feed-link home-buttons 3 font-size: 20px;" %>
-      </div>
-      <div class="col-3" style="text-align:center;"></div>
     <% end %>
+    <div class="col" style="text-align:center;">
+      <%= link_to "Esplora", maps_path(), class: "btn feed-link home-buttons 3 font-size: 20px;" %>
+    </div>
+    <div class="col-3" style="text-align:center;"></div>
   </div>
   <div class="row align-items-center d-flex justify-content-between">
     <% i = 4%>

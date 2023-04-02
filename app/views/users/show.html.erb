@@ -1,41 +1,32 @@
-<p class="alert alert-danger"><%= alert %></p>
-<p class="alert alert-success"><%= notice %></p>
+<p class="alert alert-danger" style="z-index: 1; margin-top: 78px; position: absolute;"><%= alert %></p>
+<p class="alert alert-success" style="z-index: 1; margin-top: 78px;position: absolute;"><%= notice %></p>
 <br>
-<div style="text-align: center; align-items: center; justify-content:center;" class="align-items-center flex align-items-center ">
+<div style=" width: 60%; text-align: center; align-items: center; justify-content:center; margin-left: 255px; background-color: white;" class="align-items-center flex align-items-center ">
   <div style="text-align: center; justify-content:center;" class="align-items-center">
   <%= render @user %>
 
-  <section class="stats">
+  <section class="stats" style="background-color: white">
     <%= render 'shared/stats' %>
   </section>
-  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
+  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: "btn pencil"%>
   <%= render 'follow_form' if user_signed_in? %>
   <%if can? :all, @user or (current_user!=nil and current_user.id == @id)%>
-    <%if can? :all, @user%>
-      <div class="container" style="width: 60%">
-        <div class="row">
-          <div class="col-4">
-          </div>
-          <div class="col-8">
-            <%= link_to "Back to users", users_path, class: "btn btn-primary", style: "width:100%;" %>
-          </div>
-        </div>
-      </div>
-    <%end%>
     <br>
-    <div class="container">
-      <div class="row">
-        <div class="col-3"></div>
-        <div class="col-2" style="text-align:center;">
+    <div>
+      <div class="row" style="background-color: white; margin: 0;">
+        <div class="col-2"></div>
+        <div class="col-3" style="text-align:center;">
           <%= link_to "Modifica profilo", edit_user_path(@user), class: "btn feed-link"  %> 
         </div>
-        <div class="col-2" style="text-align:center;">
+        <div class="col-1" style="text-align:center;">
           <%= link_to "Preferiti", favorite_show_path(@user), class: "btn feed-link"  %> 
         </div>
         <div class="col-2" style='text-align: center; display: contents;'>
-          <%= button_to "Elimina profilo", @user, method: :delete, class: "btn delete-link" %>
+          <%= form_tag @user, method: :delete, style:'margin-left: 80px; margin-top: -4;' do %>
+            <%= button_to "Elimina profilo", @user, method: :delete, class: "btn delete-link" %>
+          <% end %>
         </div>
-        <div class="col-3"></div>
+        <div class="col-4"></div>
       </div>
     </div>  
   <%end%>

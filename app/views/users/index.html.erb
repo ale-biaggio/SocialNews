@@ -1,32 +1,31 @@
-<p class="alert alert-danger"><%= alert %></p>
-<p class="alert alert-success"><%= notice %></p>
+<p class="alert alert-danger" style="z-index: 1; margin-top: 78px; position: absolute;"><%= alert %></p>
+<p class="alert alert-success" style="z-index: 1; margin-top: 78px;position: absolute;"><%= notice %></p>
 <div id="users" class="container-fluid" style="padding-top: 100px; width: 60%; ">
   <% @users.each do |user| %>
     <%= render user %>
     <div class="container" style="background-color: white;">
-      <div class="row">
-        <div class="col-4"></div>
-        <div class="col-4" style="text-align: center;">
+      <div class="row" style="padding-top: 20px; height: 40px;">
+        <div class="col-4"style="display: flex"></div>
+        <div class="col-4" style="text-align: center;display: flex">
           <a class="btn feed-link"><%= link_to "Visualizza profilo", user, class: "btn feed-link", style: "margin-bottom: 100px;" %></a>
         </div>
-        <div class="col-4"></div>
+        <div class="col-4"style="display: flex"></div>
+      </div>
+      <div class="row" style="padding-top: 20px;">
+        <%if can? :all, @user%>
+          <% if user.verified == 1 %>
+            <div class="col-12" style="display: flex">
+              <%= button_to "Elimina verificato", verified_user_path(user), class: 'btn delete-link unverified-btn', style: 'color: #c02635', id:user.id %> 
+            </div>
+          <% else %>
+            <div class="col-12" style="display: flex">
+              <%= button_to "Conferma verificato", verified_user_path(user), class: 'btn feed-link verified-btn', style: 'color: #1169B2', id:user.id %> 
+            </div>
+          <% end %>
+        <%end%>
       </div>
     </div>
-      <!--
-      <div class="row">
-            <%if can? :all, @user%>
-              <% if user.verified == 1 %>
-                <div class="col-12">
-                  <%= button_to "Elimina verificato", verified_user_path(user), class: 'btn btn-danger unverified-btn', id:user.id %> 
-                </div>
-              <% else %>
-                <div class="col-12">
-                  <%= button_to "Conferma verificato", verified_user_path(user), class: 'btn btn-success verified-btn', id:user.id %> 
-                </div>
-              <% end %>
-            <%end%>
-      </div>
-      -->
+      
   <% end %>
 </div>
 

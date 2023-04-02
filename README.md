@@ -29,8 +29,28 @@ deployment per heroku e distribuziuone
 
 
 
-Da fare:
+Ordine:
 
-icona profilo vicino a nome
-verificato di default
-commenti remove
+da visitatore:
+    guarda home page e filtra per categorie o argomento
+    guarda maps
+    visitare link completo articolo
+    vedere profili utenti
+    registrarsi (oauth ecc)
+da utente registrato:
+    vedere il prorpio profilo
+    modificare proprio profilo (foto, ecc)
+    ed eliminarlo
+    cercare altri utenti
+    seguire o no utenti
+    vedere feed seguiti
+    salvare nei preferiti i post
+    pubblicare articoli, modificarli ed eliminarli
+    commentare articoli e lasciare up e down
+    recupero password
+    richiedere verificato e fare segnalazioni varie
+    tradurre home e feed
+    logout
+da admin:
+    eliminare articoli,utenti
+    mettere e tiogliere verificato

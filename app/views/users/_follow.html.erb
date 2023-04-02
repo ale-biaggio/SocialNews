@@ -2,5 +2,5 @@
                           build(followed_id: @user.id),
                           remote: true) do |f| %>
   <div><%= hidden_field_tag :followed_id, @user.id %></div>
-  <%= f.submit "SEGUI", class: "btn btn-primary", style: "width:100%;" %>
+  <a class="btn feed-link"><%= f.submit "SEGUI", class: "btn feed-link", style: "width:100%; color: #1169B2" %></a>
 <% end %>
