@@ -101,7 +101,7 @@ RSpec.describe PostsController, type: :controller do
 
  
 
-        it 'redirects to the root_path' do
+        it 'redirects to the user_path' do
             post :create, params: { post: valid_attributes }
             expect(response).to redirect_to(user_path(user))
         end
