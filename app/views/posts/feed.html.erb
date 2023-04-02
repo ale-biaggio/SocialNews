@@ -1,26 +1,29 @@
 <p style="color: green"><%= notice %></p>
 <br>
-<div class="container-fluid" style="text-align: center;">
+<span class="page" style="display: none;"><%=@current_view%></span>
+<div class="container-fluid double-bar" style="text-align: center; z-index:0;">
   <div class="row align-items-center d-flex justify-content-between">
     <% if current_user!=nil %>
       <div class="col-3" style="text-align:center;"></div>
       <div class="col" style="text-align:center;">
-        <%= link_to "Tutte le notizie", root_path(), class: "btn feed-link home-buttons 1" %>
+        <%= link_to "Home", root_path(), class: "btn feed-link home-buttons 1 font-size: 20px;" %>
       </div>
       <div class="col" style="text-align:center;">
-        <%= link_to "Seguiti", feed_path(), class: "btn feed-link home-buttons 2" %>
+        <%= link_to "Seguiti", feed_path(), class: "btn feed-link home-buttons 2 font-size: 20px;" %>
       </div>
       <div class="col" style="text-align:center;">
-        <%= link_to "Esplora", maps_path(), class: "btn feed-link home-buttons 3" %>
+        <%= link_to "Esplora", maps_path(), class: "btn feed-link home-buttons 3 font-size: 20px;" %>
       </div>
       <div class="col-3" style="text-align:center;"></div>
     <% end %>
   </div>
   <div class="row align-items-center d-flex justify-content-between">
     <% i = 4%>
+    <br>
+    <div class="col"></div>
     <% Post.all_category.each do |category| %>
       <div class="col">
-        <%= link_to category, posts_path(category: category), class: "category-link btn  home-buttons "+i.to_s %>
+        <%= link_to category, feed_path(category: category), class: "category-link btn  home-buttons "+i.to_s %>
       </div>
       <% i += 1 %>
     <% end %>
@@ -32,13 +35,32 @@
         <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar2") %>
       <% end %>
     </div>
+    <div class="col"></div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    // Aggiungi la classe "selected-category" al clic sul link della categoria
+    $(".category-link").click(function() {
+      $(".category-link").removeClass("selected-category");
+      $(this).addClass("selected-category");
+    });
+
+    // Mostra/nascondi il form di ricerca
+    $("#show-form-btn").click(function() {
+      $("#form-container").toggle();
+    });
+  });
+</script>
+
 <br>
 
-<div class="container" style="width: 60%;">
-  <h1>News:</h1>
-  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
+<div class="container posts" style="width: 60%;">
+  <div class="news-text" style="text-align: center">
+    <h1>News</h1>
+  </div>
+  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: " pencil"%>
+  <br>
+  <%= render @posts %>
 </div>
-<br>
-<%= render @posts %>

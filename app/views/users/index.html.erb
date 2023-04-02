@@ -1,24 +1,19 @@
 <p style="color: green"><%= notice %></p>
-<br>
-<div class="container" style="width: 60%;">
-  <h1>Lista utenti:</h1>
-</div>
-<br>
-<div id="users">
-    <% @users.each do |user| %>
-      <div class='container' style="width: 60%; background-color: white; text-align:center;">
-        <br>
-        <%= render user %>
-        <br>
-      <div class="container">
-        <div class="row">
-          <div class="col-12">
-            <p>
-              <%= link_to "Visualizza profilo Utente", user, class: "btn btn-primary", style: "width: 100%" %>
-            </p>
-          </div>
+
+<div id="users" class="container-fluid" style="padding-top: 100px; width: 60%; ">
+  <% @users.each do |user| %>
+    <%= render user %>
+    <div class="container" style="background-color: white;">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4" style="text-align: center;">
+          <a class="btn feed-link"><%= link_to "Visualizza profilo", user, class: "btn feed-link", style: "margin-bottom: 100px;" %></a>
         </div>
-        <div class="row">
+        <div class="col-4"></div>
+      </div>
+    </div>
+      <!--
+      <div class="row">
             <%if can? :all, @user%>
               <% if user.verified == 1 %>
                 <div class="col-12">
@@ -30,10 +25,9 @@
                 </div>
               <% end %>
             <%end%>
-        </div>
       </div>
-      <br>
-    </div>
-    <br>
+      -->
   <% end %>
 </div>
+
+

@@ -106,7 +106,7 @@ var acc = document.getElementsByClassName("accordion");
 <h1>Segnala un problema</h1>
 -->
 <br>
-<div class='container' style="width: 60%; background-color: white; text-align:center;">
+<div class='container' style="width: 60%; background-color: white; text-align:center; margin-top: 80px;">
   <br>
   <h1>Nuova Segnalazione</h1>
   <br>
@@ -128,7 +128,7 @@ var acc = document.getElementsByClassName("accordion");
       <%= form.label :message %>
       <%= form.text_area :message, class: 'form-control' %>
     </div>
-    <%= form.submit 'Invia segnalazione', class: 'btn btn-dark' %>
+    <a class="btn feed-link"><%= form.submit 'Invia segnalazione', class: 'btn feed-link' %></a>
   <% end %>
   <br>
 </div>

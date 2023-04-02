@@ -1,7 +1,8 @@
 <p class="alert alert-danger"><%= alert %></p>
 <p class="alert alert-success"><%= notice %></p>
 <br>
-<div class="container-fluid" style="text-align: center; z-index:0; padding-top: 30px;">
+<span class="page" style="display: none;"><%=@current_view%></span>
+<div class="container-fluid double-bar" style="text-align: center; z-index:0;">
   <div class="row align-items-center d-flex justify-content-between">
     <% if current_user!=nil %>
       <div class="col-3" style="text-align:center;"></div>
@@ -20,6 +21,7 @@
   <div class="row align-items-center d-flex justify-content-between">
     <% i = 4%>
     <br>
+    <div class="col"></div>
     <% Post.all_category.each do |category| %>
       <div class="col">
         <%= link_to category, posts_path(category: category), class: "category-link btn  home-buttons "+i.to_s %>
@@ -34,6 +36,7 @@
         <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar2") %>
       <% end %>
     </div>
+    <div class="col"></div>
   </div>
 </div>
 
@@ -54,13 +57,14 @@
 
 <br>
 
-<div class="container" style="width: 60%;">
-  <h1>News:</h1>
-  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: "btn btn-outline-primary pencil"%>
+<div class="container posts" style="width: 60%;">
+  <div class="news-text" style="text-align: center">
+    <h1>News</h1>
+  </div>
+  <%= link_to image_tag("pencil.jpg", style: "width: 50px;"), new_post_path, class: " pencil"%>
+  <br>
+  <%= render @posts %>
 </div>
-<br>
-<%= render @posts %>
-
 <script>
   document.addEventListener("DOMContentLoaded", function() {
     var alerts = document.querySelectorAll(".alert");

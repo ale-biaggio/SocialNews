@@ -32,7 +32,7 @@
   <% if show_navbar? %>
     <nav class="navbar navbar-fixed-top" style="z-index:1; ">
       <%= link_to root_path() do %>
-        <%= image_tag("icona.png", size: "100x60") %>
+        <%= image_tag("icona.png", size: "110x60") %>
       <% end %>
       
       <% if user_signed_in? %>
@@ -67,19 +67,19 @@
             <%= image_tag "default_avatar.jpg", size: "30x30" %>
           <% end %>
         <% end %>
-          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+          <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown" style="padding: 5 15;">
             <li>
               <% if can? :all, @user %>
-                <%= button_to "Tutti gli utenti", users_path, method: "get" %>
+                <%= button_to "Tutti gli utenti", users_path, method: "get", style: "color: black" %>
               <% else %>
-                <%= link_to "<i class='fas fa-cog'></i> Impostazioni".html_safe, new_user_report_path() %>
+                <%= link_to "<i class='fas fa-cog'></i> Impostazioni".html_safe, new_user_report_path(), style: "color: black" %>
               <% end %>
             </li>
             <li>
-             <%= link_to "<i class='fas fa-user'></i> Il mio profilo".html_safe, user_path(current_user.id), method: "get", class:"mio-profilo" %>
+             <%= link_to "<i class='fas fa-user'></i> Il mio profilo".html_safe, user_path(current_user.id), method: "get", class:"mio-profilo", style: "color: black" %>
             </li>
             <li>
-             <%= link_to "<i class='fas fa-sign-out-alt'></i> Logout".html_safe, destroy_user_session_path, method: :delete %>
+             <%= link_to "<i class='fas fa-sign-out-alt'></i> Logout".html_safe, destroy_user_session_path, method: :delete, style: "color: red" %>
             </li>
           </ul>
 

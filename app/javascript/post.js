@@ -101,7 +101,7 @@ $(".comment-form").on('submit', function(event) {
     type: 'POST',
     data: formData,
     success: function(response) {
-      $('body').find('.comment-list[data-post-id="'+post_id+'"]').append('<div class="container"><div class="row list-group-item" data-id="'+(max_id+1)+'"><div class="col-10"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name +": "+ '</div></a>' + body + '</li></div><div class="col-2"><button type="button" class="delete btn" data-p_id="'+post_id+'" data-id='+(max_id+1)+'><img style="width: 20px; heigth: 20px;" src="'+imagePath+'"+></button></div></div></div>');
+      $('body').find('.comment-list[data-post-id="'+post_id+'"]').append('<div class="container"><div class="row list-group-item" data-id="'+(max_id+1)+'"><div class="col-10"><li class="list-group-item" style="word-wrap: break-word; "><a href="/users/'+user_id+'" style="margin-left: 0;"><div>' + name +" "+ '</div></a>' + ": "+ body + '</li></div><div class="col-2"><button type="button" class="delete btn" data-p_id="'+post_id+'" data-id='+(max_id+1)+'><img style="width: 20px; heigth: 20px;" src="'+imagePath+'"+></button></div></div></div>');
       form.find(".comment-text").val("");
       max_id+=1;
     },
@@ -158,34 +158,35 @@ $(document).on('click', '.favorite', function(event) {
 });
 document.addEventListener('DOMContentLoaded', () => {
   const currentUrl = window.location.href;
-  if (currentUrl == "http://127.0.0.1:3000/"){
+  var page = $('body').find('.page').text();
+  if (currentUrl == "http://127.0.0.1:3000/" || page=="posts/index" ){
     $('body').find(".1").addClass("feed-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/feed"){
+  if (currentUrl == "http://127.0.0.1:3000/feed" || page=="posts/feed"){
     $('body').find(".2").addClass("feed-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/maps"){
+  if (currentUrl == "http://127.0.0.1:3000/maps"){
     $('body').find(".3").addClass("feed-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Affari"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Affari" || currentUrl == "http://127.0.0.1:3000/feed?category=Affari"){
     $('body').find(".4").addClass("category-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Cultura"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Cultura" || currentUrl == "http://127.0.0.1:3000/feed?category=Cultura"){
     $('body').find(".5").addClass("category-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Politica"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Politica" || currentUrl == "http://127.0.0.1:3000/feed?category=Politica"){
     $('body').find(".6").addClass("category-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Salute"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Salute" || currentUrl == "http://127.0.0.1:3000/feed?category=Salute"){
     $('body').find(".7").addClass("category-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Spettacolo"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Spettacolo" || currentUrl == "http://127.0.0.1:3000/feed?category=Spettacolo"){
     $('body').find(".8").addClass("category-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Sport"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Sport" || currentUrl == "http://127.0.0.1:3000/feed?category=Sport"){
     $('body').find(".9").addClass("category-link-clicked")
   }
-  else if (currentUrl == "http://127.0.0.1:3000/posts?category=Tecnologia"){
+  if (currentUrl == "http://127.0.0.1:3000/posts?category=Tecnologia" || currentUrl == "http://127.0.0.1:3000/feed?category=Tecnologia"){
     $('body').find(".10").addClass("category-link-clicked")
   }
 });
