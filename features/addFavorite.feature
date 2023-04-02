@@ -11,7 +11,7 @@ Scenario: Add a favorite
     And I press the favorite button for the first post
     And I press user button
     Then I should be on the User page
-    When I follow "Favorites"
+    When I follow "Preferiti"
     Then I should be on the Favorite page
     And I should see the favorite post
     

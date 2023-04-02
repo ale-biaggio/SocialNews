@@ -13,5 +13,5 @@ Scenario: Add a post
     And I select "Affari" from "Category"
     And I fill in "Body" with "Questo è un testo"
     And I press "Create Post"
-    Then I should be on the SocialNews home page
-    #And I should see "Nuovo post"
+    Then I should be on the User page
+    And I should see "Nuovo post"

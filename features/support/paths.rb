@@ -27,6 +27,8 @@ module NavigationHelpers
       '/users/6'
     when /^the Favorite page/
       '/users/6/show_favorite'
+ 
+
     # Add more mappings here.
     # Here is an example that pulls values out of the Regexp:
     #
