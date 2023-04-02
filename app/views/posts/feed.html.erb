@@ -32,13 +32,28 @@
       <a href="#" class="btn home-buttons btn-link" id="show-form-btn"><i class="fa-solid fa-magnifying-glass" style="color: #14a112;"></i></a>
     </div>
     <div id="form-container" style="display: none; text-align: right; ">
-      <%= form_tag(posts_path, method: "get") do %>
+      <%= form_tag(feed_path, method: "get") do %>
         <%= text_field_tag(:keyword, nil, placeholder: 'Cerca argomento...',class: "searchbar2") %>
       <% end %>
     </div>
     <div class="col"></div>
   </div>
 </div>
+
+<script>
+  $(document).ready(function() {
+    // Aggiungi la classe "selected-category" al clic sul link della categoria
+    $(".category-link").click(function() {
+      $(".category-link").removeClass("selected-category");
+      $(this).addClass("selected-category");
+    });
+
+    // Mostra/nascondi il form di ricerca
+    $("#show-form-btn").click(function() {
+      $("#form-container").toggle();
+    });
+  });
+</script>
 
 <br>
 
