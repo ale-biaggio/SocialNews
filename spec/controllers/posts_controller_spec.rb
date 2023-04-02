@@ -103,7 +103,7 @@ RSpec.describe PostsController, type: :controller do
 
         it 'redirects to the root_path' do
             post :create, params: { post: valid_attributes }
-            expect(response).to redirect_to(root_path)
+            expect(response).to redirect_to(user_path(user))
         end
     end
     context 'with invalid params' do
@@ -136,10 +136,10 @@ RSpec.describe PostsController, type: :controller do
               patch :update, params: { id: post.to_param, post: new_attributes }
               expect(assigns(:post)).to eq(post)
           end
-          it 'redirects to the root_path' do
+          it 'redirects to the user_path' do
               post = Post.create! valid_attributes
               patch :update, params: { id: post.to_param, post: new_attributes }
-              expect(response).to redirect_to(root_path)
+              expect(response).to redirect_to(user_path(user))
           end
       end          
       context 'with invalid params' do
@@ -169,10 +169,10 @@ RSpec.describe PostsController, type: :controller do
       }.to change(Post, :count).by(-1)
     end
 
-    it 'redirects to the posts list' do
+    it 'redirects to the user_path' do
       post = Post.create! valid_attributes
       delete :destroy, params: { id: post.to_param }
-      expect(response).to redirect_to(root_path)
+      expect(response).to redirect_to(user_path(user))
     end
   end
 
